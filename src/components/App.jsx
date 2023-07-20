@@ -1,7 +1,7 @@
 import { useEffect, lazy, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { PrivateRoute } from './PrivateRoute';
+// import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { refreshUser } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
@@ -29,6 +29,7 @@ export const App = () => {
   const [currentTheme, setCurrentTheme] = useState('light');
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
+  setCurrentTheme('light');
 
   useEffect(() => {
     dispatch(refreshUser());
