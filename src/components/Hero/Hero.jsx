@@ -26,6 +26,7 @@ import dog2_md_bg_2x from '../../images/MainPageImages/dog2_md_bg@2x.webp';
 export const Hero = () => {
   return (
     <>
+
       <HeroTitle>Take good care of your small pets</HeroTitle>
       <Cat1
         srcSet={`${cat_sm_1x} 219w, ${cat_sm_2x} 437w , ${cat_md_bg_1x} 454w, ${cat_md_bg_2x} 907w`}
