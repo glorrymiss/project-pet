@@ -6,7 +6,7 @@ export const Navigation = () => {
 
   return (
     <NavContainer>
-      <StyledNavLink to="/news">NewsPage</StyledNavLink>
+      <StyledNavLink to="/news">News Page</StyledNavLink>
       <StyledNavLink to="/notices">Find pet</StyledNavLink>
       <StyledNavLink to="/friends">Our friends</StyledNavLink>
       {/* {isLoggedIn && <StyledNavLink to="/contacts">Contacts</StyledNavLink>} */}

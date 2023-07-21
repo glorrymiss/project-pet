@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StyledAppBar = styled.header`
   display: flex;
+  ali
   padding: 10px 0;
   // margin: 20px 16px;
   // background: ${({ theme }) => theme.color.gradient};
