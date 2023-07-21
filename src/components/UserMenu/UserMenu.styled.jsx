@@ -15,7 +15,15 @@ export const Wrapper = styled.div`
 `;
 
 export const UserName = styled.p`
-  font-weight: 700;
+  color: ${({ dark, theme }) =>
+    dark === 'true' ? theme.color.background : theme.color.primary};
+
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.64px;
 
   @media screen and (min-width: 768px) {
     // width: 768px;

@@ -11,8 +11,17 @@ export const AppBar = () => {
   return (
     <StyledAppBar>
       <Logo />
-      <Navigation />
-      {isLoggedIn ? <UserMenu /> : <AuthNav />}
+      <div
+        style={{
+          display: 'flex',
+          width: '100%',
+          height: '100%',
+          justifyContent: 'space-between',
+        }}
+      >
+        <Navigation />
+        {isLoggedIn ? <UserMenu /> : <AuthNav />}
+      </div>
     </StyledAppBar>
   );
 };
