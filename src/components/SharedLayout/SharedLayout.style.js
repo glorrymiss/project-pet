@@ -1,20 +1,25 @@
 import styled from 'styled-components';
 
 export const ContainerLayout = styled.div`
+  // background: ${({ theme }) => theme.color.gradient};
+  // box-shadow: ${({ theme }) => theme.boxShadowHover};
+
   margin: auto;
-  //   display: flex;
-  //   padding: 10px 0;
-  //   // margin: 20px 16px;
-  //   // background: ${({ theme }) => theme.color.gradient};
-  //   // box-shadow: ${({ theme }) => theme.boxShadowHover};
+  min-width: 320px;
+  min-height: 100vh;
+  padding: 20px;
 
   @media screen and (min-width: 768px) {
     margin: auto;
-    width: 768px;
+    min-width: 704px;
+    min-height: 100vh;
+    padding: 24px 32px;
   }
 
   @media screen and (min-width: 1280px) {
     margin: auto;
-    width: 1280px;
+    width: 1248px;
+    min-height: 100vh;
+    padding: 20px 16px;
   }
 `;
