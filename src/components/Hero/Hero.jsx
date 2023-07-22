@@ -26,6 +26,7 @@ import dog2_md_bg_2x from '../../images/MainPageImages/dog2_md_bg@2x.webp';
 export const Hero = () => {
   return (
     <>
+
       <Background>
         <HeroTitle>Take good care of your small pets</HeroTitle>
         <Cat1
