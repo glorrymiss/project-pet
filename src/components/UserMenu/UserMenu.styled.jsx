@@ -1,9 +1,11 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(NavLink)`
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-top: 82px;
 
   @media screen and (min-width: 768px) {
     // width: 768px;

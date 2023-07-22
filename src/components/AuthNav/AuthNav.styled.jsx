@@ -1,18 +1,19 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import IconPawprint from 'images/icons/IconPawprint';
+import IconPawprint from 'images/icons/IconPawprint1';
 
 export const StyledNavLink = styled(NavLink)`
-  display: flex;
-  justify-content: center;
-  min-width: 142px;
-  padding: 8px 20px;
-
   background: ${({ dark, theme }) =>
     dark === 'true' ? theme.color.primary : 'transparent'};
   color: ${({ dark, theme }) =>
     dark === 'true' ? theme.color.background : theme.color.primary};
   border: 2px solid ${({ theme }) => theme.color.primary};
+
+  display: flex;
+  justify-content: center;
+  min-width: 125px;
+  padding: 8px 20px;
+
   border-radius: 25px;
 
   text-decoration: none;
@@ -40,9 +41,17 @@ export const StyledNavLink = styled(NavLink)`
 
 export const AuthNavContainer = styled.nav`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  // grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 20px;
+  // grid-template-columns: 1fr 1fr;
+  row-gap: 12px;
+  margin-top: 38px;
+
+  @media screen and (min-width: 768px) {
+    // width: 768px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    // width: 1280px;
+  }
 `;
 
 export const StyledIconPawprint = (
