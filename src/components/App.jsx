@@ -22,7 +22,7 @@ const NewsPage = lazy(() => import('../pages/mainPages/NewsPage'));
 const MainPage = lazy(() => import('../pages/mainPages/MainPage'));
 const NoticesPage = lazy(() => import('../pages/mainPages/NoticesPage'));
 const OurFriendsPage = lazy(() => import('../pages/mainPages/OurFriendsPage'));
-const UserPage = lazy(() => import('../pages/secondaryPages/UserPage'));
+const UserPage = lazy(() => import('../pages/secondaryPages/UserPage/UserPage'));
 const AddPetPage = lazy(() => import('../pages/secondaryPages/AddPetPage'));
 
 export const App = () => {

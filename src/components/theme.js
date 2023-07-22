@@ -6,6 +6,7 @@ const darktheme = {
   error: '#F43F5E', //red
   background: '#FDF7F2', //white
   indicator: '#00C3AD', //green
+  btnLogOut: '#888', //grey
   gradient: 'linear-gradient(to left, #419ef1 0%, #9bd0ff 100%)', //gradient
 };
 
@@ -17,6 +18,7 @@ const lightTheme = {
   error: '#F43F5E', //red
   background: '#FDF7F2', //white
   indicator: '#00C3AD', //green
+  btnLogOut: '#888', //grey
   gradient: 'linear-gradient(to left, #419ef1 0%, #9bd0ff 100%)', //gradient
 };
 
