@@ -1,4 +1,3 @@
-import IconPawprint from 'images/icons/IconPawprint';
 import {
   AuthNavContainer,
   // StyledIconPawprint,
@@ -6,6 +5,7 @@ import {
 } from './AuthNav.styled';
 import { useAuth } from 'hooks';
 import theme from 'components/theme';
+import IconPawprint1 from 'images/icons/IconPawprint1';
 
 export const AuthNav = () => {
   const { currentTheme } = useAuth();
@@ -14,7 +14,7 @@ export const AuthNav = () => {
     <AuthNavContainer>
       <StyledNavLink dark={'true'} to="/login">
         <span style={{ marginRight: 8 }}>Log In</span>
-        <IconPawprint fill={theme[currentTheme].color.background} />
+        <IconPawprint1 fill={theme[currentTheme].color.background} />
       </StyledNavLink>
       <StyledNavLink to="/register">Registration</StyledNavLink>
       {/* <StyledNavLink to="/user">user</StyledNavLink> */}
