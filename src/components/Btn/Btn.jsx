@@ -14,18 +14,14 @@ const Btn = ({
   const [isHover, setIsHover] = useState(false);
   const { currentTheme } = useAuth();
 
-  // let fill = 'null';
+  let fill = 'null';
 
-  // if (isHover) {
-  //   fill = theme[currentTheme].color.background;
-  // } else
-  //   fill = !transparent
-  //     ? theme[currentTheme].color.background
-  //     : theme[currentTheme].color.btnDark;
-
-  const fill = !transparent
-    ? theme[currentTheme].color.background
-    : theme[currentTheme].color.btnDark;
+  if (isHover) {
+    fill = theme[currentTheme].color.background;
+  } else
+    fill = !transparent
+      ? theme[currentTheme].color.background
+      : theme[currentTheme].color.btnDark;
 
   return (
     <StyleBtn
