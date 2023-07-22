@@ -1,10 +1,10 @@
 import * as React from 'react';
-const IconPawprint = props => (
+const IconPawprint1 = props => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={24}
     height={24}
-    fill={props.fill || 'none'}
+    // fill={props.fill || 'none'}
     {...props}
   >
     <g fill={props.fill || '#54ADFF'} clipPath="url(#a)">
@@ -17,4 +17,4 @@ const IconPawprint = props => (
     </defs>
   </svg>
 );
-export default IconPawprint;
+export default IconPawprint1;
