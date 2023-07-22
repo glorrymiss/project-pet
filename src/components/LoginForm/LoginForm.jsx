@@ -1,4 +1,4 @@
-import {Title, FieldStyled, FormStyled, Button, Text, Wrap, StyledNavLink, TextError, FieldError} from './LoginForm.styled'
+import {Title, FieldStyled, FormStyled, Button, Text, Wrap, StyledNavLink, TextError} from './LoginForm.styled'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
