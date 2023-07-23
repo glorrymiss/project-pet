@@ -1,5 +1,5 @@
-import { PetInfo } from 'components/PetInfo/PetInfo';
-import { UserInfo } from 'components/UserInfo/UserInfo';
+import { PetsData } from 'components/PetsData/PetsData';
+import { UserData } from 'components/UserData/UserData';
 import {
   Container,
 } from './UserPage.styled';
@@ -7,8 +7,8 @@ import {
 const UserPage = () => {
   return (
     <Container>
-      <UserInfo />
-      <PetInfo />
+      <UserData />
+      <PetsData />
     </Container>
   );
 };

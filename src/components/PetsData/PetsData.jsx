@@ -10,13 +10,14 @@ import {
   WrapInfo,
   TextTitle,
   Text,
-} from './PetInfo.styled';
-import photoDefault from '../../images/userPageImages/photoDefault.svg';
+} from './PetsData.styled';
+import photoPetsDefault from '../../images/userPageImages/photoPetsDefault.svg';
 import { Link } from 'react-router-dom';
 // import Btn from 'components/Btn/Btn';
 
-export const PetInfo = () => {
-  const user = {
+export const PetsData = () => {
+	const pet = {
+	  avatar: '',
     name: 'Anna',
     birthday: '00.00.0000',
     type: 'Persian cat',
@@ -28,14 +29,13 @@ export const PetInfo = () => {
     <Container>
       <Title>My pets:</Title>
       <ul>
-        <WrapItem key={user.type}>
+        <WrapItem key={pet.type}>
           <Link to="/add-pet">
             <StyledBtnPlus icon={'IconPlus'} text={'Add Pet'} />
           </Link>
-
           <WrapFoto>
             <Avatar>
-              <img src={photoDefault} alt="Avatar" />
+              <img src={!pet.avatar?photoPetsDefault:pet.avatar} alt="Avatar" />
             </Avatar>
           </WrapFoto>
           <WrapInfo>
@@ -43,25 +43,25 @@ export const PetInfo = () => {
             <InfoItem>
               <Text>
                 <TextTitle>Name: </TextTitle>
-                {user.name}
+                {pet.name}
               </Text>
             </InfoItem>
             <InfoItem>
               <Text>
                 <TextTitle>Date of birth: </TextTitle>
-                {user.birthday}
+                {pet.birthday}
               </Text>
             </InfoItem>
             <InfoItem>
               <Text>
                 <TextTitle>Type: </TextTitle>
-                {user.type}
+                {pet.type}
               </Text>
             </InfoItem>
             <InfoItem>
               <Text>
                 <TextTitle>Comments: </TextTitle>
-                {user.comments}
+                {pet.comments}
               </Text>
             </InfoItem>
           </WrapInfo>
