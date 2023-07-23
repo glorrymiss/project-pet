@@ -4,16 +4,16 @@ import { NavLink } from 'react-router-dom';
 export const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   height: auto;
-  margin-right: 40px;
+  text-align: center;
 
   white-space: nowrap;
 
   font-family: Manrope;
-  font-size: 20px;
+  font-size: 32px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  letter-spacing: 0.8px;
+  letter-spacing: 1.28px;
 
   &.active {
     color: ${({ dark, theme }) =>
@@ -21,27 +21,34 @@ export const StyledNavLink = styled(NavLink)`
   }
 
   @media screen and (min-width: 768px) {
-    // width: 100px;
+    font-size: 48px;
+    letter-spacing: 1.92px;
   }
 
   @media screen and (min-width: 1280px) {
-    // width: 100px;
+    font-size: 20px;
+    letter-spacing: 0.8px;
+    margin-right: 40px;
   }
 `;
 
 export const NavContainer = styled.nav`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  // column-gap: 40px;
-  // height: 100%;
-  align-items: center;
-  margin-left: 159px;
+  ${({ isOpenMenu }) => (isOpenMenu ? 'display: grid' : 'display: none')};
+
+  row-gap: 20px;
+  margin-top: ${({ isLoggedIn }) => (isLoggedIn ? '84px' : '40px')};
 
   @media screen and (min-width: 768px) {
-    // width: 768px;
+    margin-top: ${({ isLoggedIn }) => (isLoggedIn ? '84px' : '40px')};
   }
 
   @media screen and (min-width: 1280px) {
-    // width: 1280px;
+    box-shadow: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    top: 0;
+    position: relative;
+    margin-left: 159px;
+    margin-top: 0;
   }
 `;

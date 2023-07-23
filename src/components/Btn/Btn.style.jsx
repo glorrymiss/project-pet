@@ -17,7 +17,7 @@ export const StyleBtn = styled.button`
           padding: 8px 28px;
           gap: 10px;`;
     } else if (size === 'normal') {
-      return `width: 169px;
+      return `width: 165px;
           height: 44px;
           padding: 8px 20px;
           gap: 8px;
