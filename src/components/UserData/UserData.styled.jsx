@@ -43,7 +43,6 @@ export const Wrap = styled.div`
   }
 `;
 export const WrapFoto = styled.div`
-  position: relative;
   padding: 20px 49px 43px;
   @media screen and (min-width: 768px) {
     padding: 20px 76px 66px 71px;
@@ -111,11 +110,11 @@ export const Text = styled.p`
 `;
 export const StyledBtnEdit = styled(Btn)`
   position: absolute;
-  top: 14px;
+  top: 52px;
   right: 14px;
   border: none;
   @media screen and (min-width: 768px) {
-    top: 18px;
+    top: 80px;
     right: 18px;
   }
 `;
@@ -135,3 +134,4 @@ export const StyledBtn = styled(Btn)`
 	margin-top: 14px;
   }
 `;
+
