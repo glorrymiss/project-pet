@@ -1,10 +1,11 @@
 import { NavLink } from 'react-router-dom';
+import { StyleImg } from './Logo.styled';
 // import logo from '../images/LogoMax.png';
 
 const Logo = () => {
   return (
     <NavLink to="/main">
-      <img src={require('../../images/LogoMax.png')} alt="" />
+      <StyleImg alt="" />
     </NavLink>
   );
 };

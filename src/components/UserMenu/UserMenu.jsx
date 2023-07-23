@@ -2,15 +2,17 @@ import { useAuth } from 'hooks';
 import { UserName, Wrapper } from './UserMenu.styled';
 import IconUser from 'images/icons/IconUser1';
 import theme from 'components/theme';
+import { NavLink } from 'react-router-dom';
 
-export const UserMenu = () => {
+export const UserMenu = ({ isOpenMenu }) => {
   const { user, currentTheme } = useAuth();
 
   return (
-    // <NavLink to="/main"></NavLink>
-    <Wrapper to="/user">
-      <IconUser fill={theme[currentTheme].color.primary} />
-      <UserName>{user.name}</UserName>
-    </Wrapper>
+    <NavLink to="/user">
+      <Wrapper isOpenMenu={isOpenMenu}>
+        <IconUser fill={theme[currentTheme].color.primary} />
+        <UserName isOpenMenu={isOpenMenu}>{user.name}</UserName>
+      </Wrapper>
+    </NavLink>
   );
 };
