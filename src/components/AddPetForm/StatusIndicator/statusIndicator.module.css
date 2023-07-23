@@ -1,0 +1,132 @@
+/* Default */
+.textStatus {
+  position: relative;
+  color: #888888;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.33;
+  text-align: left;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+  width: 80px;
+  padding: 0px;
+}
+.textStatus:not(:last-child) {
+  margin-right: 12px;
+}
+.textStatus::after {
+  position: absolute;
+  content: '';
+  background-color: #cce4fb;
+  width: 80px;
+  height: 8px;
+  border-radius: 8px;
+  left: 0;
+  bottom: -16px;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .textStatus {
+    font-size: 14px;
+    line-height: 1.21;
+    margin-bottom: 16px;
+    min-width: 120px;
+  }
+  .textStatus::after {
+    width: 120px;
+  }
+
+  .textStatus:not(:last-child) {
+    margin-right: 16px;
+  }
+}
+
+/* Current */
+
+.textStatusCurrent {
+  position: relative;
+  color: #54adff;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.36;
+  text-align: left;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+  width: 80px;
+}
+.textStatusCurrent:not(:last-child) {
+  margin-right: 12px;
+}
+.textStatusCurrent::after {
+  position: absolute;
+  content: '';
+  background-color: #54adff;
+  width: 80px;
+  height: 8px;
+  border-radius: 8px;
+  left: 0;
+  bottom: -16px;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .textStatusCurrent {
+    font-size: 14px;
+    line-height: 1.21;
+    margin-bottom: 16px;
+    min-width: 120px;
+  }
+  .textStatusCurrent::after {
+    width: 120px;
+  }
+
+  .textStatusCurrent:not(:last-child) {
+    margin-right: 16px;
+  }
+}
+
+/* Done */
+.textStatusDone {
+  position: relative;
+  color: #00c3ad;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.36;
+  text-align: left;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+  width: 80px;
+  padding: 0px;
+}
+.textStatusDone:not(:last-child) {
+  margin-right: 12px;
+}
+.textStatusDone::after {
+  position: absolute;
+  content: '';
+  background-color: #00c3ad;
+  width: 80px;
+  height: 8px;
+  border-radius: 8px;
+  left: 0;
+  bottom: -16px;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .textStatusDone {
+    font-size: 14px;
+    line-height: 1.21;
+    margin-bottom: 16px;
+    min-width: 120px;
+    padding: 0px;
+  }
+  .textStatusDone::after {
+    width: 120px;
+  }
+
+  .textStatusDone:not(:last-child) {
+    margin-right: 16px;
+  }
+}
