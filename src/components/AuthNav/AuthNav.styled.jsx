@@ -40,17 +40,37 @@ export const StyledNavLink = styled(NavLink)`
 `;
 
 export const AuthNavContainer = styled.nav`
-  display: grid;
-  // grid-template-columns: 1fr 1fr;
-  row-gap: 12px;
-  margin-top: 38px;
+  ${({ isOpenMenu }) =>
+    isOpenMenu
+      ? `
+      display: grid;
+      // grid-template-columns: 1fr 1fr;
+      row-gap: 12px;
+      margin-top: 82px;
+  `
+      : `
+    display: none;
+    `}
 
   @media screen and (min-width: 768px) {
-    // width: 768px;
+    ${({ isOpenMenu }) =>
+      isOpenMenu
+        ? `
+      display: grid;
+      // grid-template-columns: 1fr 1fr;
+      row-gap: 12px;
+      margin-top: 82px;
+  `
+        : `
+      display: flex;
+      column-gap: 20px;
+    `}
   }
 
   @media screen and (min-width: 1280px) {
     // width: 1280px;
+    display: flex;
+    column-gap: 20px;
   }
 `;
 

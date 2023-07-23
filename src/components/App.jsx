@@ -1,7 +1,7 @@
 import { useEffect, lazy, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-// import { PrivateRoute } from './PrivateRoute';
+import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { refreshUser } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
@@ -22,13 +22,14 @@ const NewsPage = lazy(() => import('../pages/mainPages/NewsPage'));
 const MainPage = lazy(() => import('../pages/mainPages/MainPage'));
 const NoticesPage = lazy(() => import('../pages/mainPages/NoticesPage'));
 const OurFriendsPage = lazy(() => import('../pages/mainPages/OurFriendsPage'));
-const UserPage = lazy(() => import('../pages/secondaryPages/UserPage'));
+const UserPage = lazy(() => import('../pages/secondaryPages/UserPage/UserPage'));
 const AddPetPage = lazy(() => import('../pages/secondaryPages/AddPetPage'));
 
 export const App = () => {
   const [currentTheme, setCurrentTheme] = useState('light');
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
+
   useEffect(() => {
     setCurrentTheme('light');
   }, []);
@@ -43,23 +44,11 @@ export const App = () => {
     <ThemeProvider theme={theme[currentTheme]}>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          {/* <Route index element={<MainPage />} /> */}
-          <Route
-            path="/main"
-            element={<RestrictedRoute component={<MainPage />} />}
-          />
-          <Route
-            path="/news"
-            element={<RestrictedRoute component={<NewsPage />} />}
-          />
-          <Route
-            path="/notices"
-            element={<RestrictedRoute component={<NoticesPage />} />}
-          />
-          <Route
-            path="/friends"
-            element={<RestrictedRoute component={<OurFriendsPage />} />}
-          />
+          <Route index element={<MainPage />} />
+          <Route path="/main" element={<MainPage />} />
+          <Route path="/news" element={<NewsPage />} />
+          <Route path="/notices" element={<NoticesPage />} />
+          <Route path="/friends" element={<OurFriendsPage />} />
           <Route
             path="/login"
             element={
@@ -78,24 +67,17 @@ export const App = () => {
           <Route
             path="/user"
             element={
-              <RestrictedRoute component={<UserPage />} />
+              <PrivateRoute component={<UserPage />} />
               // <PrivateRoute redirectTo="/login" component={<UserPage />} />
             }
           />
           <Route
             path="/add-pet"
             element={
-              <RestrictedRoute component={<AddPetPage />} />
+              <PrivateRoute component={<AddPetPage />} />
               // <PrivateRoute redirectTo="/login" component={<UserPage />} />
             }
           />
-          {/* <Route
-          path="/news"
-          element={
-            <RestrictedRoute redirectTo="/login" component={<NewsPage />} />
-            // <PrivateRoute redirectTo="/login" component={<NewsPage />} />
-          }
-        /> */}
         </Route>
       </Routes>
     </ThemeProvider>

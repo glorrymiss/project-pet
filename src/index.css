@@ -1,4 +1,4 @@
-/* @import-normalize; bring in normalize.css styles */
+@import-normalize;
 
 body {
   height: 100%;
@@ -26,6 +26,7 @@ p {
 
 img {
   display: block;
+  width: 100%;
   height: auto;
 }
 
