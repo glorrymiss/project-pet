@@ -24,11 +24,13 @@ export const StyleBtn = styled.button`
           font-weight: 700;
           `;
     } else if (size === 'small') {
-      return `width: 133px;
+      return `width: 135x;
           height: 44px;
           padding: 8px 20px;
           font-size: 16px;
-          gap: 8px;`;
+          gap: 8px;
+          font-size: 16px;
+          font-weight: 700;`;
     } else if (size === 'round') {
       return `width: 84px;
           height: 84px;
