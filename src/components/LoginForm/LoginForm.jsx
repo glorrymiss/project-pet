@@ -1,6 +1,7 @@
-import {Title, FieldStyled, FormStyled, Button, Text, Wrap, StyledNavLink, TextError, FieldError, SuccessText, IconCrossStyle} from './LoginForm.styled'
-import { useState } from 'react';
+import {Title, FieldStyled, FormStyled, Button, Text, Wrap, StyledNavLink, TextError, FieldError, SuccessText, IconCrossStyle, IconEyeClosedStyle} from './LoginForm.styled'
+// import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { logIn } from 'redux/auth/operations';
 import { Formik} from 'formik';
 import * as Yup from 'yup'
@@ -23,28 +24,30 @@ const validationSchema = Yup.object().shape({
 
 const LoginForm = () => {
     const dispatch = useDispatch();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+    // const [email, setEmail] = useState('');
+    // const [password, setPassword] = useState('');
     const {  currentTheme } = useAuth();
 
 
-    const handleLogInSubmit =(values, event) => {
-        event.preventDefault();
-
-    dispatch(
-         logIn({
-            email: email,
-            password: password,
-          })
-        );
-        console.log(logIn);
-        reset();
-      };
-
-    const reset = () => {
-        setEmail('');
-        setPassword('');
-      };
+    const handleLogInSubmit = async (values) => {
+    try {
+     const res = await dispatch(
+        logIn({
+           email: values.email,
+           password: values.password,
+         })
+       );
+       if (res.error) {
+        console.log(res.error);
+      } else {
+        console.log(res);
+        navigate('/user');
+      }
+     } catch (error) {
+      console.error(error);
+     }
+    }
 
 return(
     <> 
@@ -54,10 +57,8 @@ return(
         password: ''
       }}
       validationSchema={validationSchema}
-      onSubmit={values => {
-        handleLogInSubmit(values)
-        console.log("submit", values);
-      }}>
+      onSubmit={handleLogInSubmit}
+      >
          {({
           values,
           errors,
@@ -69,13 +70,15 @@ return(
      <FormStyled  onSubmit={handleSubmit}>
         <Title>Login</Title>
         <Wrap>
-        {errors.email && touched.email && errors.email ? <label style={{position:'relative'}}><FieldError type="email"
+        {errors.email && touched.email && errors.email ? 
+        <label style={{position:'relative'}}><FieldError type="email"
             name="email"
             value={values.email}
             onChange={handleChange}
             onBlur={handleBlur}
              placeholder='Email'
-             required/><IconCrossStyle fill={theme[currentTheme].color.error}/>
+             required/>
+             <IconCrossStyle fill={theme[currentTheme].color.error}/>
              <TextError>{errors.email && touched.email && errors.email}</TextError>
              </label>:
             <FieldStyled  type="email"
@@ -87,7 +90,9 @@ return(
              placeholder='Email'
              required/>}
 
-          {errors.password && touched.password && errors.password  ? <label style={{position:'relative'}}><FieldError type="password"
+          {errors.password && touched.password && errors.password ?
+           <label style={{position:'relative'}}>
+           <FieldError type="password"
             name="password"
             value={values.password}
             onChange={handleChange}
@@ -103,10 +108,9 @@ return(
             onChange={handleChange}
             onBlur={handleBlur}
              placeholder='Password'
-        
-            // style={{borderColor: ({ theme }) => theme.color.btnDark}}
+           // style={{borderColor: ({ theme }) => theme.color.btnDark}}
              required/>
-           {/* <IconEyeClosedStyle/> */}
+           <IconEyeClosedStyle/>
            {!errors.password && touched.password && <SuccessText>Password is secure</SuccessText>  }
         </label> 
             } 
