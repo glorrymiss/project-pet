@@ -22,7 +22,9 @@ const NewsPage = lazy(() => import('../pages/mainPages/NewsPage'));
 const MainPage = lazy(() => import('../pages/mainPages/MainPage'));
 const NoticesPage = lazy(() => import('../pages/mainPages/NoticesPage'));
 const OurFriendsPage = lazy(() => import('../pages/mainPages/OurFriendsPage'));
-const UserPage = lazy(() => import('../pages/secondaryPages/UserPage/UserPage'));
+const UserPage = lazy(() =>
+  import('../pages/secondaryPages/UserPage/UserPage')
+);
 const AddPetPage = lazy(() => import('../pages/secondaryPages/AddPetPage'));
 
 export const App = () => {
@@ -67,14 +69,14 @@ export const App = () => {
           <Route
             path="/user"
             element={
-              <PrivateRoute component={<UserPage />} />
+              <PrivateRoute redirectTo="/user" component={<UserPage />} />
               // <PrivateRoute redirectTo="/login" component={<UserPage />} />
             }
           />
           <Route
             path="/add-pet"
             element={
-              <PrivateRoute component={<AddPetPage />} />
+              <PrivateRoute redirectTo="/add-pet" component={<AddPetPage />} />
               // <PrivateRoute redirectTo="/login" component={<UserPage />} />
             }
           />
