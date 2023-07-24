@@ -71,7 +71,7 @@ border: 1px solid
 outline: none;
 color: #888;
 :focus{
-    border: 3px solid
+    border: 2px solid
     ${({ theme, error, valid }) =>
       error
         ? theme.color.error
