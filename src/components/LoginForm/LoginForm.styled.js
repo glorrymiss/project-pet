@@ -2,10 +2,9 @@ import styled from 'styled-components'
 import { NavLink } from 'react-router-dom';
 import { Form, Field } from 'formik';
 import IconCross from 'images/icons/IconCross';
-import IconEyeClosed from 'images/icons/IconEyeClosed'
 
 export const FormStyled = styled(Form)`
- width: 280px;
+width: 280px;
 margin: auto;
 display:flex;
 flex-direction:column;
@@ -14,9 +13,9 @@ justify-content: center;
 padding: 40px 12px;
 border-radius: 20px;
 margin-top: 40px;
-
+background-color:#FFF;
 box-shadow:  ${({ theme }) => theme.boxShadow};
-/* rgba(136, 198, 253, 0.19); */
+
 @media screen and (min-width: 768px) {
     width: 608px;
     padding: 60px 75px;
@@ -62,9 +61,18 @@ letter-spacing: 0.64px;
 padding: 12px 16px;
 width:256px;
 border-radius: 40px;
-border: 1px solid ${({ theme }) => theme.color.btnDark};
+border: 1px solid
+    ${({ theme, error, valid }) =>
+      error
+        ? theme.color.error
+        : valid
+        ? theme.color.indicator
+        : theme.color.btnDark};
+outline: none;
 color: #888;
-overflow: hidden;
+:active{
+    border: 3px solid ${({ theme }) => theme.color.btnDark};
+}
 @media screen and (min-width: 768px) {
     width:458px;
 }
@@ -80,6 +88,7 @@ letter-spacing: 0.64px;
 padding: 12px 16px;
 width:256px;
 border-radius: 40px;
+outline:none;
 border: 1px solid ${({ theme }) => theme.color.error};
 color: #888;
 @media screen and (min-width: 768px) {
@@ -151,14 +160,20 @@ font-weight: 400;
 color:${({ theme }) => theme.color.indicator};
 `
 
-export const IconCrossStyle = styled( IconCross )`
+export const IconCrossStyle = styled(IconCross)`
 position:absolute;
 top:12px;
 right: 16px;
 `
 
-export const IconEyeClosedStyle = styled (IconEyeClosed)`
+export const WrapIcons = styled.div`
 position:absolute;
 top:12px;
 right: 16px;
+display:flex;
+gap:8px;
+@media screen and (min-width: 768px) {
+    gap:15px
+}
 `
+

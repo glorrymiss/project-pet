@@ -12,12 +12,12 @@ import Logo from 'components/Logo/Logo';
 import IconMenuHamburger from 'images/icons/IconMenuHamburger';
 import theme from 'components/theme';
 import IconCrossBig from 'images/icons/IconCross';
-// import { useDispatch } from 'react-redux';
-// import { logOut } from 'redux/auth/operations';
+import { useDispatch } from 'react-redux';
+import { logOut } from 'redux/auth/operations';
 import { Container } from 'components/Container/Container';
 
 export const AppBar = ({ isOpenMenu, setIsOpenMenu }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const { isLoggedIn, currentTheme } = useAuth();
 
   const toggleMenu = () => {
@@ -26,7 +26,7 @@ export const AppBar = ({ isOpenMenu, setIsOpenMenu }) => {
 
   const hendlelogout = () => {
     console.log('Log out');
-    // dispatch(logOut());
+    dispatch(logOut());
   };
 
   return (
