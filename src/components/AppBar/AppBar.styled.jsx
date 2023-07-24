@@ -123,7 +123,7 @@ export const StyleBtn = styled(Btn)`
 
   @media screen and (min-width: 1280px) {
     display: flex;
-    position: absolute;
+    // position: absolute;
     right: 131px;
     top: 0;
   }

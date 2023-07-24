@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+axios.defaults.baseURL = 'https://project-be7v6c5s.onrender.com/';
 
 // Utility to add JWT
 const setAuthHeader = token => {
@@ -21,13 +22,18 @@ export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.post('/users/signup', credentials);
+      const res = await axios.post('api/users/register', credentials);
       // After successful registration, add the token to the HTTP header
       setAuthHeader(res.data.token);
       return res.data;
-    } catch (error) {
-      // console.log('error :>> ', error.response.data.code);
-      return thunkAPI.rejectWithValue(error.response.data.code);
+    } catch ({ response }) {
+      if (response.status === 400 || response.status === 409) {
+        Notify.failure(response.data.message);
+        return thunkAPI.rejectWithValue(response);
+      } else {
+        Notify.failure(response.data.message);
+        return thunkAPI.rejectWithValue(response);
+      }
     }
   }
 );
@@ -40,7 +46,7 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.post('/users/login', credentials);
+      const res = await axios.post('/api/users/login', credentials);
       // After successful login, add the token to the HTTP header
       setAuthHeader(res.data.token);
       return res.data;
@@ -56,7 +62,7 @@ export const logIn = createAsyncThunk(
  */
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await axios.post('/users/logout');
+    await axios.post('/api/users/logout');
     // After a successful logout, remove the token from the HTTP header
     clearAuthHeader();
   } catch (error) {
@@ -83,7 +89,7 @@ export const refreshUser = createAsyncThunk(
     try {
       // If there is a token, add it to the HTTP header and perform the request
       setAuthHeader(persistedToken);
-      const res = await axios.get('/users/current');
+      const res = await axios.get('/api/users/current');
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
