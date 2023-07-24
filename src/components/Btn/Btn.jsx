@@ -11,6 +11,7 @@ const Btn = ({
   text,
   className,
   onClick,
+  type = 'button',
 }) => {
   const [isHover, setIsHover] = useState(false);
   const { currentTheme } = useAuth();
@@ -32,6 +33,7 @@ const Btn = ({
       transparent={transparent}
       className={className}
       onClick={() => onClick()}
+      // type={type}
     >
       {text}
       {icon && ListIcons(fill, icon)}
