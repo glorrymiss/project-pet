@@ -25,7 +25,6 @@ export const AppBar = ({ isOpenMenu, setIsOpenMenu }) => {
   };
 
   const hendlelogout = () => {
-    console.log('Log out');
     dispatch(logOut());
   };
 
@@ -36,11 +35,6 @@ export const AppBar = ({ isOpenMenu, setIsOpenMenu }) => {
 
         <NavContainer id="navContainer" isOpenMenu={isOpenMenu}>
           <Navigation isOpenMenu={isOpenMenu} />
-          {isLoggedIn ? (
-            <UserMenu isOpenMenu={isOpenMenu} />
-          ) : (
-            <AuthNav isOpenMenu={isOpenMenu} />
-          )}
           {isLoggedIn && (
             <StyleBtn
               isOpenMenu={isOpenMenu}
@@ -54,6 +48,11 @@ export const AppBar = ({ isOpenMenu, setIsOpenMenu }) => {
               icon={'Iconlogout'}
               onClick={hendlelogout}
             />
+          )}
+          {isLoggedIn ? (
+            <UserMenu isOpenMenu={isOpenMenu} />
+          ) : (
+            <AuthNav isOpenMenu={isOpenMenu} />
           )}
         </NavContainer>
 
