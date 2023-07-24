@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 axios.defaults.baseURL = 'https://project-be7v6c5s.onrender.com/';
 
@@ -25,9 +26,14 @@ export const register = createAsyncThunk(
       // After successful registration, add the token to the HTTP header
       setAuthHeader(res.data.token);
       return res.data;
-    } catch (error) {
-      // console.log('error :>> ', error.response.data.code);
-      return thunkAPI.rejectWithValue(error.response.data.code);
+    } catch ({ response }) {
+      if (response.status === 400 || response.status === 409) {
+        Notify.failure(response.data.message);
+        return thunkAPI.rejectWithValue(response);
+      } else {
+        Notify.failure(response.data.message);
+        return thunkAPI.rejectWithValue(response);
+      }
     }
   }
 );

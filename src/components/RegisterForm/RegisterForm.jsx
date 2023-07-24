@@ -27,7 +27,7 @@ const registerSchema = Yup.object().shape({
     ),
   password: Yup.string()
     .required('Password is required')
-    .min(6, 'Password must be at least 6 characters')
+    .min(8, 'Password must be at least 8 characters')
     .max(16, 'Password must be at most 16 characters')
     .matches(
       /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([0-9a-zA-Z]{6,})*$/,
@@ -263,7 +263,7 @@ export const RegisterForm = () => {
               )}
               {isPasswordValid && (
                 <Element.InfoMessage valid={isPasswordValid}>
-                  Password is secure
+                  Sufficient password length
                 </Element.InfoMessage>
               )}
             </Element.RegisterFormPasswordContainer>
