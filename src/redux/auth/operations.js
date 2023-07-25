@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 axios.defaults.baseURL = 'https://project-be7v6c5s.onrender.com/';
 
 // Utility to add JWT
 const setAuthHeader = token => {
+  console.log('token', token);
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
@@ -15,7 +15,7 @@ const clearAuthHeader = () => {
 };
 
 /*
- * POST @ /users/signup
+ * POST @ /users/register
  * body: { name, email, password }
  */
 export const register = createAsyncThunk(
@@ -26,14 +26,12 @@ export const register = createAsyncThunk(
       // After successful registration, add the token to the HTTP header
       setAuthHeader(res.data.token);
       return res.data;
-    } catch ({ response }) {
-      if (response.status === 400 || response.status === 409) {
-        Notify.failure(response.data.message);
-        return thunkAPI.rejectWithValue(response);
-      } else {
-        Notify.failure(response.data.message);
-        return thunkAPI.rejectWithValue(response);
-      }
+    } catch (error) {
+      return thunkAPI.rejectWithValue({
+        status: error.response.status,
+        message: error.response.data.message,
+      });
+
     }
   }
 );
@@ -51,7 +49,10 @@ export const logIn = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue({
+        status: error.response.status,
+        message: error.response.data.message,
+      });
     }
   }
 );
