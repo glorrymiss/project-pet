@@ -31,6 +31,7 @@ export const register = createAsyncThunk(
         status: error.response.status,
         message: error.response.data.message,
       });
+
     }
   }
 );
