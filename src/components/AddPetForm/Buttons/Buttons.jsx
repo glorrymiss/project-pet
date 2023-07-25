@@ -1,6 +1,6 @@
 import React from 'react';
-import ArrowLeftIcon from '../../../images/AddPetPageImages/ArrowLeftIcon';
-import PawPrintIcon from '../../../images/AddPetPageImages/PawPrintIcon';
+import ArrowLeftIcon from '../../../images/icons/IconArrowLeft';
+import PawPrintIcon from '../../../images/icons/IconPawprint1';
 import { BtnPrev, BtnNext, BtnChoose, BtnContainer } from './Buttons.styled';
 
 export const ButtonPrev = ({ textButton, handlePrevStep }) => {
@@ -16,7 +16,7 @@ export const ButtonNext = ({ textButton, handleNextData }) => {
   return (
     <BtnNext onClick={handleNextData}>
       {textButton}
-      <PawPrintIcon color="#FEF9F9" />
+      <PawPrintIcon fill="#FEF9F9" />
     </BtnNext>
   );
 };

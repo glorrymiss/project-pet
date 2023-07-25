@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { validationSchemaThirdAddSell } from '../addPetValidation';
 import StatusIndicator from '../StatusIndicator/StatusIndicator';
-import { ReactComponent as Plus } from '../../../images/AddPetPageImages/Plus.svg';
-import MaleIcon from '../../../images/AddPetPageImages/MaleIcon';
-import FemaleIcon from '../../../images/AddPetPageImages/FemaleIcon';
+import Plus from '../../../images/icons/IconPlusAddPhoto';
+import MaleIcon from '../../../images/icons/IconMale';
+import FemaleIcon from '../../../images/icons/IconFemale';
 import ButtonRoutes from '../Buttons/ButtonRoutes';
 import { ButtonNext, ButtonPrev } from '../Buttons/Buttons';
 import {
@@ -35,12 +35,12 @@ import css from './thirdStep.module.css';
 const sexOptions = [
   {
     value: 'female',
-    icon: <FemaleIcon color="#F43F5E" className={css.sexIcon} />,
+    icon: <FemaleIcon fill="#F43F5E" />,
     label: 'Female',
   },
   {
     value: 'male',
-    icon: <MaleIcon color="#54adff" className={css.sexIcon} />,
+    icon: <MaleIcon />,
     label: 'Male',
   },
 ];

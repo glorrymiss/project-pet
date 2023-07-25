@@ -1,5 +1,16 @@
 import styled from 'styled-components';
 
+export const sexButtonChoosed = styled.button`
+  display: flex;
+  background-color: inherit;
+  cursor: pointer;
+  border: none;
+  color: #54adff;
+  font-size: 16px;
+  justify-content: center;
+  flex-direction: row;
+`;
+
 export const WrapperForm = styled.div`
   display: flex;
   flex-direction: column;
@@ -140,6 +151,7 @@ export const LabelAddPhoto = styled.p`
 `;
 
 export const LabelPhoto = styled.div`
+  position: relative;
   width: 112px;
   height: 112px;
   background-color: #cce4fb;

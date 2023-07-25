@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { validationSchemaThirdAddMy } from '../addPetValidation';
 import StatusIndicator from '../StatusIndicator/StatusIndicator';
-import { ReactComponent as Plus } from '../../../images/AddPetPageImages/Plus.svg';
+import Plus from '../../../images/icons/IconPlusAddPhoto';
 import ButtonRoutes from '../Buttons/ButtonRoutes';
 import { ButtonNext, ButtonPrev } from '../Buttons/Buttons';
 import {

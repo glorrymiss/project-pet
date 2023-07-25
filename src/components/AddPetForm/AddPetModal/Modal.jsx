@@ -1,6 +1,6 @@
 import { useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-import { ReactComponent as Close } from '../../../images/AddPetPageImages/close.svg';
+import Close from '../../../images/icons/IconCrossSmall';
 import { Overlay, ModalWindow, BtnClose, ModalContent } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
