@@ -97,3 +97,29 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+export const updateUserInfo = createAsyncThunk(
+  'auth/user',
+  async ({ avatar, name, email, phone, city, birthday }, thunkAPI) => {
+    try {
+      const formData = new FormData();
+      formData.append('avatar', avatar);
+      formData.append('name', name);
+      formData.append('email', email);
+      formData.append('phone', phone || '');
+      formData.append('city', city || '');
+      formData.append('birthday', birthday || '');
+      // console.log(avatar);
+
+      // const response = await axios.patch(`/api/users/user`, formData, {
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data',
+      //   },
+      // });
+      //  return response.data;
+      const user = { avatar, name, email, phone, city, birthday };
+      return user;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
