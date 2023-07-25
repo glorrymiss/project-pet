@@ -26,6 +26,7 @@ const UserPage = lazy(() =>
   import('../pages/secondaryPages/UserPage/UserPage')
 );
 const AddPetPage = lazy(() => import('../pages/secondaryPages/AddPetPage'));
+const NotFoundPage = lazy(() => import('../pages/mainPages/NotFoundPage'));
 
 export const App = () => {
   const [currentTheme, setCurrentTheme] = useState('light');
@@ -51,6 +52,7 @@ export const App = () => {
           <Route path="/news" element={<NewsPage />} />
           <Route path="/notices" element={<NoticesPage />} />
           <Route path="/friends" element={<OurFriendsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
           <Route
             path="/login"
             element={
