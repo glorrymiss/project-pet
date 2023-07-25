@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
 	StyledLabel,
   StyledBtn,
@@ -57,8 +57,8 @@ export const UserForm = ({ close }) => {
   };
 
   const {
-    setTouched,
-    setFieldTouched,
+   //  setTouched,
+   //  setFieldTouched,
     setFieldValue,
     handleBlur,
     handleSubmit,
