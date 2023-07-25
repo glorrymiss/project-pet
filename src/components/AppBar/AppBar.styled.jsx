@@ -23,10 +23,10 @@ export const StyledAppBar = styled.header`
 
 export const StyledContainer = styled(Container)`
   // box-sizing: border-box;
-  background-color: red;
+  // background-color: red;
   // margin: 20px 20px;
   // padding: 4px 0;
-  background-color: ${({ theme }) => theme.color.background};
+  // background-color: ${({ theme }) => theme.color.background};
   // height: 24px;
   display: flex;
   justify-content: space-between;
@@ -67,7 +67,7 @@ export const NavContainer = styled.div`
   flex-direction: row-reverse;
       `};
 
-  background-color: ${({ theme }) => theme.color.background};
+  // background-color: ${({ theme }) => theme.color.background};
   // height: 1px;
   // background-color: red;
 

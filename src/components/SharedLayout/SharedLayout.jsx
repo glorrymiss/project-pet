@@ -24,7 +24,7 @@ const SharedLayout = () => {
     <>
       <ContainerLayout isOpenMenu={isOpenMenu} onClick={closeMenu}>
         <Helmet>
-          <style>{`body { background-color: ${theme[currentTheme].color.background}; }`}</style>
+          <style>{`body { background-color: ${theme[currentTheme].color.bodyColor}; }`}</style>
         </Helmet>
         <AppBar isOpenMenu={isOpenMenu} setIsOpenMenu={setIsOpenMenu} />
         <StuledContainer>

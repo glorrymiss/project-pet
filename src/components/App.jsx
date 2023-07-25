@@ -9,6 +9,7 @@ import { ThemeProvider } from 'styled-components';
 import theme from './theme';
 
 import SharedLayout from './SharedLayout/SharedLayout';
+import NoticesCategoriesList from './NoticesCategoriesList/NoticesCategoriesList';
 
 // import MainPage from 'pages/mainPages/MainPage';
 // import NoticesPage from 'pages/mainPages/NoticesPage';
@@ -18,12 +19,14 @@ import SharedLayout from './SharedLayout/SharedLayout';
 
 const RegisterPage = lazy(() => import('../pages/authPages/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/authPages/LoginPage'));
-const NewsPage = lazy(() => import('../pages/mainPages/NewsPage'));
+const NewsPage = lazy(() => import('../pages/mainPages/NewsPage/NewsPage'));
 const MainPage = lazy(() => import('../pages/mainPages/MainPage'));
 const NoticesPage = lazy(() =>
   import('../pages/mainPages/NoticesPage/NoticesPage')
 );
-const OurFriendsPage = lazy(() => import('../pages/mainPages/OurFriendsPage'));
+const OurFriendsPage = lazy(() =>
+  import('../pages/mainPages/OurFriendsPage/OurFriendsPage')
+);
 const UserPage = lazy(() =>
   import('../pages/secondaryPages/UserPage/UserPage')
 );
@@ -55,12 +58,13 @@ export const App = () => {
           <Route path="/main" element={<MainPage />} />
           <Route path="/news" element={<NewsPage />} />
           <Route path="/notices" element={<NoticesPage />}>
-            <Route index element={<div>sell</div>} />
-            <Route path="sell" element={<div>sell</div>} />
+            <Route path=":categoryName" element={<NoticesCategoriesList />} />
+            {/* <Route index element={<NoticesCategoryList/>} /> */}
+            {/* <Route path="sell" element={<div>sell</div>} />
             <Route path="lost-found" element={<div>lost/found</div>} />
             <Route path="for-free" element={<div>in good hands</div>} />
             <Route path="favorite" element={<div>favorite ads</div>} />
-            <Route path="own" element={<div>my ads</div>} />
+            <Route path="own" element={<div>my ads</div>} /> */}
           </Route>
           <Route path="/friends" element={<OurFriendsPage />} />
           <Route path="*" element={<NotFoundPage />} />
