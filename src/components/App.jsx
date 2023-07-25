@@ -25,7 +25,9 @@ const OurFriendsPage = lazy(() => import('../pages/mainPages/OurFriendsPage'));
 const UserPage = lazy(() =>
   import('../pages/secondaryPages/UserPage/UserPage')
 );
-const AddPetPage = lazy(() => import('../pages/secondaryPages/AddPetPage'));
+const AddPetPage = lazy(() =>
+  import('../pages/secondaryPages/AddPetPage/AddPetPage')
+);
 const NotFoundPage = lazy(() => import('../pages/mainPages/NotFoundPage'));
 
 export const App = () => {
