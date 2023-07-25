@@ -22,9 +22,6 @@ export const UserForm = ({ close }) => {
 	const { user } = useAuth();
   const dispatch = useDispatch();
 	const [avatar, setAvatar] = useState(user.avatar || photoDefault);
-	const [birthday, setBirthday] = useState(user.birthday || '00.00.0000');
-	const [phone, setPhone] = useState(user.phone || '+380000000000');
-	const [city, setCity] = useState(user.city || 'no info');
 
   const isChangeFile = e => {
 	  const { files } = e.currentTarget;
@@ -46,7 +43,7 @@ export const UserForm = ({ close }) => {
  };
 
 	const {
-	  setFieldTouched,
+    setFieldTouched,
     setFieldValue,
     handleBlur,
     handleSubmit,
@@ -58,13 +55,13 @@ export const UserForm = ({ close }) => {
       avatar: avatar,
       name: user.name,
       email: user.email,
-      birthday: birthday,
-      phone: phone,
-      city: city,
+      birthday: user.birthday || '00.00.0000',
+      phone: user.phone || '+380000000000',
+      city: user.city || 'no info',
     },
     validationSchema: validationSchema,
-	  onSubmit: async values => {
-		//  setFieldValue('avatar', avatar);
+    onSubmit: async values => {
+      //  setFieldValue('avatar', avatar);
       // console.log(avatar, city, phone);
       alert(JSON.stringify(values, null, 2));
       close();
