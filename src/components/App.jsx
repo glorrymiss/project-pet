@@ -20,7 +20,9 @@ const RegisterPage = lazy(() => import('../pages/authPages/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/authPages/LoginPage'));
 const NewsPage = lazy(() => import('../pages/mainPages/NewsPage'));
 const MainPage = lazy(() => import('../pages/mainPages/MainPage'));
-const NoticesPage = lazy(() => import('../pages/mainPages/NoticesPage'));
+const NoticesPage = lazy(() =>
+  import('../pages/mainPages/NoticesPage/NoticesPage')
+);
 const OurFriendsPage = lazy(() => import('../pages/mainPages/OurFriendsPage'));
 const UserPage = lazy(() =>
   import('../pages/secondaryPages/UserPage/UserPage')
@@ -50,7 +52,14 @@ export const App = () => {
           <Route index element={<MainPage />} />
           <Route path="/main" element={<MainPage />} />
           <Route path="/news" element={<NewsPage />} />
-          <Route path="/notices" element={<NoticesPage />} />
+          <Route path="/notices" element={<NoticesPage />}>
+            <Route index element={<div>sell</div>} />
+            <Route path="sell" element={<div>sell</div>} />
+            <Route path="lost-found" element={<div>lost/found</div>} />
+            <Route path="for-free" element={<div>in good hands</div>} />
+            <Route path="favorite" element={<div>favorite ads</div>} />
+            <Route path="own" element={<div>my ads</div>} />
+          </Route>
           <Route path="/friends" element={<OurFriendsPage />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route

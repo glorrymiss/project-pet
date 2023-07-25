@@ -1,11 +1,33 @@
 import Btn from 'components/Btn/Btn';
+import { Container } from 'components/Container/Container';
 import styled from 'styled-components';
 
 export const StyledAppBar = styled.header`
-  margin: 20px 20px;
-  padding: 10px 0;
+  box-sizing: border-box;
+  margin-top: 20px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+
+  @media screen and (min-width: 768px) {
+    height: 44px;
+    margin-top: 24px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    height: 48px;
+    margin-top: 20px;
+  }
+`;
+
+export const StyledContainer = styled(Container)`
+  // box-sizing: border-box;
+  background-color: red;
+  // margin: 20px 20px;
+  // padding: 4px 0;
   background-color: ${({ theme }) => theme.color.background};
-  height: 24px;
+  // height: 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,12 +37,12 @@ export const StyledAppBar = styled.header`
   // background: ${({ theme }) => theme.color.gradient};
   // box-shadow: ${({ theme }) => theme.boxShadowHover};
 
-  // @media screen and (min-width: 768px) {
-  margin: 24px 32px;
-  // }
+  @media screen and (min-width: 768px) {
+    // padding: 8px 0;
+  }
 
   @media screen and (min-width: 1280px) {
-    // width: 100%;
+    // padding: 10px 0;
   }
 `;
 
@@ -35,6 +57,7 @@ export const NavContainer = styled.div`
   z-index: -1;
   position: absolute;
   top: -20px;
+  left: 0;
   width: 100%;
   height: 100vh;
   `
@@ -49,18 +72,27 @@ export const NavContainer = styled.div`
   // background-color: red;
 
   @media screen and (min-width: 768px) {
+    top: -32px;
     display: flex;
   }
 
   @media screen and (min-width: 1280px) {
-    height: 28px;
-    flex-direction: column-reverse;
+    // height: 28px;
+    flex-direction: row;
+    align-items: center;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-content: space-between;
-    width: 100vw;
+    justify-content: space-between;
+    // align-content: space-between;
+    // width: 100vw;
   }
+`;
+
+export const UserBox = styled.div`
+  display: flex;
+  align-items: center;
+  // row-gap: 24px;
+  column-gap: 24px;
 `;
 
 export const ButtonMenu = styled.button`
@@ -96,7 +128,7 @@ export const StyleBtn = styled(Btn)`
       isOpenMenu
         ? `
       position: absolute;
-      left: 0;
+      left: 20px;
       bottom: 20px;
   `
         : `
@@ -109,8 +141,8 @@ export const StyleBtn = styled(Btn)`
       isOpenMenu
         ? `
     position: absolute;
-    right: 60px;
-    top: 20px;
+    right: 80px;
+    top: 26px;
 `
         : `
     display: none;

@@ -147,5 +147,3 @@ return(
       )
     };
 export default LoginForm
-
-
