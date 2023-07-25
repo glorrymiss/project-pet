@@ -11,6 +11,8 @@ import IconCheck from 'images/icons/IconCheck';
 import IconEyeClosed from 'images/icons/IconEyeClosed'
 import IconEyeOpen from 'images/icons/IconEyeOpen';
 import IconCross from 'images/icons/IconCross';
+import Notiflix from 'notiflix';
+
 
 
 const validationSchema = Yup.object().shape({
@@ -29,31 +31,23 @@ const validationSchema = Yup.object().shape({
 const LoginForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { currentTheme } = useAuth();
     const [openPassword, setOpenPassword] = useState(false);
-    const {  currentTheme } = useAuth();
 
-    const handleToggleOpenPassword = () => {
-      setOpenPassword(openPassword => !openPassword);
-    };
+    const handleOpenPassword = () => setOpenPassword(openPassword => !openPassword);
 
    const handleLogInSubmit = async (values) => {
-    try {
      const res = await dispatch(
         logIn({
            email: values.email,
            password: values.password,
          })
        );
-       if (res.error) {
-        console.log(res.error);
+       if (res.error || res.payload.status === 401) {
+        Notiflix.Notify.failure(res.payload.message);
       } else {
-        console.log(res);
         navigate('/user');
       }
-     } catch (error) {
-      console.error(error);
-     }
-    
     }
     
 return(
@@ -99,7 +93,7 @@ return(
           <label style={{position:'relative'}}>
               <Component.FieldStyled
                 error={errors.password && touched.password && errors.password}
-                type="password"
+                type={openPassword ? 'text':'password'}
                 name="password"
                 value={values.password}
                 onChange={handleChange}
@@ -110,31 +104,34 @@ return(
                     errors.password && touched.password && errors.password
                       ? theme[currentTheme].color.error
                       : isPasswordValid
-                      ? theme[currentTheme].color.btnLogOut 
+                      ? theme[currentTheme].color.indicator
                       : theme[currentTheme].color.btnDark,
                 }}
                 required/>
                 
               <Component.WrapIcons>
+                <div onClick={handleOpenPassword}>
+                  {openPassword ? 
+                      <IconEyeOpen
+                      fill={errors.password && touched.password
+                        ? theme[currentTheme].color.error
+                        : isPasswordValid
+                        ? theme[currentTheme].color.btnLogOut 
+                        : theme[currentTheme].color.btnDark}/> :
                   <IconEyeClosed
-                    onClick={handleToggleOpenPassword}  
-                    fill={errors.password && touched.password
-                      ? theme[currentTheme].color.error
-                      : isPasswordValid
-                      ? theme[currentTheme].color.btnLogOut 
-                      : theme[currentTheme].color.btnDark}/>
-                      
+                      fill={errors.password && touched.password
+                        ? theme[currentTheme].color.error
+                        : isPasswordValid
+                        ? theme[currentTheme].color.btnLogOut 
+                        : theme[currentTheme].color.btnDark}/>
+                    } 
+                </div>
               {errors.password && touched.password && errors.password  && <IconCross fill={theme[currentTheme].color.error}/>}
               {values.password && !errors.password &&  <IconCheck fill={theme[currentTheme].color.indicator}/>}
               </Component.WrapIcons>
 
-          {openPassword &&
-           <IconEyeOpen
-           fill={errors.password && touched.password
-            ? theme[currentTheme].color.error
-            : isPasswordValid
-            ? theme[currentTheme].color.btnLogOut 
-            : theme[currentTheme].color.btnDark}/>}
+          
+          
 
                   {errors.password && touched.password && errors.password &&
                   <Component.TextError>{errors.password}</Component.TextError>}

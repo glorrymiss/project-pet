@@ -8,7 +8,7 @@ import {
 } from './operations';
 
 const initialState = {
-  user: {},
+  user: null,
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -54,11 +54,12 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+        state.token = null;
       })
       .addCase(updateUserInfo.fulfilled, (state, action) => {
       //   console.log(action.payload);
         state.user = action.payload;
-      });;
+      })
   },
 });
 

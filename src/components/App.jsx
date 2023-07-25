@@ -26,6 +26,7 @@ const UserPage = lazy(() =>
   import('../pages/secondaryPages/UserPage/UserPage')
 );
 const AddPetPage = lazy(() => import('../pages/secondaryPages/AddPetPage'));
+const NotFoundPage = lazy(() => import('../pages/mainPages/NotFoundPage'));
 
 export const App = () => {
   const [currentTheme, setCurrentTheme] = useState('light');
@@ -51,17 +52,18 @@ export const App = () => {
           <Route path="/news" element={<NewsPage />} />
           <Route path="/notices" element={<NoticesPage />} />
           <Route path="/friends" element={<OurFriendsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
           <Route
             path="/login"
             element={
-              <RestrictedRoute redirectTo="/news" component={<LoginPage />} />
+              <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
             }
           />
           <Route
             path="/register"
             element={
               <RestrictedRoute
-                redirectTo="/news"
+                redirectTo="/user"
                 component={<RegisterPage />}
               />
             }
@@ -69,14 +71,14 @@ export const App = () => {
           <Route
             path="/user"
             element={
-              <PrivateRoute redirectTo="/user" component={<UserPage />} />
+              <PrivateRoute redirectTo="/news" component={<UserPage />} />
               // <PrivateRoute redirectTo="/login" component={<UserPage />} />
             }
           />
           <Route
             path="/add-pet"
             element={
-              <PrivateRoute redirectTo="/add-pet" component={<AddPetPage />} />
+              <PrivateRoute redirectTo="/news" component={<AddPetPage />} />
               // <PrivateRoute redirectTo="/login" component={<UserPage />} />
             }
           />
