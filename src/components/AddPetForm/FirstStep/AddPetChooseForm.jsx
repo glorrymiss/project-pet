@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 // import { addNotice, addPet } from 'redux/pets/pets-operations';
 import { showToast } from '../toastify';
 
