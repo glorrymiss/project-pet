@@ -5,7 +5,6 @@ import { ContainerLayout, StuledContainer } from './SharedLayout.style';
 import { Helmet } from 'react-helmet';
 import { useAuth } from 'hooks';
 import theme from 'components/theme';
-import { Container } from 'components/Container/Container';
 
 const SharedLayout = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
