@@ -5,6 +5,7 @@ axios.defaults.baseURL = 'https://project-be7v6c5s.onrender.com/';
 
 // Utility to add JWT
 const setAuthHeader = token => {
+  console.log('token', token);
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
@@ -14,7 +15,7 @@ const clearAuthHeader = () => {
 };
 
 /*
- * POST @ /users/signup
+ * POST @ /users/register
  * body: { name, email, password }
  */
 export const register = createAsyncThunk(
@@ -26,8 +27,10 @@ export const register = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
-      // console.log('error :>> ', error.response.data.code);
-      return thunkAPI.rejectWithValue(error.response.data.code);
+      return thunkAPI.rejectWithValue({
+        status: error.response.status,
+        message: error.response.data.message,
+      });
     }
   }
 );
@@ -45,7 +48,10 @@ export const logIn = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue({
+        status: error.response.status,
+        message: error.response.data.message,
+      });
     }
   }
 );
