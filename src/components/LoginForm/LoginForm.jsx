@@ -37,24 +37,17 @@ const LoginForm = () => {
     const handleOpenPassword = () => setOpenPassword(openPassword => !openPassword);
 
    const handleLogInSubmit = async (values) => {
-    try {
      const res = await dispatch(
         logIn({
            email: values.email,
            password: values.password,
          })
        );
-       if (res.error) {
-        Notiflix.Notify.failure('Please, check your data and enter correct');
-        console.log(res.error);
+       if (res.error || res.payload.status === 401) {
+        Notiflix.Notify.failure(res.payload.message);
       } else {
-        console.log(res);
         navigate('/user');
       }
-     } catch (error) {
-      console.error(error);
-     }
-    
     }
     
 return(
