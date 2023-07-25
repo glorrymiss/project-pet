@@ -25,10 +25,11 @@ const AddPetChooseForm = () => {
   const [activeButton, setActiveButton] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  console.log('isLoading', isLoading);
 
   const [formData, setFormData] = useState({});
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleChooseChange = (option, number) => {

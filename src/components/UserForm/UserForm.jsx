@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   Wrap,
   WrapFoto,
@@ -19,30 +19,30 @@ import { updateUserInfo } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
 
 export const UserForm = ({ close }) => {
-	const { user } = useAuth();
+  const { user } = useAuth();
   const dispatch = useDispatch();
-	const [avatar, setAvatar] = useState(user.avatar || photoDefault);
+  const [avatar, setAvatar] = useState(user.avatar || photoDefault);
 
   const isChangeFile = e => {
-	  const { files } = e.currentTarget;
-	  setFieldTouched('avatar', e.currentTarget, false);
-	  const avatarUrl = URL.createObjectURL(files[0]);
-	  setFieldTouched('avatar', e.currentTarget, false);
-	//   console.log(avatar);
-	  setFieldValue('avatar', avatarUrl, false);
-	//   console.log(avatar);
+    const { files } = e.currentTarget;
+    setFieldTouched('avatar', e.currentTarget, false);
+    const avatarUrl = URL.createObjectURL(files[0]);
+    setFieldTouched('avatar', e.currentTarget, false);
+    //   console.log(avatar);
+    setFieldValue('avatar', avatarUrl, false);
+    //   console.log(avatar);
     setAvatar(avatarUrl);
-	};
- const isChangeInput = e => {
-   const { name, value } = e.target;
-   // setFieldTouched('birthday', e.currentTarget.value, false);
-   // console.log(birthday);
-   // setFieldValue('birthday', e.currentTarget.value, false);
-   // console.log(birthday);
-   setFieldValue(name, value);
- };
+  };
+  const isChangeInput = e => {
+    const { name, value } = e.target;
+    // setFieldTouched('birthday', e.currentTarget.value, false);
+    // console.log(birthday);
+    // setFieldValue('birthday', e.currentTarget.value, false);
+    // console.log(birthday);
+    setFieldValue(name, value);
+  };
 
-	const {
+  const {
     setFieldTouched,
     setFieldValue,
     handleBlur,
@@ -72,15 +72,15 @@ export const UserForm = ({ close }) => {
       }
     },
   });
-//   useEffect(() => {
-//    setFieldValue('name', user.name);
-//    setFieldValue('email', user.email);
-//    setFieldValue('phone', user.phone);
-//    setFieldValue('city', user.city);
-//    setFieldValue('birthday', user.birthday);
-//    setAvatar(user.avatar);
-//   }, [user, setFieldValue]);
-//   console.log(user);
+  //   useEffect(() => {
+  //    setFieldValue('name', user.name);
+  //    setFieldValue('email', user.email);
+  //    setFieldValue('phone', user.phone);
+  //    setFieldValue('city', user.city);
+  //    setFieldValue('birthday', user.birthday);
+  //    setAvatar(user.avatar);
+  //   }, [user, setFieldValue]);
+  //   console.log(user);
 
   return (
     <Wrap>
