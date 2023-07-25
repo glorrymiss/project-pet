@@ -1,4 +1,5 @@
 const darktheme = {
+  bodyColor: '#FEF9F9',
   primary: '#FFC107', //yellow
   secondary: '#111111', //black
   btnDark: '#54ADFF', //blue-dark

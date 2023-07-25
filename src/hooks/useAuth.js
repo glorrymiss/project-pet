@@ -5,6 +5,7 @@ import {
   selectIsRefreshing,
   selectError,
   selectCurrentTheme,
+  selectIsFirstLogin,
 } from 'redux/auth/selectors';
 
 export const useAuth = () => {
@@ -13,6 +14,7 @@ export const useAuth = () => {
   const user = useSelector(selectUser);
   const error = useSelector(selectError);
   const currentTheme = useSelector(selectCurrentTheme);
+  const isFirstLogin = useSelector(selectIsFirstLogin);
 
   return {
     isLoggedIn,
@@ -20,5 +22,6 @@ export const useAuth = () => {
     user,
     error,
     currentTheme,
+    isFirstLogin,
   };
 };
