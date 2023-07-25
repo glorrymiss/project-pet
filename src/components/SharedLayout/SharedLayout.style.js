@@ -1,15 +1,12 @@
+import { Container } from 'components/Container/Container';
 import styled from 'styled-components';
 
 export const ContainerLayout = styled.div`
-  width: 100%;
-  padding: 0;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+`;
 
-  @media screen and (min-width: 768px) {
-    width: 768px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    width: 1280px;
-  }
+export const StuledContainer = styled(Container)`
+  flex-grow: 3;
 `;
