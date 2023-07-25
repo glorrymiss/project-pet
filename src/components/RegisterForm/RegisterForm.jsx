@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { register } from 'redux/auth/operations';
 import theme from 'components/theme';
+import { useAuth } from 'hooks';
 
 import * as Element from './RegisterForm.styled';
 
@@ -12,7 +12,7 @@ import IconCheck from 'images/icons/IconCheck';
 import IconCross from 'images/icons/IconCross';
 import IconEyeOpen from 'images/icons/IconEyeOpen';
 import IconEyeClosed from 'images/icons/IconEyeClosed';
-import { useAuth } from 'hooks';
+import { Notify } from 'notiflix';
 
 const registerSchema = Yup.object().shape({
   name: Yup.string()
@@ -27,7 +27,7 @@ const registerSchema = Yup.object().shape({
     ),
   password: Yup.string()
     .required('Password is required')
-    .min(6, 'Password must be at least 6 characters')
+    .min(8, 'Password must be at least 8 characters')
     .max(16, 'Password must be at most 16 characters')
     .matches(
       /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([0-9a-zA-Z]{6,})*$/,
@@ -48,42 +48,25 @@ const data = {
 export const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [emailExist, setEmailExist] = useState(true);
-  const [loading, setLoading] = useState(false);
   const { currentTheme } = useAuth();
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { error } = useAuth();
 
   const handleClickShowPassword = () => setShowPassword(show => !show);
   const handleClickShowConfirmPassword = () =>
     setShowConfirmPassword(show => !show);
 
-  const handleFormSubmit = async (values, { setSubmitting, resetForm }) => {
-    if (loading) {
-      return;
-    }
-
-    setLoading(true);
+  const handleFormSubmit = async values => {
     const credentials = {
       name: values.name,
       email: values.email,
       password: values.password,
     };
 
-    try {
-      const response = await dispatch(register(credentials));
-      if (response.error) {
-        setEmailExist(false);
-      } else {
-        setEmailExist(true);
-        navigate('/user');
-      }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-      setSubmitting(false);
+    await dispatch(register(credentials));
+    if (error) {
+      Notify.failure(error.message);
     }
   };
 
@@ -132,7 +115,6 @@ export const RegisterForm = () => {
                   value={values.name}
                   onChange={handleFieldChange}
                   onBlur={handleBlur}
-                  disabled={loading}
                 />
                 {errors.name && touched.name && values.name && (
                   <Element.ErrorIcon
@@ -168,7 +150,6 @@ export const RegisterForm = () => {
                   value={values.email}
                   onChange={handleFieldChange}
                   onBlur={handleBlur}
-                  disabled={loading}
                 />
                 {errors.email && touched.email && values.email && (
                   <Element.ErrorIcon
@@ -211,7 +192,6 @@ export const RegisterForm = () => {
                   value={values.password}
                   onChange={handleFieldChange}
                   onBlur={handleBlur}
-                  disabled={loading}
                 />
                 <Element.PasswordIcon>
                   <Element.EyeIcon
@@ -263,7 +243,7 @@ export const RegisterForm = () => {
               )}
               {isPasswordValid && (
                 <Element.InfoMessage valid={isPasswordValid}>
-                  Password is secure
+                  Sufficient password length
                 </Element.InfoMessage>
               )}
             </Element.RegisterFormPasswordContainer>
@@ -287,7 +267,6 @@ export const RegisterForm = () => {
                   value={values.confirmPassword}
                   onChange={handleFieldChange}
                   onBlur={handleBlur}
-                  disabled={loading}
                 />
                 <Element.PasswordIcon>
                   <Element.EyeIcon
@@ -339,7 +318,7 @@ export const RegisterForm = () => {
               )}
             </Element.RegisterFormPasswordContainer>
 
-            {!emailExist && (
+            {error && (
               <Element.RegisterErrorMessage>
                 This email is already in use. Please, try with another email!
               </Element.RegisterErrorMessage>

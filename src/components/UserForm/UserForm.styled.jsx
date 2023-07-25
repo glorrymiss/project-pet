@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
-  margin-top:40px;
+  margin-top: 40px;
   padding: 0 auto 24px;
   background-color: ${p => p.theme.color.background};
   @media screen and (min-width: 320px) {
@@ -11,7 +11,7 @@ export const Container = styled.div`
   }
   @media screen and (min-width: 768px) {
     width: 704px;
-	 margin-top: 0;
+    margin-top: 0;
     padding-top: 60px;
   }
 
@@ -97,7 +97,7 @@ export const Text = styled.input`
     letter-spacing: 0.64px;
   }
   @media screen and (min-width: 1280px) {
-	width: 255px;
+    width: 255px;
   }
 `;
 export const StyledBtnSave = styled.button`
@@ -120,9 +120,8 @@ export const StyledBtnSave = styled.button`
     letter-spacing: 0.64px;
   }
   @media screen and (min-width: 1280px) {
-	width: 255px;
+    width: 255px;
   }
-  
 `;
 
 export const StyledBtn = styled(Btn)`
@@ -134,9 +133,16 @@ export const StyledBtn = styled(Btn)`
   border: none;
   color: ${p => p.theme.color.btnLogOut};
   @media screen and (min-width: 768px) {
-	margin-top: 4px;
+    margin-top: 4px;
   }
   @media screen and (min-width: 1280px) {
-	margin-top: 14px;
+    margin-top: 14px;
+  }
+`;
+export const ErrorMessage = styled.div`
+  color: ${p => p.theme.color.error};
+  font-size: 12px;
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
   }
 `;
