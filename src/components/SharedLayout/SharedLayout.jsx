@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { AppBar } from '../AppBar/AppBar';
 import { Suspense, useState } from 'react';
-import { ContainerLayout } from './SharedLayout.style';
+import { ContainerLayout, StuledContainer } from './SharedLayout.style';
 import { Helmet } from 'react-helmet';
 import { useAuth } from 'hooks';
 import theme from 'components/theme';
@@ -28,11 +28,11 @@ const SharedLayout = () => {
           <style>{`body { background-color: ${theme[currentTheme].color.background}; }`}</style>
         </Helmet>
         <AppBar isOpenMenu={isOpenMenu} setIsOpenMenu={setIsOpenMenu} />
-        <Container>
+        <StuledContainer>
           <Suspense fallback={null}>
             <Outlet />
           </Suspense>
-        </Container>
+        </StuledContainer>
       </ContainerLayout>
     </>
   );
