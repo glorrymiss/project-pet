@@ -5,7 +5,6 @@ axios.defaults.baseURL = 'https://project-be7v6c5s.onrender.com/';
 
 // Utility to add JWT
 const setAuthHeader = token => {
-  console.log('token', token);
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
