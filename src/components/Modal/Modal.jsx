@@ -22,11 +22,7 @@ export const Modal = ({ children, closeModal }) => {
   return (
     <Backdrop onClick={handleCloseModal}>
       <ModalContainer>
-        <BtnStyled
-          icon={'IconCrossSmall'}
-          transparent={true}
-          onClick={closeModal}
-        />
+        <BtnStyled icon={'IconCross'} transparent={true} onClick={closeModal} />
         {children}
       </ModalContainer>
     </Backdrop>

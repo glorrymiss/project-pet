@@ -1,14 +1,20 @@
 import RegisterForm from 'components/RegisterForm/RegisterForm';
+import { Helmet } from 'react-helmet';
 
 import { RegisterBackground, RegisterBorder } from './RegisterPage.styled';
 
 const RegisterPage = () => {
   return (
-    <RegisterBackground>
-      <RegisterBorder>
-        <RegisterForm />
-      </RegisterBorder>
-    </RegisterBackground>
+    <>
+      <Helmet>
+        <title>Registration</title>
+      </Helmet>
+      <RegisterBackground>
+        <RegisterBorder>
+          <RegisterForm />
+        </RegisterBorder>
+      </RegisterBackground>
+    </>
   );
 };
 
