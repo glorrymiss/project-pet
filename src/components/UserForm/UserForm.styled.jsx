@@ -21,6 +21,7 @@ export const Container = styled.div`
 `;
 
 export const Wrap = styled.div`
+  position: relative;
   margin-top: 18px;
   border-radius: 20px;
   @media screen and (min-width: 768px) {
@@ -100,7 +101,7 @@ export const Text = styled.input`
     width: 255px;
   }
 `;
-export const StyledBtnSave = styled.button`
+export const StyledBtnSave = styled(Btn)`
   width: 190px;
   padding: 4px 12px;
   font-size: 12px;
@@ -122,6 +123,26 @@ export const StyledBtnSave = styled.button`
   @media screen and (min-width: 1280px) {
     width: 255px;
   }
+`;
+export const StyledBtnEdit = styled(Btn)`
+  ${({ isEdit }) => isEdit && `display: none;`};
+  z-index: 2;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  border: none;
+  @media screen and (min-width: 768px) {
+    top: 18px;
+    right: 18px;
+  }
+`;
+export const StyledLabel = styled.label`
+  ${({ isEdit }) => !isEdit && `display: none;`};
+  /* border: none;
+  @media screen and (min-width: 768px) {
+    top: 18px;
+    right: 18px;
+  } */
 `;
 
 export const StyledBtn = styled(Btn)`

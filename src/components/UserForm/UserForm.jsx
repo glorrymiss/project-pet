@@ -1,6 +1,8 @@
 import { useFormik } from 'formik';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
+	StyledLabel,
+  StyledBtn,
   Wrap,
   WrapFoto,
   Avatar,
@@ -9,6 +11,7 @@ import {
   TextTitle,
   Text,
   StyledBtnSave,
+  StyledBtnEdit,
   ErrorMessage,
 } from './UserForm.styled';
 import photoDefault from '../../images/userPageImages/photoDefault.svg';
@@ -17,32 +20,44 @@ import { validationSchema } from './ValidationSchema';
 import { useDispatch } from 'react-redux';
 import { updateUserInfo } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
+import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 
 export const UserForm = ({ close }) => {
   const { user } = useAuth();
   const dispatch = useDispatch();
-  const [avatar, setAvatar] = useState(user.avatar || photoDefault);
+  const [isEdit, setIsEdit] = useState(false);
+  const [isModal, setIsModal] = useState(false);
+
+  const isOpenModal = () => {
+    setIsModal(true);
+  };
+  const isCloseModal = () => {
+    setIsModal(false);
+  };
+
+  const isEditUser = () => {
+    setIsEdit(true);
+  };
 
   const isChangeFile = e => {
     const { files } = e.currentTarget;
-    setFieldTouched('avatar', e.currentTarget, false);
     const avatarUrl = URL.createObjectURL(files[0]);
-    setFieldTouched('avatar', e.currentTarget, false);
+    setFieldValue('avatar', avatarUrl);
     //   console.log(avatar);
-    setFieldValue('avatar', avatarUrl, false);
-    //   console.log(avatar);
-    setAvatar(avatarUrl);
+    //  setAvatar(avatarUrl);
   };
   const isChangeInput = e => {
+    //  setTouched('birthday', false);
     const { name, value } = e.target;
     // setFieldTouched('birthday', e.currentTarget.value, false);
-    // console.log(birthday);
     // setFieldValue('birthday', e.currentTarget.value, false);
     // console.log(birthday);
     setFieldValue(name, value);
+    console.log(touched.value);
   };
 
   const {
+    setTouched,
     setFieldTouched,
     setFieldValue,
     handleBlur,
@@ -52,7 +67,7 @@ export const UserForm = ({ close }) => {
     touched,
   } = useFormik({
     initialValues: {
-      avatar: avatar,
+      avatar: user.avatar || photoDefault,
       name: user.name,
       email: user.email,
       birthday: user.birthday || '00.00.0000',
@@ -64,7 +79,8 @@ export const UserForm = ({ close }) => {
       //  setFieldValue('avatar', avatar);
       // console.log(avatar, city, phone);
       alert(JSON.stringify(values, null, 2));
-      close();
+      setIsEdit(false);
+      // close();
       try {
         await dispatch(updateUserInfo(values));
       } catch (error) {
@@ -72,25 +88,26 @@ export const UserForm = ({ close }) => {
       }
     },
   });
-  //   useEffect(() => {
-  //    setFieldValue('name', user.name);
-  //    setFieldValue('email', user.email);
-  //    setFieldValue('phone', user.phone);
-  //    setFieldValue('city', user.city);
-  //    setFieldValue('birthday', user.birthday);
-  //    setAvatar(user.avatar);
-  //   }, [user, setFieldValue]);
-  //   console.log(user);
 
   return (
     <Wrap>
+      <StyledBtnEdit
+        icon={'IconEdit'}
+        transparent={true}
+        onClick={isEditUser}
+        isEdit={isEdit}
+      />
       <WrapFoto>
-        <Avatar key={avatar} src={!avatar ? photoDefault : avatar} alt="" />
-        <label htmlFor="avatar">
+        <Avatar
+          key="avatar"
+          src={!user.avatar ? photoDefault : user.avatar}
+          alt="avatar"
+        />
+        <StyledLabel htmlFor="avatar" isEdit={isEdit}>
           <IconCamera />
           {/* <Btn icon={'IconCrossSmall'} transparent={true} /> */}
           Edit photo
-        </label>
+        </StyledLabel>
         <input
           id="avatar"
           name="avatar"
@@ -101,11 +118,25 @@ export const UserForm = ({ close }) => {
           style={{ display: 'none' }}
           // value={formik.values.avatar}
         />
+        {/* <div>
+          <StyledBtn
+            icon={'IconCheck'}
+            transparent={true}
+            onClick={isOpenModal}
+          />
+          <p>Confirm</p>
+          <StyledBtn
+            icon={'IconCross'}
+            transparent={true}
+            onClick={isOpenModal}
+          />
+        </div> */}
       </WrapFoto>
       <WrapInfo onSubmit={handleSubmit}>
         <InfoItem>
           <TextTitle htmlFor="name">Name:</TextTitle>
           <Text
+            disabled={!isEdit ? true : false}
             id="name"
             name="name"
             type="text"
@@ -121,6 +152,7 @@ export const UserForm = ({ close }) => {
         <InfoItem>
           <TextTitle htmlFor="email">Email:</TextTitle>
           <Text
+            disabled={!isEdit ? true : false}
             id="email"
             name="email"
             type="email"
@@ -136,6 +168,7 @@ export const UserForm = ({ close }) => {
         <InfoItem>
           <TextTitle htmlFor="birthday">Birthday:</TextTitle>
           <Text
+            disabled={!isEdit ? true : false}
             id="birthday"
             name="birthday"
             type="text"
@@ -149,8 +182,9 @@ export const UserForm = ({ close }) => {
           ) : null}
         </InfoItem>
         <InfoItem>
-          <TextTitle htmlFor="birthday">Phone:</TextTitle>
+          <TextTitle htmlFor="phone">Phone:</TextTitle>
           <Text
+            disabled={!isEdit ? true : false}
             id="phone"
             name="phone"
             type="phone"
@@ -164,8 +198,9 @@ export const UserForm = ({ close }) => {
           ) : null}
         </InfoItem>
         <InfoItem>
-          <TextTitle htmlFor="birthday">City:</TextTitle>
+          <TextTitle htmlFor="city">City:</TextTitle>
           <Text
+            disabled={!isEdit ? true : false}
             id="city"
             name="city"
             type="text"
@@ -178,8 +213,19 @@ export const UserForm = ({ close }) => {
             <ErrorMessage>{errors.city}</ErrorMessage>
           ) : null}
         </InfoItem>
-        <StyledBtnSave type="submit">Save</StyledBtnSave>
+        {isEdit && (
+          <StyledBtnSave type="submit" text="Save" onClick={handleSubmit} />
+        )}
       </WrapInfo>
+      {!isEdit && (
+        <StyledBtn
+          icon={'Iconlogout'}
+          text={'Log Out'}
+          transparent={true}
+          onClick={isOpenModal}
+        />
+      )}
+      {isModal && <ModalApproveAction close={isCloseModal} id={user.id} />}
     </Wrap>
   );
 };
