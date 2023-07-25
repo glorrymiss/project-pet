@@ -21,37 +21,51 @@ import { useAuth } from 'hooks';
 export const UserForm = ({ close }) => {
 	const { user } = useAuth();
   const dispatch = useDispatch();
-	const [avatar, setAvatar] = useState('' || user.avatar);
+	const [avatar, setAvatar] = useState(user.avatar || photoDefault);
+	const [birthday, setBirthday] = useState(user.birthday || '00.00.0000');
+	const [phone, setPhone] = useState(user.phone || '+380000000000');
+	const [city, setCity] = useState(user.city || 'no info');
 
   const isChangeFile = e => {
-    const { files } = e.currentTarget;
+	  const { files } = e.currentTarget;
+	  setFieldTouched('avatar', e.currentTarget, false);
 	  const avatarUrl = URL.createObjectURL(files[0]);
-	  setFieldValue('avatar', avatarUrl);
+	  setFieldTouched('avatar', e.currentTarget, false);
 	//   console.log(avatar);
-	  setAvatar(avatarUrl);
-  };
+	  setFieldValue('avatar', avatarUrl, false);
+	//   console.log(avatar);
+    setAvatar(avatarUrl);
+	};
+ const isChangeInput = e => {
+   const { name, value } = e.target;
+   // setFieldTouched('birthday', e.currentTarget.value, false);
+   // console.log(birthday);
+   // setFieldValue('birthday', e.currentTarget.value, false);
+   // console.log(birthday);
+   setFieldValue(name, value);
+ };
 
-  const {
+	const {
+	  setFieldTouched,
     setFieldValue,
     handleBlur,
     handleSubmit,
-    handleChange,
     values,
     errors,
     touched,
   } = useFormik({
     initialValues: {
-      avatar: user.avatar,
+      avatar: avatar,
       name: user.name,
       email: user.email,
-      birthday: user.birthday,
-      phone: user.phone,
-      city: user.city,
+      birthday: birthday,
+      phone: phone,
+      city: city,
     },
     validationSchema: validationSchema,
 	  onSubmit: async values => {
 		//  setFieldValue('avatar', avatar);
-      // console.log(avatar);
+      // console.log(avatar, city, phone);
       alert(JSON.stringify(values, null, 2));
       close();
       try {
@@ -98,7 +112,7 @@ export const UserForm = ({ close }) => {
             id="name"
             name="name"
             type="text"
-            onChange={handleChange}
+            onChange={isChangeInput}
             value={values.name}
             onBlur={handleBlur}
             className={errors.name && touched.name ? 'InvalidInput' : ''}
@@ -113,7 +127,7 @@ export const UserForm = ({ close }) => {
             id="email"
             name="email"
             type="email"
-            onChange={handleChange}
+            onChange={isChangeInput}
             value={values.email}
             onBlur={handleBlur}
             className={errors.name && touched.name ? 'InvalidInput' : ''}
@@ -128,7 +142,7 @@ export const UserForm = ({ close }) => {
             id="birthday"
             name="birthday"
             type="text"
-            onChange={handleChange}
+            onChange={isChangeInput}
             value={values.birthday}
             onBlur={handleBlur}
             className={errors.name && touched.name ? 'InvalidInput' : ''}
@@ -143,7 +157,7 @@ export const UserForm = ({ close }) => {
             id="phone"
             name="phone"
             type="phone"
-            onChange={handleChange}
+            onChange={isChangeInput}
             value={values.phone}
             onBlur={handleBlur}
             className={errors.name && touched.name ? 'InvalidInput' : ''}
@@ -158,7 +172,7 @@ export const UserForm = ({ close }) => {
             id="city"
             name="city"
             type="text"
-            onChange={handleChange}
+            onChange={isChangeInput}
             value={values.city}
             onBlur={handleBlur}
             className={errors.name && touched.name ? 'InvalidInput' : ''}

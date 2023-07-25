@@ -18,18 +18,9 @@ import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAc
 import { useAuth } from 'hooks';
 
 export const UserData = () => {
-	const {user} = useAuth()
+	const { user } = useAuth();
   const [isEditUser, setisEditUser] = useState(false);
   const [isModal, setIsModal] = useState(false);
-
-//   const user = {
-//     name: 'Anna',
-//     email: 'anna00@gmail.com',
-//     birthday: '00.00.0000',
-//     phone: '+30000000000',
-//     city: 'Kyiv',
-//     avatar: photoDefault,
-//   };
 
   const isEdit = user => {
     setisEditUser(true);
@@ -82,15 +73,15 @@ export const UserData = () => {
             </InfoItem>
             <InfoItem>
               <TextTitle>Birthday:</TextTitle>
-              <Text>{user.birthday}</Text>
+              <Text>{user.birthday ? user.birthday : '00.00.0000'}</Text>
             </InfoItem>
             <InfoItem>
               <TextTitle>Phone:</TextTitle>
-              <Text>{user.phone}</Text>
+              <Text>{user.phone ? user.phone : '+380000000000'}</Text>
             </InfoItem>
             <InfoItem>
               <TextTitle>City:</TextTitle>
-              <Text>{user.city}</Text>
+              <Text>{user.city ? user.city : 'no info'}</Text>
             </InfoItem>
             <StyledBtn
               icon={'Iconlogout'}

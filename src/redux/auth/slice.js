@@ -8,14 +8,7 @@ import {
 } from './operations';
 
 const initialState = {
-  user: {
-    name: null,
-    email: null,
-    birthday: null,
-    phone: null,
-    city: null,
-    avatar: '',
-  },
+  user: {},
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
