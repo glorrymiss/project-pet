@@ -2,6 +2,7 @@ import Btn from 'components/Btn/Btn';
 import styled from 'styled-components';
 
 export const Container = styled.div`
+position: relative;
   width: 100%;
   margin-top: 46px;
   padding: 0 auto 24px;
@@ -113,9 +114,10 @@ export const Text = styled.p`
   }
 `;
 export const StyledBtnPlus = styled(Btn)`
+z-index: 1200;
   padding: 8px 20px;
   position: absolute;
-  top: -60px;
+  top: 0;
   right: 0;
   gap: 8px;
   font-weight: 700;
