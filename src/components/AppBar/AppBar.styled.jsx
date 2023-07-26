@@ -148,14 +148,9 @@ export const StyleBtn = styled(Btn)`
     display: none;
     `};
 }
-    // position: absolute;
-    // right: 60px;
-    // top: 26px;
-  }
 
   @media screen and (min-width: 1280px) {
     display: flex;
-    // position: absolute;
     right: 131px;
     top: 0;
   }
