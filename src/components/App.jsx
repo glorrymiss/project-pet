@@ -59,7 +59,6 @@ export const App = () => {
           <Route path="/news" element={<NewsPage />} />
           <Route path="/notices" element={<NoticesPage />}>
             <Route path=":categoryName" element={<NoticesCategoriesList />} />
-            {/* <Route index element={<NoticesCategoryList/>} /> */}
             {/* <Route path="sell" element={<div>sell</div>} />
             <Route path="lost-found" element={<div>lost/found</div>} />
             <Route path="for-free" element={<div>in good hands</div>} />

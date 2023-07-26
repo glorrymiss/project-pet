@@ -7,7 +7,7 @@ export const Navigation = ({ isOpenMenu }) => {
   return (
     <NavContainer isOpenMenu={isOpenMenu} isLoggedIn={isLoggedIn} id="navMenu">
       <StyledNavLink to="/news">News</StyledNavLink>
-      <StyledNavLink to="/notices">Find pet</StyledNavLink>
+      <StyledNavLink to="/notices/sell">Find pet</StyledNavLink>
       <StyledNavLink to="/friends">Our friends</StyledNavLink>
     </NavContainer>
   );

@@ -5,6 +5,7 @@ import { ContainerLayout, StuledContainer } from './SharedLayout.style';
 import { Helmet } from 'react-helmet';
 import { useAuth } from 'hooks';
 import theme from 'components/theme';
+import { Container } from 'components/Container/Container';
 
 const SharedLayout = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -28,9 +29,11 @@ const SharedLayout = () => {
         </Helmet>
         <AppBar isOpenMenu={isOpenMenu} setIsOpenMenu={setIsOpenMenu} />
         <StuledContainer>
-          <Suspense fallback={null}>
-            <Outlet />
-          </Suspense>
+          <Container>
+            <Suspense fallback={null}>
+              <Outlet />
+            </Suspense>
+          </Container>
         </StuledContainer>
       </ContainerLayout>
     </>

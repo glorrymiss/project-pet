@@ -9,15 +9,15 @@ export const StyledTitel = styled.h1`
   font-weight: 700;
   line-height: normal;
 
-  margin-top: 40px;
+  padding-top: 40px;
 
-  margin @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     font-size: 48px;
-    margin-top: 80px;
+    padding-top: 80px;
   }
 
   @media screen and (min-width: 1280px) {
     font-size: 48px;
-    margin-top: 80px;
+    padding-top: 80px;
   }
 `;

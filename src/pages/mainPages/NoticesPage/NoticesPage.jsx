@@ -1,4 +1,5 @@
-import { Container } from 'components/Container/Container';
+import Btn from 'components/Btn/Btn';
+// import { Container } from 'components/Container/Container';
 import Filter from 'components/Filter/Filter';
 import FormSearch from 'components/FormSearch/FormSearch';
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
@@ -7,12 +8,18 @@ import Title from 'components/Title/Title';
 import theme from 'components/theme';
 import { useAuth } from 'hooks';
 import { Helmet } from 'react-helmet';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { FlexBox } from './NoticesPage.styled';
 
 const NoticesPage = () => {
   const { currentTheme } = useAuth();
+
+  const handleClickAddPet = () => {
+    console.log('handleClickAddPet');
+  };
+
   return (
-    <Container>
+    <FlexBox>
       <Helmet>
         <title>Find pet</title>
       </Helmet>
@@ -23,18 +30,30 @@ const NoticesPage = () => {
 
       <FormSearch />
 
-      <div>
+      <div
+        style={{
+          marginTop: 43,
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
         <NoticesCategoriesNav />
-        <div>
+        <div style={{ display: 'flex', columnGap: 12 }}>
           <Filter />
-          <NavLink to="/add-pet">Add Pet</NavLink>
+          {/* <NavLink to="/add-pet">Add Pet</NavLink> */}
+          <Btn
+            text="Add Pet"
+            icon="IconPlusSmall"
+            onClick={handleClickAddPet}
+            size="small"
+          />
         </div>
       </div>
 
       <Outlet />
 
       <Pagination />
-    </Container>
+    </FlexBox>
   );
 };
 

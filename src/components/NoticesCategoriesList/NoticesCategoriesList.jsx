@@ -4,7 +4,7 @@ const NoticesCategoriesList = () => {
   const { categoryName } = useParams();
 
   return (
-    <div>
+    <div style={{ flexGrow: 1 }}>
       <p>NoticesCategoriesList</p>
       <p>{categoryName}</p>
     </div>

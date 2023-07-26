@@ -22,27 +22,27 @@ export const StyledAppBar = styled.header`
 `;
 
 export const StyledContainer = styled(Container)`
-  // box-sizing: border-box;
+  box-sizing: border-box;
   // background-color: red;
   // margin: 20px 20px;
-  // padding: 4px 0;
+  padding: 0 20px;
   // background-color: ${({ theme }) => theme.color.background};
   // height: 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
-  z-index: 1;
+  z-index: 9;
 
   // background: ${({ theme }) => theme.color.gradient};
   // box-shadow: ${({ theme }) => theme.boxShadowHover};
 
   @media screen and (min-width: 768px) {
-    // padding: 8px 0;
+    padding: 0 32px;
   }
 
   @media screen and (min-width: 1280px) {
-    // padding: 10px 0;
+    padding: 0 16px;
   }
 `;
 
@@ -67,7 +67,7 @@ export const NavContainer = styled.div`
   flex-direction: row-reverse;
       `};
 
-  // background-color: ${({ theme }) => theme.color.background};
+  background-color: ${({ theme }) => theme.color.bodyColor};
   // height: 1px;
   // background-color: red;
 
