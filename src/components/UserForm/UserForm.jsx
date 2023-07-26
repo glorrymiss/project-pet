@@ -1,7 +1,8 @@
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import {
-	StyledLabel,
+  WrapFileOk,
+  StyledLabel,
   StyledBtn,
   Wrap,
   WrapFoto,
@@ -23,10 +24,13 @@ import { useAuth } from 'hooks';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 
 export const UserForm = ({ close }) => {
-  const { user } = useAuth();
+	const { user, error } = useAuth();
   const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState(false);
   const [isModal, setIsModal] = useState(false);
+  const [isAvatar, setIsAvatar] = useState(user.avatar || photoDefault);
+  const [isAvatarOld, setIsAvatarOld] = useState(user.avatar || photoDefault);
+	const [isFile, setIsFile] = useState(false);
 
   const isOpenModal = () => {
     setIsModal(true);
@@ -34,60 +38,53 @@ export const UserForm = ({ close }) => {
   const isCloseModal = () => {
     setIsModal(false);
   };
-
   const isEditUser = () => {
     setIsEdit(true);
+  };
+  const isFaleEdit = () => {
+    setIsFile(false);
+    setIsAvatar(isAvatarOld);
+  };
+  const isFaleOkEdit = () => {
+    setIsFile(false);
+    setIsAvatarOld(isAvatar);
   };
 
   const isChangeFile = e => {
     const { files } = e.currentTarget;
     const avatarUrl = URL.createObjectURL(files[0]);
-    setFieldValue('avatar', avatarUrl);
-    //   console.log(avatar);
-    //  setAvatar(avatarUrl);
+    setIsAvatar(avatarUrl);
+    if (isAvatarOld !== avatarUrl) {
+      setIsFile(true);
+    }
   };
   const isChangeInput = e => {
-    //  setTouched('birthday', false);
     const { name, value } = e.target;
-    // setFieldTouched('birthday', e.currentTarget.value, false);
-    // setFieldValue('birthday', e.currentTarget.value, false);
-    // console.log(birthday);
     setFieldValue(name, value);
-    console.log(touched.value);
-  };
+	};
 
-  const {
-   //  setTouched,
-   //  setFieldTouched,
-    setFieldValue,
-    handleBlur,
-    handleSubmit,
-    values,
-    errors,
-    touched,
-  } = useFormik({
-    initialValues: {
-      avatar: user.avatar || photoDefault,
-      name: user.name,
-      email: user.email,
-      birthday: user.birthday || '00.00.0000',
-      phone: user.phone || '+380000000000',
-      city: user.city || 'no info',
-    },
-    validationSchema: validationSchema,
-    onSubmit: async values => {
-      //  setFieldValue('avatar', avatar);
-      // console.log(avatar, city, phone);
-      alert(JSON.stringify(values, null, 2));
-      setIsEdit(false);
-      // close();
-      try {
-        await dispatch(updateUserInfo(values));
-      } catch (error) {
-        console.log(error.message);
-      }
-    },
-  });
+  const { setFieldValue, handleBlur, handleSubmit, values, errors, touched } =
+    useFormik({
+      initialValues: {
+        avatar: isAvatar,
+        name: user.name,
+        email: user.email,
+        birthday: user.birthday || '',
+        phone: user.phone || '',
+        city: user.city || '',
+      },
+      validationSchema: validationSchema,
+      onSubmit: async values => {
+        //  setFieldValue('avatar', isAvatar);
+        // console.log(avatar, city, phone);
+        // alert(JSON.stringify(values, null, 2));
+			setIsFile(false);
+			const res = await dispatch(updateUserInfo(values));
+			if (res.error) {
+				return setIsEdit(true);
+			} setIsEdit(false);
+      },
+    });
 
   return (
     <Wrap>
@@ -98,15 +95,10 @@ export const UserForm = ({ close }) => {
         isEdit={isEdit}
       />
       <WrapFoto>
-        <Avatar
-          key="avatar"
-          src={!user.avatar ? photoDefault : user.avatar}
-          alt="avatar"
-        />
-        <StyledLabel htmlFor="avatar" isEdit={isEdit}>
+        <Avatar key="avatar" src={isAvatar} alt="avatar" />
+        <StyledLabel htmlFor="avatar" isEdit={isEdit} isFile={isFile}>
           <IconCamera />
-          {/* <Btn icon={'IconCrossSmall'} transparent={true} /> */}
-          Edit photo
+          {isFile ? 'Confirm' : 'Edit photo'}
         </StyledLabel>
         <input
           id="avatar"
@@ -116,21 +108,22 @@ export const UserForm = ({ close }) => {
           multiple
           onChange={isChangeFile}
           style={{ display: 'none' }}
-          // value={formik.values.avatar}
         />
-        {/* <div>
-          <StyledBtn
-            icon={'IconCheck'}
-            transparent={true}
-            onClick={isOpenModal}
-          />
-          <p>Confirm</p>
-          <StyledBtn
-            icon={'IconCross'}
-            transparent={true}
-            onClick={isOpenModal}
-          />
-        </div> */}
+        {isFile && (
+          <WrapFileOk>
+            <StyledBtn
+              icon={'IconCheck'}
+              transparent={true}
+              onClick={isFaleOkEdit}
+            />
+            <p>Confirm</p>
+            <StyledBtn
+              icon={'IconCross'}
+              transparent={true}
+              onClick={isFaleEdit}
+            />
+          </WrapFileOk>
+        )}
       </WrapFoto>
       <WrapInfo onSubmit={handleSubmit}>
         <InfoItem>
@@ -140,10 +133,10 @@ export const UserForm = ({ close }) => {
             id="name"
             name="name"
             type="text"
+            placeholder="Name"
             onChange={isChangeInput}
             value={values.name}
             onBlur={handleBlur}
-            className={errors.name && touched.name ? 'InvalidInput' : ''}
           />
           {errors.name && touched.name ? (
             <ErrorMessage>{errors.name}</ErrorMessage>
@@ -159,11 +152,11 @@ export const UserForm = ({ close }) => {
             onChange={isChangeInput}
             value={values.email}
             onBlur={handleBlur}
-            className={errors.name && touched.name ? 'InvalidInput' : ''}
           />
           {errors.email && touched.email ? (
             <ErrorMessage>{errors.email}</ErrorMessage>
           ) : null}
+          {error && <ErrorMessage>Email is not unique</ErrorMessage>}
         </InfoItem>
         <InfoItem>
           <TextTitle htmlFor="birthday">Birthday:</TextTitle>
@@ -171,11 +164,10 @@ export const UserForm = ({ close }) => {
             disabled={!isEdit ? true : false}
             id="birthday"
             name="birthday"
-            type="text"
+            type={!isEdit ? 'text' : 'date'}
             onChange={isChangeInput}
             value={values.birthday}
             onBlur={handleBlur}
-            className={errors.name && touched.name ? 'InvalidInput' : ''}
           />
           {errors.birthday && touched.birthday ? (
             <ErrorMessage>{errors.birthday}</ErrorMessage>
@@ -188,10 +180,10 @@ export const UserForm = ({ close }) => {
             id="phone"
             name="phone"
             type="phone"
+            placeholder="+380000000000"
             onChange={isChangeInput}
             value={values.phone}
             onBlur={handleBlur}
-            className={errors.name && touched.name ? 'InvalidInput' : ''}
           />
           {errors.phone && touched.phone ? (
             <ErrorMessage>{errors.phone}</ErrorMessage>
@@ -204,10 +196,10 @@ export const UserForm = ({ close }) => {
             id="city"
             name="city"
             type="text"
+            placeholder="Kyev"
             onChange={isChangeInput}
             value={values.city}
             onBlur={handleBlur}
-            className={errors.name && touched.name ? 'InvalidInput' : ''}
           />
           {errors.city && touched.city ? (
             <ErrorMessage>{errors.city}</ErrorMessage>

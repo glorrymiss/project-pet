@@ -57,9 +57,13 @@ const authSlice = createSlice({
         state.token = null;
       })
       .addCase(updateUserInfo.fulfilled, (state, action) => {
-      //   console.log(action.payload);
+        console.log(action.payload);
         state.user = action.payload;
       })
+      .addCase(updateUserInfo.rejected, (state, action) => {
+			state.error = action.payload;
+			console.log(action.payload);
+      });
   },
 });
 
