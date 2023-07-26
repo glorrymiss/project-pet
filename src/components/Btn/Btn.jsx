@@ -4,6 +4,18 @@ import { useAuth } from 'hooks';
 import ListIcons from 'images/icons/ListIcons';
 import { useState } from 'react';
 
+// ================INFO=======================
+//                 size
+// 'max''normal''round''small''min'
+//
+//   transparent = [boolean]
+//   icon={"nameIcon"}
+//   text=[string],
+//   className,
+//   onClick={[function]},
+//   type = {type},
+// =============================================
+
 const Btn = ({
   size = 'middle',
   transparent = false,
