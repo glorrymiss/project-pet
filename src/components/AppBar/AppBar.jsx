@@ -64,6 +64,7 @@ export const AppBar = ({ isOpenMenu, setIsOpenMenu }) => {
           isOpenMenu={isOpenMenu}
           onClick={toggleMenu}
           id="btnNavMenu"
+          title="close modal"
         >
           {isOpenMenu ? (
             <IconCrossBig

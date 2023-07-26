@@ -1,5 +1,7 @@
+import { StuledInput } from './FormSearch.styled';
+
 const FormSearch = () => {
-  return <p>FormSearch</p>;
+  return <StuledInput placeholder="Search" />;
 };
 
 export default FormSearch;

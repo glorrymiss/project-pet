@@ -1,4 +1,4 @@
-import { Container } from 'components/Container/Container';
+// import { Container } from 'components/Container/Container';
 import styled from 'styled-components';
 
 export const ContainerLayout = styled.div`
@@ -7,6 +7,7 @@ export const ContainerLayout = styled.div`
   height: 100vh;
 `;
 
-export const StuledContainer = styled(Container)`
+export const StuledContainer = styled.main`
   flex-grow: 3;
+  box-sizing: border-box;
 `;

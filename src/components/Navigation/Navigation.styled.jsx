@@ -28,7 +28,6 @@ export const StyledNavLink = styled(NavLink)`
   @media screen and (min-width: 1280px) {
     font-size: 20px;
     letter-spacing: 0.8px;
-    margin-right: 40px;
   }
 `;
 
@@ -44,8 +43,9 @@ export const NavContainer = styled.nav`
 
   @media screen and (min-width: 1280px) {
     box-shadow: none;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    column-gap: 40px;
+    // grid-template-columns: 1fr 1fr 1fr;
     top: 0;
     position: relative;
     margin-left: 159px;
