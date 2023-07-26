@@ -9,26 +9,26 @@ const initialState = {
   result: '',
 };
 
-const pendingReducer = state => {
-  state.loading = true;
-  state.error = null;
-  state.result = 'pending';
-};
+// const pendingReducer = state => {
+//   state.loading = true;
+//   state.error = null;
+//   state.result = 'pending';
+// };
 
-const fulfilledReducer = (state, { payload }) => {
-  state.loading = false;
-  state.result = 'fulfilled';
-  if (payload) {
-    state.items.push(payload);
-    state.user = payload;
-  }
-};
+// const fulfilledReducer = (state, { payload }) => {
+//   state.loading = false;
+//   state.result = 'fulfilled';
+//   if (payload) {
+//     state.items.push(payload);
+//     state.user = payload;
+//   }
+// };
 
-const rejectedReducer = (state, { payload }) => {
-  state.loading = false;
-  state.error = payload;
-  state.result = 'rejected';
-};
+// const rejectedReducer = (state, { payload }) => {
+//   state.loading = false;
+//   state.error = payload;
+//   state.result = 'rejected';
+// };
 
 const petsSlice = createSlice({
   name: 'pets',
