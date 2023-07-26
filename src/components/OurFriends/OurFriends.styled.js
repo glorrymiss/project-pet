@@ -6,22 +6,24 @@ export const List = styled.ul`
     align-items:center;
     flex-direction: column;
     gap: 20px;
-    padding-top: 24px;
-    padding-bottom: 75px;
+    margin: 24px auto 75px;
     @media screen and (min-width: 768px) {
+        /* padding: 0 32px; */
         flex-direction: row;
         gap:32px;
-        margin: 32px auto 172px auto ;
+        margin: 40px 32px 172px;
     }
     @media screen and (min-width: 1280px) {
-        flex-direction: row;
-        margin: 60px auto 69px auto ;
+        align-items:baseline;
+        margin: 60px 16px 69px;
   }
 
 `
 
 export const Item = styled.li`
-    padding: 16px 12px;
+    /* padding-top: 16px;
+    padding-left:12px; */
+    height:240px;
     width:280px;
     display:flex;
     flex-direction: column;
@@ -29,25 +31,27 @@ export const Item = styled.li`
     box-shadow:${({ theme }) => theme.boxShadow};
     border-radius:40px; 
     @media screen and (min-width: 768px) {
+        height:275px;
         width:320px;
         flex-basis: calc((100% - 32px) / 2);
     } 
     @media screen and (min-width: 1280px) {
+        height:287px;
         width:394px;
         flex-basis: calc((100% - 64px) / 3);
   }
 `
 
 export const CardTitle = styled.h2`
-margin:0 auto;
+margin:16px auto;
 text-align: center;
 font-size: 20px;
 font-weight: 700;
 line-height: normal;
 color:${({ theme }) => theme.color.btnDark};
-margin-bottom: 16px;
 `
 export const WrapImage = styled.div`
+margin-left:12px;
 width: 100px;
 height: 68px;
 @media screen and (min-width: 768px) {
@@ -105,6 +109,35 @@ text-decoration:none;
 font-size: 12px;
 font-weight: 400;
 line-height: normal;
+:hover{
+    color: ${({ theme }) => theme.color.btnDark}
+}
+@media screen and (min-width: 768px) {
+    font-size: 14px;
+    }
+@media screen and (min-width: 1280px) {
+   font-size:16px;
+  }
+`
+
+export const Option = styled.option`
+border:none;
+font-size: 12px;
+font-weight: 400;
+line-height: normal;
+color: ${({ theme }) => theme.color.secondary};
+outline: none;
+:hover{
+    background-color: ${({ theme }) => theme.color.btnDark}
+}
+`
+export const Select = styled.select`
+border:none;
+font-size: 12px;
+font-weight: 400;
+line-height: normal;
+color: ${({ theme }) => theme.color.secondary};
+outline: none;
 :hover{
     color: ${({ theme }) => theme.color.btnDark}
 }
