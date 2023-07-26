@@ -7,6 +7,7 @@ import mobile_1x from '../../images/MainPageImages/bg-sm@1x.png';
 import mobile_2x from '../../images/MainPageImages/bg-sm@2x.png';
 
 export const RegisterBorder = styled.div`
+  margin-top: 40px;
   padding: 60px 75px;
   box-sizing: border-box;
   width: 608px;
@@ -16,6 +17,7 @@ export const RegisterBorder = styled.div`
   border-radius: 40px;
 
   @media screen and (max-width: 767px) {
+    margin-top: 80px;
     margin: 0 auto;
     padding: 40px 12px;
     max-width: 280px;
@@ -23,13 +25,17 @@ export const RegisterBorder = styled.div`
     box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
     border-radius: 20px;
   }
+
+  @media screen and (min-width: 1280px) {
+    margin-top: 80px;
+  }
 `;
 
 export const RegisterBackground = styled.div`
   display: flex;
   justify-content: center;
-  padding-top: 80px;
-  height: 100vh;
+  // padding-top: 80px;
+  height: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -54,7 +60,7 @@ export const RegisterBackground = styled.div`
   }
 
   @media screen and (max-width: 767px) {
-    padding-top: 44px;
+    // padding-top: 44px;
     background-image: url('${mobile_1x}');
 
     @media (min-device-pixel-ratio: 2),
