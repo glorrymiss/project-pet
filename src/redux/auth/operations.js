@@ -101,28 +101,21 @@ export const updateUserInfo = createAsyncThunk(
   async ({ avatar, name, email, phone, city, birthday }, thunkAPI) => {
     try {
       const formData = new FormData();
-      formData.append('avatar', avatar);
+      // formData.append('avatar', avatar);
       formData.append('name', name);
       formData.append('email', email);
       formData.append('phone', phone || '');
       formData.append('city', city || '');
       formData.append('birthday', birthday || '');
-		 console.log(formData);
+		//  console.log(formData);
 		//  const user = { name, email};
 
-      // const response = await axios.patch(
-      //   `/api/users/current`,)
-      //   user
-        //  , formData,
-        // 	 {
-        //     headers: {
-        //       'Content-Type': 'multipart/form-data',
-        //     },
-        // }
-      // );
-      // return response.data;
-      const user = { avatar, name, email, phone, city, birthday };
-      return user;
+      const response = await axios.patch(
+        `/api/users/current/update`,
+        formData, {headers: {'content-type': 'multipart/form-data'}});
+      return response.data;
+      // const user = { avatar, name, email, phone, city, birthday };
+      // return user;
     } catch (error) {
 		 return thunkAPI.rejectWithValue(error.message);
     }

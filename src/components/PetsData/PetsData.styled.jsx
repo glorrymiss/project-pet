@@ -73,6 +73,7 @@ export const Avatar = styled.div`
 `;
 export const WrapInfo = styled.div`
   position: relative;
+  width: 100%;
   padding: 0 20px 40px;
   @media screen and (min-width: 768px) {
     padding: 20px 20px 20px 0;
@@ -83,6 +84,7 @@ export const WrapInfo = styled.div`
   }
 `;
 export const InfoItem = styled.div`
+/* width: 100%; */
   margin-bottom: 12px;
   font-size: 14px;
   font-style: normal;
@@ -114,15 +116,17 @@ export const Text = styled.p`
   }
 `;
 export const StyledBtnPlus = styled(Btn)`
-z-index: 1200;
   padding: 8px 20px;
   position: absolute;
   top: 0;
   right: 0;
   gap: 8px;
   font-weight: 700;
+  @media screen and (min-width: 768px) {
+    top: 0;
+  }
   @media screen and (min-width: 1280px) {
-    top: -64px;
+    top: 60px;
   }
 `;
 

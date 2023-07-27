@@ -61,7 +61,7 @@ export const WrapInfo = styled.form`
   }
 `;
 export const InfoItem = styled.div`
-position: relative;
+  position: relative;
   display: flex;
   align-items: center;
   margin-bottom: 16px;
@@ -138,33 +138,23 @@ export const StyledBtnEdit = styled(Btn)`
   }
 `;
 export const StyledLabel = styled.label`
-  ${({ isEdit }) => !isEdit &&`display: none;`};
+  ${({ isEdit }) => !isEdit && `display: none;`};
   ${({ isFile }) => isFile && `display: none;`};
   position: absolute;
-  bottom: 40px;
-  left: 150px;
-
+  bottom: 37px;
+  left: 50%;
+  transform: translate(-50%, 0);
   color: ${p => p.theme.color.btnDark};
-  /* border: none;
-  @media screen and (min-width: 768px) {
-    top: 18px;
-    right: 18px;
-  } */
+  text-align: center;
 `;
 export const WrapFileOk = styled.div`
-height: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   position: absolute;
-  bottom: 40px;
-  left: 130px;
-
-  /* @media screen and (min-width: 768px) {
-    margin-top: 4px;
-  }
-  @media screen and (min-width: 1280px) {
-    margin-top: 14px;
-  } */
+  bottom: 37px;
+  left: 50%;
+  transform: translate(-50%, 0);
 `;
 
 export const StyledBtn = styled(Btn)`
