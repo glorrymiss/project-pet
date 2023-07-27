@@ -5,7 +5,7 @@ import { StyleImg } from './Logo.styled';
 const Logo = () => {
   return (
     <NavLink to="/main">
-      <StyleImg alt="" />
+      <StyleImg alt="" title="Main Pages" />
     </NavLink>
   );
 };
