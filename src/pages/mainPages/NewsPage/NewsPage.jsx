@@ -43,7 +43,7 @@ const NewsPage = () => {
 
       <NewsList newsList={newsList} />
 
-      <Pagination />
+      <Pagination page={page} setPage={setPage} quantity={quantityNews} />
     </FlexBox>
   );
 };
