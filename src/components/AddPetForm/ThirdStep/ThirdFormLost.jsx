@@ -29,20 +29,6 @@ import {
   InputCommentsLost,
   ErrorCommentSell,
 } from './ThirdStep.styled';
-import css from './thirdStep.module.css';
-
-const sexOptions = [
-  {
-    value: 'female',
-    icon: <FemaleIcon fill="#F43F5E" />,
-    label: 'Female',
-  },
-  {
-    value: 'male',
-    icon: <MaleIcon />,
-    label: 'Male',
-  },
-];
 
 const ThirdFormLost = ({
   formData,
@@ -80,11 +66,7 @@ const ThirdFormLost = ({
     setState(prevState => ({ ...prevState, file }));
   };
 
-  const handleSex = (option, number) => {
-    setState(prevState => ({ ...prevState, sex: option, active: number }));
-  };
-
-  const { file, comments, location, active, errors } = state;
+  const { file, comments, location, errors } = state;
 
   return (
     <div>
@@ -99,20 +81,14 @@ const ThirdFormLost = ({
             <SexContainer>
               <LabelSex>The Sex</LabelSex>
               <SexBlock>
-                {sexOptions.map((option, index) => (
-                  <li key={index}>
-                    <SexButton
-                      type="button"
-                      className={`${css.sexButton} ${
-                        active === index + 1 ? css.sexButtonChoosed : ''
-                      }`}
-                      onClick={() => handleSex(option.value, index + 1)}
-                    >
-                      {option.icon}
-                      {option.label}
-                    </SexButton>
-                  </li>
-                ))}
+                <SexButton value="female" label="Female">
+                  <FemaleIcon fill="#888888" />
+                  Female
+                </SexButton>
+                <SexButton value="male" label="Male">
+                  <MaleIcon fill="#888888" />
+                  Male
+                </SexButton>
               </SexBlock>
               {errors.sex && <ErrorSex>{errors.sex}</ErrorSex>}
             </SexContainer>
