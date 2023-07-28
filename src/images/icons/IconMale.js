@@ -5,7 +5,7 @@ const IconMale = props => (
     width={25}
     height={24}
     fill="none"
-    {...props}
+    // {...props}
   >
     <path
       stroke={props.fill || '#54ADFF'}
