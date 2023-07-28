@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://MishaStryzhka.github.io/project-Fr7v6c5s/",
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^14.0.0",

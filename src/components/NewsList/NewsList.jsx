@@ -1,8 +1,31 @@
-const NewsList = () => {
+import {
+  Card,
+  CardInfoContainer,
+  CardTitle,
+  Image,
+  NewsContainer,
+  NewsItem,
+  Rectangle,
+} from './NewsList.styled';
+
+const NewsList = ({ newsList }) => {
+  console.log('newsList', newsList);
+
   return (
-    <div style={{ flexGrow: 1 }}>
-      <p>NewsList</p>
-    </div>
+    <NewsContainer>
+      {newsList.map(news => (
+        <NewsItem key={news._id}>
+          <Rectangle />
+
+          <Card>
+            <Image src={news.imgUrl} />
+            <CardInfoContainer>
+              <CardTitle></CardTitle>
+            </CardInfoContainer>
+          </Card>
+        </NewsItem>
+      ))}
+    </NewsContainer>
   );
 };
 
