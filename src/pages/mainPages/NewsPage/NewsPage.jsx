@@ -23,7 +23,6 @@ const NewsPage = () => {
   console.log('quantityNews', quantityNews);
 
   useEffect(() => {
-    setPage(1);
     getNews(page).then(res => {
       const { quantityNews, news } = res;
       setNewsList(news);
