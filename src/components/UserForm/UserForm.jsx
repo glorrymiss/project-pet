@@ -22,15 +22,17 @@ import { useDispatch } from 'react-redux';
 import { updateUserInfo } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
+import theme from 'components/theme';
 
-export const UserForm = ({ close }) => {
-	const { user, error } = useAuth();
+export const UserForm = () => {
+	const { user, error, currentTheme } = useAuth();
+	console.log(user);
   const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState(false);
   const [isModal, setIsModal] = useState(false);
   const [isAvatar, setIsAvatar] = useState(user.avatar || photoDefault);
   const [isAvatarOld, setIsAvatarOld] = useState(user.avatar || photoDefault);
-	const [isFile, setIsFile] = useState(false);
+  const [isFile, setIsFile] = useState(false);
 
   const isOpenModal = () => {
     setIsModal(true);
@@ -61,7 +63,7 @@ export const UserForm = ({ close }) => {
   const isChangeInput = e => {
     const { name, value } = e.target;
     setFieldValue(name, value);
-	};
+  };
 
   const { setFieldValue, handleBlur, handleSubmit, values, errors, touched } =
     useFormik({
@@ -75,14 +77,15 @@ export const UserForm = ({ close }) => {
       },
       validationSchema: validationSchema,
       onSubmit: async values => {
-        //  setFieldValue('avatar', isAvatar);
-        // console.log(avatar, city, phone);
+         setFieldValue('avatar', isAvatar);
+        console.log(values);
         // alert(JSON.stringify(values, null, 2));
-			setIsFile(false);
-			const res = await dispatch(updateUserInfo(values));
-			if (res.error) {
-				return setIsEdit(true);
-			} setIsEdit(false);
+        setIsFile(false);
+        const res = await dispatch(updateUserInfo(values));
+        if (res.error) {
+          return setIsEdit(true);
+        }
+        setIsEdit(false);
       },
     });
 
@@ -114,12 +117,14 @@ export const UserForm = ({ close }) => {
             <StyledBtn
               icon={'IconCheck'}
               transparent={true}
+              fill={theme[currentTheme].color.indicator}
               onClick={isFaleOkEdit}
             />
             <p>Confirm</p>
             <StyledBtn
               icon={'IconCross'}
               transparent={true}
+              fill="#F43F5E"
               onClick={isFaleEdit}
             />
           </WrapFileOk>
@@ -208,16 +213,16 @@ export const UserForm = ({ close }) => {
         {isEdit && (
           <StyledBtnSave type="submit" text="Save" onClick={handleSubmit} />
         )}
+        {!isEdit && (
+          <StyledBtn
+            icon={'Iconlogout'}
+            text={'Log Out'}
+            transparent={true}
+            onClick={isOpenModal}
+          />
+        )}
       </WrapInfo>
-      {!isEdit && (
-        <StyledBtn
-          icon={'Iconlogout'}
-          text={'Log Out'}
-          transparent={true}
-          onClick={isOpenModal}
-        />
-      )}
-      {isModal && <ModalApproveAction close={isCloseModal} id={user.id} />}
+		  {isModal && <ModalApproveAction close={isCloseModal} currentTheme={currentTheme} />}
     </Wrap>
   );
 };

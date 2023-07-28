@@ -19,7 +19,7 @@ export const fetchPets = createAsyncThunk(
   }
 );
 
-export const {addPet} = () => {};
+// export const {addPet} = () => {};
 
-export const {addNotice} = () => {};
+// export const {addNotice} = () => {};
 
