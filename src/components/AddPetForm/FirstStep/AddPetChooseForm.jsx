@@ -17,6 +17,7 @@ import SecondRenderStep from '../SecondStep/SecondRenderStep';
 import ThirdFormMyPet from '../ThirdStep/ThirdFormMyPet';
 import ThirdFormSell from '../ThirdStep/ThirdFormSell';
 import ThirdFormLost from '../ThirdStep/ThirdFormLost';
+import { Title } from './AddPetChooseForm.styled';
 
 const AddPetChooseForm = () => {
   const [step, setStep] = useState(1);
@@ -136,7 +137,7 @@ const AddPetChooseForm = () => {
     <>
       {step === 1 && (
         <FormContainer>
-          <h2>Add pet</h2>
+          <Title>Add pet</Title>
 
           <StatusIndicator currentStatus={currentStatus} />
           <ButtonChooseOption
