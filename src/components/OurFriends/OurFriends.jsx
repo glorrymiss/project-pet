@@ -3,8 +3,14 @@ import friends from '../../path/to/friends.json'
 import * as Component from './OurFriends.styled'
 
 const OurFriends = () => {
-    const [, setCurrentTime] = useState(new Date());
+    const [openList, setOpenList] = useState(true);
+    const [matchingDay, setMatchingDay] = useState("");
+    const [currentTime, setCurrentTime] = useState(new Date());
+
+    const handleOpenList = () => setOpenList(openList => !openList);
+
     const daysOfWeek = ["MN", "TU", "WE", "TH", "FR", "SA", "SU"]
+
     useEffect(() => {
       const interval = setInterval(() => {
         setCurrentTime(new Date());
@@ -14,9 +20,16 @@ const OurFriends = () => {
         clearInterval(interval);
       };
     }, []);
+
+    useEffect(() => {
+      const currentDay = daysOfWeek[currentTime.getDay()];
+      setMatchingDay(currentDay);
+    }, [currentTime, daysOfWeek]);
+
+
 return(
     <Component.List>
-        {friends.map(({id,title, url,address,imageUrl,addressUrl,email,phone, workDays,isOpen})=>{
+        {friends.map(({id,title, url,address,imageUrl,addressUrl,email,phone, workDays})=>{
            
              return(
                 <Component.Item key={id}>
@@ -30,16 +43,20 @@ return(
                         <div>
                         <Component.Text>Time</Component.Text>
                     {workDays ? 
-                    <Component.Select name="days" id="days"> hgvghgvh
+                    <Component.ListTime name="days" id="days" onClick={handleOpenList}>{matchingDay}
+                    <Component.TimeWrap style={{display: openList ? "block":"none"}}>
                         {workDays.map((day, index)=>{
                             const dayOfWeek = daysOfWeek[index];
+                            
                              return(
-                                    <Component.Option key={index} value={day}>{dayOfWeek}  {day.from}- {day.to}  
-                                    {day.isOpen === true ?  "" : "Closed"}</Component.Option>
+                                    <Component.TimeItem key={index} value={day}>{dayOfWeek}  {day.from}- {day.to}  
+                                    {day.isOpen === true ?  "" : "Closed"}</Component.TimeItem>
                             
                               )
+                            
                         })}
-                    </Component.Select> : <Component.Link>Day and night</Component.Link>}
+                        </Component.TimeWrap>
+                    </Component.ListTime> : <Component.Link>Day and night</Component.Link>}
                     </div>
                     
                     <div><Component.Text>Address</Component.Text>
