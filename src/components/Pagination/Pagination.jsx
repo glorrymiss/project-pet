@@ -1,6 +1,6 @@
 import React from 'react';
-import IconArrowLeft from '../../images/icons/IconArrowLeft';
-import IconArrowRight from '../../images/icons/IconArrowRight';
+import IconArrowLeft from '../../images/icons/IconLeft';
+import IconArrowRight from '../../images/icons/IconRight';
 import {
   PaginationList,
   PaginationListItem,
@@ -50,7 +50,7 @@ export const Pagination = ({
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
             >
-              <IconArrowLeft />
+              <IconArrowLeft fill="gray" />
             </PaginationArrowBtn>
           </PaginationListItem>
           {pageNumbers.map(number => (

@@ -55,6 +55,6 @@ export const PaginationArrowBtn = styled(PaginationBtn)`
   &:hover,
   :focus {
     color: white;
-    background-color: lightskyblue;
+    background-color: #54adff;
   }
 `;
