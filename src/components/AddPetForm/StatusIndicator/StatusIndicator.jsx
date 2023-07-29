@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusContainer } from './StatusIndicator.styled';
+import { StatusContainer, StatusOption } from './StatusIndicator.styled';
 import css from './statusIndicator.module.css';
 
 const StatusIndicator = ({ currentStatus }) => {
@@ -14,11 +14,15 @@ const StatusIndicator = ({ currentStatus }) => {
   };
 
   return (
-    <div>
+    <div style={{ marginBottom: '24px' }}>
       <StatusContainer>
-        <li className={getStatusClassName(1)}>Choose option</li>
-        <li className={getStatusClassName(2)}>Personal details</li>
-        <li className={getStatusClassName(3)}>More info</li>
+        <StatusOption className={getStatusClassName(1)}>
+          Choose option
+        </StatusOption>
+        <StatusOption className={getStatusClassName(2)}>
+          Personal details
+        </StatusOption>
+        <StatusOption className={getStatusClassName(3)}>More info</StatusOption>
       </StatusContainer>
     </div>
   );
