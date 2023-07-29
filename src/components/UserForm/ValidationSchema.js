@@ -19,10 +19,10 @@ export const validationSchema = Yup.object({
     .matches(regexPhone, {
       message: 'Format is +380000000000',
     })
-    .notRequired(),
+    .required(),
   city: Yup.string()
     .min(4, 'Word must be min 4')
     .max(16, 'Word must be max 16')
     .matches(regexCity, 'The first letter must be uppercase')
-    .notRequired(),
+    .required(),
 });

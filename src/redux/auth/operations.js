@@ -30,7 +30,6 @@ export const register = createAsyncThunk(
         status: error.response.status,
         message: error.response.data.message,
       });
-
     }
   }
 );
@@ -101,23 +100,26 @@ export const updateUserInfo = createAsyncThunk(
   async ({ avatar, name, email, phone, city, birthday }, thunkAPI) => {
     try {
       const formData = new FormData();
-      // formData.append('avatar', avatar);
-      formData.append('name', name);
-      formData.append('email', email);
-      formData.append('phone', phone || '');
-      formData.append('city', city || '');
-      formData.append('birthday', birthday || '');
-		//  console.log(formData);
-		//  const user = { name, email};
+      avatar && formData.append('avatar', avatar);
+      name && formData.append('name', name);
+      email && formData.append('email', email);
+      phone && formData.append('phone', phone);
+      city && formData.append('city', city);
+      birthday && formData.append('birthday', birthday);
 
       const response = await axios.patch(
         `/api/users/current/update`,
-        formData, {headers: {'content-type': 'multipart/form-data'}});
+        formData,
+        { headers: { 'content-type': 'multipart/form-data' } }
+      );
       return response.data;
       // const user = { avatar, name, email, phone, city, birthday };
       // return user;
     } catch (error) {
-		 return thunkAPI.rejectWithValue(error.message);
+		 return thunkAPI.rejectWithValue({
+       status: error.response.status,
+       message: error.response.data.message,
+     });
     }
   }
 );
