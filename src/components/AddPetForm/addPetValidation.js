@@ -31,7 +31,7 @@ const breedValidation = Yup.string()
 
 const imageValidation = Yup.mixed()
   .label('Pet image')
-  .required('Pet`s image is required')
+  // .required('Pet`s image is required')
   .test(
     'fileSize',
     'File size must be less than 3MB',
@@ -45,13 +45,13 @@ const imageValidation = Yup.mixed()
   );
 
 const locationValidation = Yup.string()
-  .min(4, 'Too Short! 4 characters minimum')
+  .min(2, 'Too Short! 2 characters minimum')
   .max(16, 'Too Long! 16 characters maximum')
   .matches(/^[A-Z][a-zA-Z]*$/, 'The first letter must be uppercase')
   .label('Location')
   .required('Location is required');
 
-const sexValidation = Yup.string().required('Choose gender');
+// const sexValidation = Yup.string().required('Choose gender');
 
 export const validationSchema = Yup.object({
   name: nameValidation,
@@ -71,22 +71,22 @@ export const validationSchemaAdd = Yup.object({
 
 export const validationSchemaThirdAddMy = Yup.object({
   comments: Yup.string()
-    .min(8, 'Too Short! 8 characters minimum')
+    // .min(2, 'Too Short! 2 characters minimum')
     .max(120, 'Too Long! 120 characters maximum')
-    .label('Comment')
-    .required('Comments is required'),
+    .label('Comment'),
+  // .required('Comments is required')
   imageURL: imageValidation,
 });
 
 export const validationSchemaThirdAddSell = Yup.object({
   comments: Yup.string()
-    .min(8, 'Too Short! 8 characters minimum')
+    // .min(2, 'Too Short! 2 characters minimum')
     .max(120, 'Too Long! 120 characters maximum')
-    .label('Comment')
-    .required('Comments is required'),
+    .label('Comment'),
+  // .required('Comments is required')
   file: imageValidation,
   location: locationValidation,
-  sex: sexValidation,
+  // sex: sexValidation,
   price: Yup.number()
     .positive()
     .required()
@@ -96,11 +96,11 @@ export const validationSchemaThirdAddSell = Yup.object({
 
 export const validationSchemaThirdAddLost = Yup.object({
   comments: Yup.string()
-    .min(8, 'Too Short! 8 characters minimum')
+    // .min(2, 'Too Short! 2 characters minimum')
     .max(120, 'Too Long! 120 characters maximum')
-    .label('Comment')
-    .required('Comments is required'),
+    .label('Comment'),
+  // .required('Comments is required')
   file: imageValidation,
   location: locationValidation,
-  sex: sexValidation,
+  // sex: sexValidation,
 });

@@ -8,7 +8,7 @@ const IconFemale = props => (
     // {...props}
   >
     <path
-      stroke={props.fill || '#54ADFF'}
+      stroke={props.fill || '#F43F5E'}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1.5}

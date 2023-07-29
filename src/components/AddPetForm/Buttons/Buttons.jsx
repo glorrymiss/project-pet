@@ -1,7 +1,14 @@
 import React from 'react';
 import ArrowLeftIcon from '../../../images/icons/IconArrowLeft';
 import PawPrintIcon from '../../../images/icons/IconPawprint1';
-import { BtnPrev, BtnNext, BtnChoose, BtnContainer } from './Buttons.styled';
+import {
+  BtnPrev,
+  BtnNext,
+  BtnContainer,
+  RadioInput,
+  LabelStyled,
+  BtnWrap,
+} from './Buttons.styled';
 
 export const ButtonPrev = ({ textButton, handlePrevStep }) => {
   return (
@@ -21,33 +28,45 @@ export const ButtonNext = ({ textButton, handleNextData }) => {
   );
 };
 
-const Button = ({ label, value, onClick }) => {
+const Button = ({ label, value, checked, onChange, isActive }) => {
   return (
-    <BtnChoose type="button" onClick={() => onClick(value)}>
+    <LabelStyled isActive={isActive}>
+      <RadioInput value={value} checked={checked} onChange={onChange} />
       {label}
-    </BtnChoose>
+    </LabelStyled>
   );
 };
 
 export const ButtonChooseOption = ({ handleChooseChange }) => {
+  const [selectedValue, setSelectedValue] = React.useState('');
+
+  const handleChange = event => {
+    setSelectedValue(event.target.value);
+    handleChooseChange(event.target.value);
+  };
+
   const buttonsData = [
     { label: 'Your pet', value: 'your-pet', id: 1 },
     { label: 'Sell', value: 'sell', id: 2 },
-    { label: 'Lost/found', value: 'lost-found', id: 3 },
+    { label: 'Lost / found', value: 'lost-found', id: 3 },
     { label: 'In good hands', value: 'for-free', id: 4 },
   ];
 
   return (
-    <BtnContainer>
-      {buttonsData.map(button => (
-        <li key={button.id}>
-          <Button
-            label={button.label}
-            value={button.value}
-            onClick={handleChooseChange}
-          />
-        </li>
-      ))}
-    </BtnContainer>
+    <form>
+      <BtnContainer>
+        {buttonsData.map(button => (
+          <BtnWrap key={button.id}>
+            <Button
+              label={button.label}
+              value={button.value}
+              checked={selectedValue === button.value}
+              onChange={handleChange}
+              isActive={selectedValue === button.value}
+            />
+          </BtnWrap>
+        ))}
+      </BtnContainer>
+    </form>
   );
 };
