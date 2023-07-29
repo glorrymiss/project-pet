@@ -74,7 +74,7 @@ return(
         <Component.Title>Login</Component.Title>
         <Component.Wrap>
         
-         <label style={{position:'relative'}}>
+         <Component.Label>
               <Component.FieldStyled 
                 error={errors.email && touched.email && errors.email}
                 valid={values.email}
@@ -88,9 +88,9 @@ return(
               {errors.email && touched.email && errors.email  && <Component.IconCrossStyle fill={theme[currentTheme].color.error}/>}
               {values.email && !errors.email &&  <Component.WrapIcons><IconCheck fill={theme[currentTheme].color.indicator}/></Component.WrapIcons>}
               <Component.TextError>{errors.email && touched.email && errors.email}</Component.TextError>
-          </label>
+          </Component.Label>
         
-          <label style={{position:'relative'}}>
+          <Component.Label>
               <Component.FieldStyled
                 error={errors.password && touched.password && errors.password}
                 type={openPassword ? 'text':'password'}
@@ -136,7 +136,7 @@ return(
                   {errors.password && touched.password && errors.password &&
                   <Component.TextError>{errors.password}</Component.TextError>}
                   {!errors.password && touched.password && <Component.SuccessText>Password is secure</Component.SuccessText>}
-              </label> 
+              </Component.Label> 
         </Component.Wrap>
         <Component.Button type='submit'>Login</Component.Button>
         <Component.Text>Don't have an account?<Component.StyledNavLink to="/register">Register</Component.StyledNavLink></Component.Text>

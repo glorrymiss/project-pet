@@ -61,6 +61,7 @@ export const WrapInfo = styled.form`
   }
 `;
 export const InfoItem = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   margin-bottom: 16px;
@@ -138,11 +139,22 @@ export const StyledBtnEdit = styled(Btn)`
 `;
 export const StyledLabel = styled.label`
   ${({ isEdit }) => !isEdit && `display: none;`};
-  /* border: none;
-  @media screen and (min-width: 768px) {
-    top: 18px;
-    right: 18px;
-  } */
+  ${({ isFile }) => isFile && `display: none;`};
+  position: absolute;
+  bottom: 37px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: ${p => p.theme.color.btnDark};
+  text-align: center;
+`;
+export const WrapFileOk = styled.div`
+  height: 24px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 37px;
+  left: 50%;
+  transform: translate(-50%, 0);
 `;
 
 export const StyledBtn = styled(Btn)`
@@ -154,16 +166,21 @@ export const StyledBtn = styled(Btn)`
   border: none;
   color: ${p => p.theme.color.btnLogOut};
   @media screen and (min-width: 768px) {
-    margin-top: 4px;
+    /* margin-top: 4px; */
   }
   @media screen and (min-width: 1280px) {
-    margin-top: 14px;
+    /* margin-top: 14px; */
   }
 `;
 export const ErrorMessage = styled.div`
+  position: absolute;
+  bottom: -8px;
+  right: 84px;
   color: ${p => p.theme.color.error};
-  font-size: 12px;
+  font-size: 8px;
   @media screen and (min-width: 768px) {
-    font-size: 14px;
+    font-size: 10px;
+    bottom: -10px;
+    left: 110px;
   }
 `;

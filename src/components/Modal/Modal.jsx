@@ -1,14 +1,14 @@
 import { useCallback, useEffect } from 'react';
 import { Backdrop, ModalContainer, BtnStyled } from './Modal.styled';
 
-export const Modal = ({ children, closeModal }) => {
+export const Modal = ({ children, onClick }) => {
   const handleCloseModal = useCallback(
     ({ target, currentTarget, code }) => {
       if (target === currentTarget || code === 'Escape') {
-        closeModal();
+        onClick();
       }
     },
-    [closeModal]
+    [onClick]
   );
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export const Modal = ({ children, closeModal }) => {
   return (
     <Backdrop onClick={handleCloseModal}>
       <ModalContainer>
-        <BtnStyled icon={'IconCross'} transparent={true} onClick={closeModal} />
+        <BtnStyled icon={'IconCross'} transparent={true} onClick={onClick} />
         {children}
       </ModalContainer>
     </Backdrop>

@@ -18,7 +18,7 @@ box-shadow:  ${({ theme }) => theme.boxShadow};
 
 @media screen and (min-width: 768px) {
     width: 608px;
-    padding: 60px 75px;
+    padding: 60px 0;
     margin-top: 80px;
     border-radius: 40px;
   }
@@ -80,8 +80,11 @@ color: #888;
         : theme.color.btnDark};
 }
 @media screen and (min-width: 768px) {
-    width:458px;
+    width:448px;
 }
+`
+export const Label = styled.label`
+position: relative;
 `
 
 export const FieldError = styled(Field)`
@@ -182,4 +185,3 @@ gap:8px;
     gap:15px
 }
 `
-

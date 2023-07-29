@@ -1,18 +1,42 @@
 import styled from 'styled-components';
 
+export const Title = styled.h2`
+  font-family: Manrope;
+  font-size: 20px;
+  line-height: 1.37;
+  margin-bottom: 24px;
+  margin-left: 20px;
+  color: #111111;
+
+  @media screen and (min-width: 768px) {
+    font-size: 28px;
+  }
+`;
+
+export const InputsWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 44px;
+
+  @media screen and (min-width: 768px) {
+    gap: 24px;
+  }
+`;
+
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
-  margin-bottom: 16px;
   position: relative;
 
   @media screen and (min-width: 768px) {
-    margin-bottom: 24px;
+    gap: 8px;
   }
 `;
 
 export const Label = styled.label`
+  font-family: Manrope;
   color: #111111;
   font-weight: 500;
   font-size: 14px;
@@ -24,10 +48,11 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
+  font-family: Manrope;
   border-radius: 40px;
   color: #888888;
   font-size: 14px;
-  padding: 8px;
+  padding: 9.5px 16px;
   border: 1px solid #54adff;
   max-width: 260px;
 
@@ -38,10 +63,12 @@ export const Input = styled.input`
   @media screen and (min-width: 768px) {
     min-width: 400px;
     font-size: 16px;
+    padding: 12px 16px;
   }
 `;
 
 export const ErrorText = styled.p`
+  font-family: Manrope;
   position: absolute;
   bottom: -20%;
   left: 5%;

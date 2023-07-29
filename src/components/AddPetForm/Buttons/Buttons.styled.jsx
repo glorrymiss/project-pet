@@ -38,11 +38,9 @@ export const BtnRoutesContainer = styled.div`
   flex-direction: column;
   align-items: center;
   align-self: flex-end;
+  margin-right: auto;
+  margin-left: auto;
   gap: 20px;
-  margin-top: 24px;
-  margin-left: 12px;
-  margin-right: 12px;
-  margin-bottom: 0px;
 
   @media screen and (min-width: 768px) {
     flex-direction: row-reverse;
@@ -80,7 +78,6 @@ export const BtnNext = styled.button`
 `;
 
 export const BtnPrev = styled.button`
-  margin-left: 12px;
   font-size: 16px;
   font-weight: 700;
   line-height: 1.38;
