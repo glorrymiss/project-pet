@@ -61,7 +61,6 @@ const authSlice = createSlice({
       })
       .addCase(updateUserInfo.rejected, (state, action) => {
 			state.error = action.payload
-			console.log(action.payload);
       });
   },
 });

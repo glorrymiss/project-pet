@@ -23,7 +23,6 @@ import { usePets } from '../../hooks';
 export const PetsData = () => {
   const dispatch = useDispatch();
   const { pets } = usePets();
-  console.log(pets);
 
   useEffect(() => {
     dispatch(fetchPets());

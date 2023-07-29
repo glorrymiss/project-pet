@@ -116,7 +116,10 @@ export const updateUserInfo = createAsyncThunk(
       // const user = { avatar, name, email, phone, city, birthday };
       // return user;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+		 return thunkAPI.rejectWithValue({
+       status: error.response.status,
+       message: error.response.data.message,
+     });
     }
   }
 );

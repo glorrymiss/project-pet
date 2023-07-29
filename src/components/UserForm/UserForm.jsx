@@ -23,17 +23,18 @@ import { updateUserInfo } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 import theme from 'components/theme';
+import { Notify } from 'notiflix';
 
 export const UserForm = () => {
-	const { user, error, currentTheme } = useAuth();
-	// console.log(user);
+  const { user, error, currentTheme } = useAuth();
+  // console.log(user);
   const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState(false);
   const [isModal, setIsModal] = useState(false);
-	const [isAvatar, setIsAvatar] = useState('');
-	const [isAvatarOld, setIsAvatarOld] = useState('');
-	const [avatarUrl, setAvatarUrl] = useState(user.avatar || '');
-	const [avatarUrlOld, setAvatarUrlOld] = useState(user.avatar || '');
+  const [isAvatar, setIsAvatar] = useState('');
+  const [isAvatarOld, setIsAvatarOld] = useState('');
+  const [avatarUrl, setAvatarUrl] = useState(user.avatar || '');
+  const [avatarUrlOld, setAvatarUrlOld] = useState(user.avatar || '');
   const [isFile, setIsFile] = useState(false);
 
   const isOpenModal = () => {
@@ -47,33 +48,47 @@ export const UserForm = () => {
   };
   const isFaleEdit = () => {
     setIsFile(false);
-	  setIsAvatar(isAvatarOld);
-	  setFieldValue('avatar', isAvatarOld);
-	  setAvatarUrl(avatarUrlOld);
+    setIsAvatar(isAvatarOld);
+    setFieldValue('avatar', isAvatarOld);
+    setAvatarUrl(avatarUrlOld);
   };
   const isFaleOkEdit = () => {
     setIsFile(false);
-	  setIsAvatarOld(isAvatar);
-	  setFieldValue('avatar', isAvatar);
-	  setAvatarUrlOld(avatarUrl);
+    setIsAvatarOld(isAvatar);
+    setFieldValue('avatar', isAvatar);
+    setAvatarUrlOld(avatarUrl);
   };
 
   const isChangeFile = e => {
-	  const { files } = e.currentTarget;
-	  const avatarUrl = URL.createObjectURL(files[0]);
+    const { files } = e.currentTarget;
+    const avatarUrl = URL.createObjectURL(files[0]);
     setIsAvatar(files[0]);
     if (files) {
-		 setIsFile(true);
-		 setAvatarUrl(avatarUrl);
+      setIsFile(true);
+      setAvatarUrl(avatarUrl);
     }
   };
   const isChangeInput = e => {
     const { name, value } = e.target;
     setFieldValue(name, value);
-	};
+  };
+  // const changeBirthday = () => {
+  //  if (user.birthday) {
+  // 	 const day = user.birthday.slise(8, user.birthday.length);
+  // 	 const month = user.birthday.slise(6, 8);
+  // 	 const year = user.birthday.slise(0, 4);
+  // 	 console.log(`${day}.${month}.${year}`);
+  // 	  return `${day}.${month}.${year}`;
+  //  };
+  // 	};
+  const changeBirthday = `${user.birthday.slice(
+    8,
+    user.birthday.length
+	)}.${user.birthday.slice(5, 7)}.${user.birthday.slice(0, 4)}`;
 
   const {
-	  setFieldValue,
+    isSubmitting,
+    setFieldValue,
     handleBlur,
     handleSubmit,
     values,
@@ -91,9 +106,7 @@ export const UserForm = () => {
 
     validationSchema: validationSchema,
     onSubmit: async values => {
-		 const v = {};
-		 console.log(avatarUrl !== user.avatar);
-		 console.log(avatarUrl !== '');
+      const v = {};
       if (avatarUrl && avatarUrl !== user.avatar) {
         v.avatar = values.avatar;
       }
@@ -114,11 +127,12 @@ export const UserForm = () => {
       }
       alert(JSON.stringify(v, null, 2));
       setIsFile(false);
-      const res = await dispatch(updateUserInfo(v));
+		 const res = await dispatch(updateUserInfo(v));
+		 setIsEdit(false);
       if (res.error) {
-        return setIsEdit(true);
+        Notify.failure(error.message);
       }
-      setIsEdit(false);
+      
     },
   });
 
@@ -131,7 +145,11 @@ export const UserForm = () => {
         isEdit={isEdit}
       />
       <WrapFoto>
-        <Avatar key="avatar" src={avatarUrl ? avatarUrl : photoDefault} alt="avatar" />
+        <Avatar
+          key="avatar"
+          src={avatarUrl ? avatarUrl : photoDefault}
+          alt="avatar"
+        />
         <StyledLabel htmlFor="avatar" isEdit={isEdit} isFile={isFile}>
           <IconCamera />
           {isFile ? 'Confirm' : 'Edit photo'}
@@ -204,7 +222,7 @@ export const UserForm = () => {
             name="birthday"
             type={!isEdit ? 'text' : 'date'}
             onChange={isChangeInput}
-            value={values.birthday}
+            value={!isEdit ? changeBirthday : values.birthday}
             onBlur={handleBlur}
           />
           {errors.birthday && touched.birthday ? (
@@ -244,7 +262,12 @@ export const UserForm = () => {
           ) : null}
         </InfoItem>
         {isEdit && (
-          <StyledBtnSave type="submit" text="Save" onClick={handleSubmit} />
+          <StyledBtnSave
+            type="submit"
+            text="Save"
+            onClick={handleSubmit}
+            disabled={!isSubmitting}
+          />
         )}
         {!isEdit && (
           <StyledBtn
