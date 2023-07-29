@@ -6,7 +6,7 @@ import { FlexBox } from '../NoticesPage/NoticesPage.styled';
 import NewsList from 'components/NewsList/NewsList';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import Pagination from 'components/Pagination/Pagination';
+import { Pagination } from '../../../components/Pagination/Pagination';
 import FormSearch from 'components/FormSearch/FormSearch';
 
 const getNews = async page => {
