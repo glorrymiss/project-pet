@@ -15,6 +15,7 @@ import {
   CommentsContainerMyPet,
   LabelComments,
   InputComments,
+  LabelAddedPhoto,
 } from './ThirdStep.styled';
 
 const ThirdFormMyPet = ({
@@ -24,30 +25,52 @@ const ThirdFormMyPet = ({
   currentStatus,
   chooseOption,
 }) => {
-  const [imageURL, setImageURL] = useState('');
-  const [comments, setComments] = useState('');
-  const [errors, setErrors] = useState({});
+  const [state, setState] = useState({
+    file: '',
+    comments: '',
+    location: formData.location || '',
+    sex: formData.sex || '',
+    price: formData.sex || '',
+    active: null,
+    errors: {},
+  });
 
   const handleDone = () => {
     validationSchemaThirdAddMy
-      .validate({ imageURL, comments }, { abortEarly: false })
+      .validate(state, { abortEarly: false })
       .then(() => {
-        handleNextData({ imageURL, comments });
+        handleNextData(state);
       })
       .catch(err => {
         const validationErrors = {};
-        if (err.inner) {
-          err.inner.forEach(error => {
-            validationErrors[error.path] = error.message;
-          });
-        }
-        setErrors(validationErrors);
+        err.inner.forEach(error => {
+          validationErrors[error.path] = error.message;
+        });
+        setState(prevState => ({ ...prevState, errors: validationErrors }));
       });
   };
 
   const handleFileChange = e => {
-    setImageURL(e.target.files[0]);
+    const file = e.target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    setState(prevState => ({ ...prevState, file }));
   };
+
+  const handlePhotoClick = e => {
+    const fileInput = document.getElementById('photo');
+    if (fileInput && !fileInput.files[0]) {
+      return;
+    }
+
+    const file = e.target.files[0];
+    setState(prevState => ({ ...prevState, file }));
+  };
+
+  const { file, comments, errors } = state;
 
   return (
     <div>
@@ -69,15 +92,22 @@ const ThirdFormMyPet = ({
             style={{ display: 'none' }}
           />
         </div>
-        <label htmlFor="photo">
-          <LabelPhoto>
-            {imageURL && (
-              <PreviewPhoto src={URL.createObjectURL(imageURL)} alt="Pet" />
-            )}
-            <Plus />
-          </LabelPhoto>
-        </label>
-        {errors.imageURL && <ErrorTextLow>{errors.imageURL}</ErrorTextLow>}
+        {file ? (
+          <>
+            <LabelAddedPhoto htmlFor="photo" onClick={handlePhotoClick}>
+              <PreviewPhoto src={URL.createObjectURL(file)} alt="Pet" />
+            </LabelAddedPhoto>
+          </>
+        ) : (
+          <>
+            <LabelAddedPhoto htmlFor="photo">
+              <LabelPhoto>
+                <Plus />
+              </LabelPhoto>
+            </LabelAddedPhoto>
+            {errors.file && <ErrorTextLow>{errors.file}</ErrorTextLow>}
+          </>
+        )}
       </PhotoContainer>
 
       <CommentsContainerMyPet>
@@ -86,7 +116,12 @@ const ThirdFormMyPet = ({
           id="comments"
           value={comments}
           placeholder="Type comment"
-          onChange={e => setComments(e.target.value)}
+          onChange={e =>
+            setState(prevState => ({
+              ...prevState,
+              comments: e.target.value,
+            }))
+          }
         />
         {errors.comments && <ErrorComment>{errors.comments}</ErrorComment>}
       </CommentsContainerMyPet>

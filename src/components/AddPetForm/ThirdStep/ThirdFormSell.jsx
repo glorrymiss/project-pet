@@ -17,7 +17,6 @@ import {
   SexPhotoBlock,
   SexContainer,
   LabelSex,
-  SexBlock,
   ErrorSex,
   PhotoContainerSell,
   ErrorTextLowSell,
@@ -28,7 +27,10 @@ import {
   ErrorTextSellLocation,
   LabelCommentsSell,
   ErrorCommentSell,
-  SexButton,
+  SexLabelStyled,
+  SexRadioInput,
+  SexButtonsWrap,
+  LabelAddedPhoto,
 } from './ThirdStep.styled';
 
 const ThirdFormSell = ({
@@ -48,6 +50,36 @@ const ThirdFormSell = ({
     errors: {},
   });
 
+  const [selectedValue, setSelectedValue] = React.useState('');
+
+  const handleChange = event => {
+    setSelectedValue(event.target.value);
+  };
+
+  const SexButton = ({ checked, onChange, value, label }) => {
+    const isActive = selectedValue === value;
+
+    return (
+      <SexLabelStyled htmlFor={value} isActive={isActive}>
+        <SexRadioInput
+          id={value}
+          type="radio"
+          name="sex"
+          value={value}
+          label={label}
+          checked={selectedValue === value}
+          onChange={onChange}
+        />
+        {value === 'female' ? (
+          <FemaleIcon fill="#F43F5E" />
+        ) : (
+          <MaleIcon fill="#54ADFF" />
+        )}
+        {value === 'female' ? 'Female' : 'Male'}
+      </SexLabelStyled>
+    );
+  };
+
   const handleDone = () => {
     validationSchemaThirdAddSell
       .validate(state, { abortEarly: false })
@@ -64,6 +96,21 @@ const ThirdFormSell = ({
   };
 
   const handleFileChange = e => {
+    const file = e.target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    setState(prevState => ({ ...prevState, file }));
+  };
+
+  const handlePhotoClick = e => {
+    const fileInput = document.getElementById('photo');
+    if (fileInput && !fileInput.files[0]) {
+      return;
+    }
+
     const file = e.target.files[0];
     setState(prevState => ({ ...prevState, file }));
   };
@@ -83,16 +130,15 @@ const ThirdFormSell = ({
           <SexPhotoBlock>
             <SexContainer>
               <LabelSex>The Sex</LabelSex>
-              <SexBlock>
-                <SexButton value="female" label="Female">
-                  <FemaleIcon fill="#888888" />
-                  Female
-                </SexButton>
-                <SexButton value="male" label="Male">
-                  <MaleIcon fill="#888888" />
-                  Male
-                </SexButton>
-              </SexBlock>
+
+              <SexButtonsWrap>
+                <SexButton
+                  onChange={handleChange}
+                  value="female"
+                  label="Female"
+                />
+                <SexButton onChange={handleChange} value="male" label="Male" />
+              </SexButtonsWrap>
               {errors.sex && <ErrorSex>{errors.sex}</ErrorSex>}
             </SexContainer>
 
@@ -106,16 +152,23 @@ const ThirdFormSell = ({
                   style={{ display: 'none' }}
                 />
               </div>
-              <label htmlFor="photo">
-                <LabelPhoto>
-                  {file && (
+              {file ? (
+                <>
+                  <LabelAddedPhoto htmlFor="photo" onClick={handlePhotoClick}>
                     <PreviewPhoto src={URL.createObjectURL(file)} alt="Pet" />
+                  </LabelAddedPhoto>
+                </>
+              ) : (
+                <>
+                  <LabelAddedPhoto htmlFor="photo">
+                    <LabelPhoto>
+                      <Plus />
+                    </LabelPhoto>
+                  </LabelAddedPhoto>
+                  {errors.file && (
+                    <ErrorTextLowSell>{errors.file}</ErrorTextLowSell>
                   )}
-                  <Plus />
-                </LabelPhoto>
-              </label>
-              {errors.file && (
-                <ErrorTextLowSell>{errors.file}</ErrorTextLowSell>
+                </>
               )}
             </PhotoContainerSell>
           </SexPhotoBlock>

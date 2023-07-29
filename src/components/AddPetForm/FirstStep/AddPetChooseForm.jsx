@@ -140,17 +140,21 @@ const AddPetChooseForm = () => {
           <Title>Add pet</Title>
 
           <StatusIndicator currentStatus={currentStatus} />
-          <ButtonChooseOption
-            handleChooseChange={handleChooseChange}
-            activeButton={activeButton}
-          />
-          <ButtonRoutes>
-            <ButtonNext
-              textButton="Next"
-              handleNextData={handleNextDataOption}
+          <div
+            style={{ display: 'flex', flexDirection: 'column', width: '100%' }}
+          >
+            <ButtonChooseOption
+              handleChooseChange={handleChooseChange}
+              activeButton={activeButton}
             />
-            <ButtonPrev textButton="Cancel" handlePrevStep={handleCancel} />
-          </ButtonRoutes>
+            <ButtonRoutes>
+              <ButtonNext
+                textButton="Next"
+                handleNextData={handleNextDataOption}
+              />
+              <ButtonPrev textButton="Cancel" handlePrevStep={handleCancel} />
+            </ButtonRoutes>
+          </div>
         </FormContainer>
       )}
 

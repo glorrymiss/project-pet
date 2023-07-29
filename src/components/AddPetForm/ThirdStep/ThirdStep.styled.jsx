@@ -28,12 +28,15 @@ export const PointBlock = styled.div`
 `;
 
 export const SexContainer = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  color: #d9d2d2;
-  background-color: transparent;
+
+  margin-bottom: 16px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 48px;
+  }
 `;
 
 export const SexPhotoBlock = styled.div`
@@ -62,12 +65,34 @@ export const LabelSex = styled.p`
   }
 `;
 
-export const SexBlock = styled.div`
+export const SexButtonsWrap = styled.div`
   display: flex;
-  margin-bottom: 8px;
+`;
 
-  @media screen and (min-width: 768px) {
-    margin-bottom: 40px;
+export const SexRadioInput = styled.input.attrs({ type: 'radio' })`
+  display: none;
+`;
+
+export const SexLabelStyled = styled.label`
+  font-family: Manrope;
+  display: flex;
+  background-color: inherit;
+  cursor: pointer;
+  border: none;
+  color: #888888;
+  background-color: ${props => (props.isActive ? '#54adff' : 'transparent')};
+  color: ${props => (props.isActive ? '#fff' : '#888888')};
+  font-size: 16px;
+  align-items: center;
+  line-height: 1.5;
+  padding: 8px 16px;
+  border-radius: 40px;
+  align-items: center;
+
+  &:hover,
+  &:focus {
+    background-color: #54adff;
+    color: #fff;
   }
 `;
 
@@ -83,9 +108,11 @@ export const SexButton = styled.button`
   line-height: 1.5;
   padding: 8px 16px;
   border-radius: 40px;
+  gap: 12px;
 
   &:hover,
-  &:focus {
+  &:focus,
+  &:active {
     background-color: #54adff;
     color: #fff;
   }
@@ -112,10 +139,11 @@ export const PhotoContainerSell = styled.div`
   align-items: center;
   margin-left: 8px;
   margin-top: 8px;
-  position: relative;
 
   @media screen and (min-width: 768px) {
     flex-direction: column;
+    margin-left: 0;
+    margin-top: 0;
   }
 `;
 
@@ -138,6 +166,21 @@ export const LabelAddPhoto = styled.p`
 `;
 
 export const LabelPhoto = styled.div`
+  position: relative;
+  width: 112px;
+  height: 112px;
+  background-color: #cce4fb;
+  border-radius: 20px;
+  overflow: hidden;
+
+  @media screen and (min-width: 768px) {
+    width: 182px;
+    height: 182px;
+    border-radius: 40px;
+  }
+`;
+
+export const LabelAddedPhoto = styled.label`
   position: relative;
   width: 112px;
   height: 112px;
@@ -182,11 +225,11 @@ export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
-  margin-left: 8px;
-  position: relative;
+  margin-top: 16px;
 
   @media screen and (min-width: 768px) {
     gap: 8px;
+    margin-top: 0;
   }
 `;
 

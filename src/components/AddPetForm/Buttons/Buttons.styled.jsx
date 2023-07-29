@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 
-export const BtnChoose = styled.button`
+export const RadioInput = styled.input.attrs({ type: 'radio' })`
+  display: none;
+`;
+
+export const LabelStyled = styled.label`
   font-size: 14px;
   line-height: 1.33;
   padding: 8px 16px;
-  color: #54adff;
-  background: #cce4fb;
+  background-color: ${props => (props.isActive ? '#54adff' : '#cce4fb')};
+  color: ${props => (props.isActive ? '#fff' : '#54adff')};
   border: none;
   border-radius: 40px;
   margin-bottom: 12px;
@@ -13,11 +17,16 @@ export const BtnChoose = styled.button`
   cursor: pointer;
 
   &:focus,
-  &:hover,
-  &:active {
+  &:hover {
     color: #fef9f9;
     background: #54adff;
   }
+`;
+
+export const BtnWrap = styled.li`
+  border-radius: 40px;
+  width: fit-content;
+  cursor: pointer;
 `;
 
 export const BtnContainer = styled.ul`
@@ -26,6 +35,7 @@ export const BtnContainer = styled.ul`
   flex-direction: column;
   flex: 1;
   margin-bottom: 80px;
+  gap: 28px;
 
   @media screen and (min-width: 768px) {
     margin-top: 24px;
