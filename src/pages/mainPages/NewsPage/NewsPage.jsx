@@ -4,14 +4,13 @@ import { useAuth } from 'hooks';
 import { Helmet } from 'react-helmet';
 import { FlexBox } from '../NoticesPage/NoticesPage.styled';
 import NewsList from 'components/NewsList/NewsList';
-
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Pagination from 'components/Pagination/Pagination';
 import FormSearch from 'components/FormSearch/FormSearch';
 
 const getNews = async page => {
-  const res = await axios.get('api/news', { page: page });
+  const res = await axios.get('api/news', { params: { page: page } });
   return res.data;
 };
 

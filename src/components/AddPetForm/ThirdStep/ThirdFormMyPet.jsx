@@ -16,7 +16,6 @@ import {
   LabelComments,
   InputComments,
 } from './ThirdStep.styled';
-import css from './thirdStep.module.css';
 
 const ThirdFormMyPet = ({
   handleNextData,
@@ -59,7 +58,9 @@ const ThirdFormMyPet = ({
       />
 
       <PhotoContainer>
-        <LabelAddPhoto>Load the pet’s image:</LabelAddPhoto>
+        <LabelAddPhoto style={{ width: '115px' }}>
+          Load the pet’s image:
+        </LabelAddPhoto>
         <div>
           <input
             type="file"
@@ -73,7 +74,7 @@ const ThirdFormMyPet = ({
             {imageURL && (
               <PreviewPhoto src={URL.createObjectURL(imageURL)} alt="Pet" />
             )}
-            <Plus className={css.plusIcon} />
+            <Plus />
           </LabelPhoto>
         </label>
         {errors.imageURL && <ErrorTextLow>{errors.imageURL}</ErrorTextLow>}

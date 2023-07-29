@@ -3,7 +3,7 @@ import Btn from 'components/Btn/Btn';
 import Filter from 'components/Filter/Filter';
 import FormSearch from 'components/FormSearch/FormSearch';
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
-import Pagination from 'components/Pagination/Pagination';
+import { Pagination } from 'components/Pagination/Pagination';
 import Title from 'components/Title/Title';
 import theme from 'components/theme';
 import { useAuth } from 'hooks';

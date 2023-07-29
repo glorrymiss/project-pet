@@ -1,30 +1,29 @@
 import styled from 'styled-components';
 
-export const sexButtonChoosed = styled.button`
-  display: flex;
-  background-color: inherit;
-  cursor: pointer;
-  border: none;
-  color: #54adff;
-  font-size: 16px;
-  justify-content: center;
-  flex-direction: row;
-`;
-
 export const WrapperForm = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
 export const Title = styled.h2`
-  font-size: 28px;
+  font-family: Manrope;
+  font-size: 20px;
+  line-height: 1.37;
+  margin-bottom: 24px;
+  margin-left: 20px;
   color: #111111;
+
+  @media screen and (min-width: 768px) {
+    font-size: 28px;
+  }
 `;
 
 export const PointBlock = styled.div`
+  margin-bottom: 24px;
   @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: row;
+    margin-bottom: 60px;
   }
 `;
 
@@ -32,7 +31,6 @@ export const SexContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-left: 8px;
   gap: 12px;
   color: #d9d2d2;
   background-color: transparent;
@@ -53,6 +51,7 @@ export const SexPhotoBlock = styled.div`
 `;
 
 export const LabelSex = styled.p`
+  font-family: Manrope;
   color: #111111;
   font-weight: 500;
   font-size: 14px;
@@ -63,7 +62,7 @@ export const LabelSex = styled.p`
   }
 `;
 
-export const SexBlock = styled.ul`
+export const SexBlock = styled.div`
   display: flex;
   margin-bottom: 8px;
 
@@ -73,36 +72,22 @@ export const SexBlock = styled.ul`
 `;
 
 export const SexButton = styled.button`
+  font-family: Manrope;
   display: flex;
   background-color: inherit;
   cursor: pointer;
   border: none;
   color: #888888;
-  font-size: 14px;
-  justify-content: center;
-  flex-direction: row;
-  padding-left: 0;
+  font-size: 16px;
+  align-items: center;
+  line-height: 1.5;
+  padding: 8px 16px;
+  border-radius: 40px;
 
-  @media screen and (min-width: 768px) {
-    font-size: 16px;
-    padding-right: 12px;
-  }
-`;
-
-export const SexButtonActive = styled.button`
-  display: flex;
-  background-color: inherit;
-  cursor: pointer;
-  border: none;
-  color: #54adff;
-  font-size: 14px;
-  justify-content: center;
-  flex-direction: row;
-  padding-left: 0;
-
-  @media screen and (min-width: 768px) {
-    font-size: 16px;
-    padding-right: 12px;
+  &:hover,
+  &:focus {
+    background-color: #54adff;
+    color: #fff;
   }
 `;
 
@@ -125,7 +110,6 @@ export const PhotoContainerSell = styled.div`
   display: flex;
   gap: 12px;
   align-items: center;
-  margin-bottom: 16px;
   margin-left: 8px;
   margin-top: 8px;
   position: relative;
@@ -136,9 +120,11 @@ export const PhotoContainerSell = styled.div`
 `;
 
 export const LabelAddPhoto = styled.p`
+  font-family: Manrope;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.33;
+  width: 85px;
   color: #111111;
 
   @media screen and (min-width: 768px) {
@@ -147,6 +133,7 @@ export const LabelAddPhoto = styled.p`
     margin-bottom: 2px;
     width: 115px;
     overflow: wrap;
+    width: 200px;
   }
 `;
 
@@ -178,6 +165,7 @@ export const PreviewPhoto = styled.img`
 `;
 
 export const ErrorTextLowSell = styled.p`
+  font-family: Manrope;
   position: absolute;
   font-size: 10px;
   bottom: -10%;
@@ -194,17 +182,16 @@ export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
-  margin-bottom: 16px;
   margin-left: 8px;
   position: relative;
 
   @media screen and (min-width: 768px) {
-    margin-bottom: 38px;
     gap: 8px;
   }
 `;
 
 export const Label = styled.label`
+  font-family: Manrope;
   color: #111111;
   font-weight: 500;
   font-size: 14px;
@@ -216,6 +203,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
+  font-family: Manrope;
   border-radius: 40px;
   color: #888888;
   font-size: 14px;
@@ -239,6 +227,7 @@ export const Input = styled.input`
 `;
 
 export const ErrorTextLostLocation = styled.p`
+  font-family: Manrope;
   position: absolute;
   bottom: 60%;
   left: 10%;
@@ -255,6 +244,7 @@ export const ErrorTextLostLocation = styled.p`
 `;
 
 export const LabelCommentsSell = styled.label`
+  font-family: Manrope;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.33px;
@@ -268,6 +258,7 @@ export const LabelCommentsSell = styled.label`
 `;
 
 export const InputCommentsLost = styled.textarea`
+  font-family: Manrope;
   width: 242px;
   height: 80px;
   font-weight: 400;
@@ -287,6 +278,7 @@ export const InputCommentsLost = styled.textarea`
 `;
 
 export const ErrorCommentSell = styled.p`
+  font-family: Manrope;
   position: absolute;
   bottom: -5%;
   left: 10%;
@@ -312,11 +304,12 @@ export const PhotoContainer = styled.div`
   position: relative;
 
   @media screen and (min-width: 768px) {
-    gap: 32px;
+    gap: 16px;
   }
 `;
 
 export const ErrorTextLow = styled.p`
+  font-family: Manrope;
   position: absolute;
   bottom: -5%;
   right: 76%;
@@ -331,6 +324,7 @@ export const ErrorTextLow = styled.p`
 `;
 
 export const ErrorComment = styled.p`
+  font-family: Manrope;
   position: absolute;
   bottom: -20%;
   left: 5%;
@@ -345,17 +339,13 @@ export const CommentsContainerMyPet = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 14px;
-  margin-right: 8px;
-  margin-left: 8px;
-
-  @media screen and (min-width: 768px) {
-    margin-bottom: 4px;
-    margin-right: 8px;
-  }
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 24px;
 `;
 
 export const LabelComments = styled.label`
+  font-family: Manrope;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.33px;
@@ -368,6 +358,7 @@ export const LabelComments = styled.label`
 `;
 
 export const InputComments = styled.textarea`
+  font-family: Manrope;
   width: 242px;
   height: 80px;
   font-weight: 400;
@@ -392,6 +383,7 @@ export const WrapForm = styled.div`
 `;
 
 export const ErrorTextPrice = styled.p`
+  font-family: Manrope;
   position: absolute;
   bottom: 44%;
   left: 10%;
@@ -408,6 +400,7 @@ export const ErrorTextPrice = styled.p`
 `;
 
 export const ErrorTextSellLocation = styled.p`
+  font-family: Manrope;
   position: absolute;
   bottom: 72%;
   left: 10%;
