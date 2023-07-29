@@ -23,21 +23,12 @@ import { usePets } from '../../hooks';
 export const PetsData = () => {
   const dispatch = useDispatch();
   const { pets } = usePets();
-//   console.log(pets);
+  console.log(pets);
 
   useEffect(() => {
     dispatch(fetchPets());
   }, [dispatch]);
-  //   const { currentTheme } = useAuth();
   const navigate = useNavigate();
-  //   const pets = [{
-  //     avatar: '',
-  //     name: 'Anna',
-  //     birthday: '00.00.0000',
-  //     type: 'Persian cat',
-  //     comments:
-  //       'Jack is a gray Persian cat with green eyes. He loves to be pampered and groomed, and enjoys playing with toys. Although a bitshy, hes a loyal and affectionate lap cat',
-  //   }];
   const navAddPet = () => {
     navigate('/add-pet');
   };
@@ -46,8 +37,8 @@ export const PetsData = () => {
     <Container>
       <Title>My pets:</Title>
       <StyledBtnPlus icon={'IconPlus'} text={'Add Pet'} onClick={navAddPet} />
-      {pets === [] ? (
-        <div>"not pets"</div>
+      {pets.length === 0 ? (
+        <p>You don't have  pets</p>
       ) : (
         <ul>
           {pets.map(pet => {
