@@ -9,6 +9,7 @@ import NewsList from 'components/NewsList/NewsList';
 import FormSearch from 'components/FormSearch/FormSearch';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const getNews = async page => {
   const res = await axios.get('api/news', { page: page });
@@ -20,7 +21,8 @@ const NewsPage = () => {
   const [newsList, setNewsList] = useState([]);
   const [quantityNews, setQuantityNews] = useState(0);
   const [page, setPage] = useState(1);
-  console.log('quantityNews', quantityNews);
+  // console.log('quantityNews', quantityNews);
+  console.log('page', page);
 
   useEffect(() => {
     getNews(page).then(res => {

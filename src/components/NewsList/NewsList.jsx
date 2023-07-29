@@ -1,15 +1,20 @@
 import {
   Card,
   CardInfoContainer,
+  CardText,
   CardTitle,
+  Data,
+  Description,
   Image,
   NewsContainer,
   NewsItem,
+  ReadMore,
   Rectangle,
+  Wrapper,
 } from './NewsList.styled';
 
 const NewsList = ({ newsList }) => {
-  console.log('newsList', newsList);
+  // console.log('newsList', newsList);
 
   return (
     <NewsContainer>
@@ -20,7 +25,14 @@ const NewsList = ({ newsList }) => {
           <Card>
             <Image src={news.imgUrl} />
             <CardInfoContainer>
-              <CardTitle></CardTitle>
+              <Description>
+                <CardTitle>{news.title}</CardTitle>
+                <CardText>{news.text}</CardText>
+              </Description>
+              <Wrapper>
+                <Data>{news.date}</Data>
+                <ReadMore url={news.url}>Read more</ReadMore>
+              </Wrapper>
             </CardInfoContainer>
           </Card>
         </NewsItem>

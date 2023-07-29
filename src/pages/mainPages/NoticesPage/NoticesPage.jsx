@@ -10,9 +10,28 @@ import { useAuth } from 'hooks';
 import { Helmet } from 'react-helmet';
 import { Outlet } from 'react-router-dom';
 import { FlexBox } from './NoticesPage.styled';
+import { useEffect, useState } from 'react';
+
+const getNotices = async page => {
+  // const res = await axios.get('api/news', { page: page });
+  // return res.data;
+};
 
 const NoticesPage = () => {
   const { currentTheme } = useAuth();
+  const [noticesList, setNoticesList] = useState([]);
+  const [quantityNews, setQuantityNews] = useState(0);
+  const [page, setPage] = useState(1);
+  console.log('noticesList', noticesList);
+
+  useEffect(() => {
+    setPage(1);
+    getNotices(page).then(res => {
+      const { quantityNews, news } = res;
+      setNoticesList(news);
+      setQuantityNews(quantityNews);
+    });
+  }, [page]);
 
   const handleClickAddPet = () => {
     console.log('handleClickAddPet');
@@ -52,7 +71,7 @@ const NoticesPage = () => {
 
       <Outlet />
 
-      <Pagination />
+      <Pagination page={page} setPage={setPage} quantity={quantityNews} />
     </FlexBox>
   );
 };
