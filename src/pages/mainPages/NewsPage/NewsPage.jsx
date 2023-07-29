@@ -7,7 +7,7 @@ import NewsList from 'components/NewsList/NewsList';
 import FormSearch from 'components/Pagination/Pagination';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import Pagination from 'components/Pagination/Pagination';
+import Pagination from 'components/FormSearch/FormSearch';
 
 const getNews = async page => {
   const res = await axios.get('api/news', { params: { page: page } });
