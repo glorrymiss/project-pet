@@ -1,15 +1,13 @@
-// import { Container } from 'components/Container/Container';
 import Title from 'components/Title/Title';
 import theme from 'components/theme';
 import { useAuth } from 'hooks';
 import { Helmet } from 'react-helmet';
 import { FlexBox } from '../NoticesPage/NoticesPage.styled';
-import Pagination from 'components/Pagination/Pagination';
 import NewsList from 'components/NewsList/NewsList';
 import FormSearch from 'components/FormSearch/FormSearch';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import Pagination from 'components/Pagination/Pagination';
 
 const getNews = async page => {
   const res = await axios.get('api/news', { page: page });
@@ -21,7 +19,7 @@ const NewsPage = () => {
   const [newsList, setNewsList] = useState([]);
   const [quantityNews, setQuantityNews] = useState(0);
   const [page, setPage] = useState(1);
-  // console.log('quantityNews', quantityNews);
+
   console.log('page', page);
 
   useEffect(() => {
@@ -44,7 +42,12 @@ const NewsPage = () => {
 
       <NewsList newsList={newsList} />
 
-      <Pagination page={page} setPage={setPage} quantity={quantityNews} />
+      <Pagination
+        currentPage={page}
+        totalPages={Math.ceil(quantityNews / 10)}
+        onPageChange={setPage}
+        paginationLength={5} // Adjust this number as per your preference
+      />
     </FlexBox>
   );
 };
