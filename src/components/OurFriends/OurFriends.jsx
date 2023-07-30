@@ -1,27 +1,22 @@
-import { useEffect, useState } from 'react';
 import friends from '../../path/to/friends.json'
 import * as Component from './OurFriends.styled'
+import TimeList from './TimeList';
 
 const OurFriends = () => {
-    const [, setCurrentTime] = useState(new Date());
-    const daysOfWeek = ["MN", "TU", "WE", "TH", "FR", "SA", "SU"]
-    useEffect(() => {
-      const interval = setInterval(() => {
-        setCurrentTime(new Date());
-      }, 1000);
-  
-      return () => {
-        clearInterval(interval);
-      };
-    }, []);
+   
+const first = friends[0].workDays[0]
+console.log(first);
 return(
+
     <Component.List>
-        {friends.map(({id,title, url,address,imageUrl,addressUrl,email,phone, workDays,isOpen})=>{
-           
+     {friends.map(({id,title, url,address,imageUrl,addressUrl,email,phone, workDays})=>{
+       
              return(
+             
                 <Component.Item key={id}>
                     <Component.CardTitle><a href={url} target="_blank"
                   rel="noopener noreferrer">{title}</a></Component.CardTitle>
+                 
                     <Component.MainWrap>
                         <Component.WrapImage>
                             <Component.Image src={imageUrl} alt={title}/>
@@ -30,23 +25,14 @@ return(
                         <div>
                         <Component.Text>Time</Component.Text>
                     {workDays ? 
-                    <Component.Select name="days" id="days"> hgvghgvh
-                        {workDays.map((day, index)=>{
-                            const dayOfWeek = daysOfWeek[index];
-                             return(
-                                    <Component.Option key={index} value={day}>{dayOfWeek}  {day.from}- {day.to}  
-                                    {day.isOpen === true ?  "" : "Closed"}</Component.Option>
-                            
-                              )
-                        })}
-                    </Component.Select> : <Component.Link>Day and night</Component.Link>}
+                    <TimeList workDays={workDays}/>
+                     : <Component.Link>Day and night</Component.Link>}
                     </div>
                     
                     <div><Component.Text>Address</Component.Text>
                   {address ?  <Component.Link href={addressUrl} target="_blank"
                   rel="noopener noreferrer">
                     {address}
-                    {/* {address.length > 32 ? address.substring(0, 28) + '...' : address} */}
                     </Component.Link> : <Component.Link>Only website</Component.Link>}</div>
                     
                   <div> <Component.Text>Email</Component.Text>
@@ -66,6 +52,7 @@ return(
            
             }
     </Component.List>
+
 )
 }
 
