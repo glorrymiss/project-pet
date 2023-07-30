@@ -5,11 +5,11 @@ import {
   WrapBtn,
   StyledBtn,
   StyledBtnYes,
-} from './ModalApproveAction.styled';
+} from './ModalLog.styled';
 import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
 
-export const ModalApproveAction = ({ close }) => {
+export const ModalLog = ({ close }) => {
   const dispatch = useDispatch();
   const hendlelogout = () => {
     dispatch(logOut());
@@ -20,10 +20,7 @@ export const ModalApproveAction = ({ close }) => {
       <StyledSection>
         <Title>Already leaving?</Title>
         <WrapBtn>
-          <StyledBtn
-            text={'Cancel'}
-            onClick={close}
-          ></StyledBtn>
+          <StyledBtn text={'Cancel'} onClick={close}></StyledBtn>
           <StyledBtnYes
             text={'Yes'}
             icon={'Iconlogout'}

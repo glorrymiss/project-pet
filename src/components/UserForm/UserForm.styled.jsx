@@ -102,7 +102,7 @@ export const Text = styled.input`
     width: 255px;
   }
 `;
-export const StyledBtnSave = styled(Btn)`
+export const StyledBtnSave = styled.button`
   width: 190px;
   padding: 4px 12px;
   font-size: 12px;
@@ -166,10 +166,12 @@ export const StyledBtn = styled(Btn)`
   border: none;
   color: ${p => p.theme.color.btnLogOut};
   @media screen and (min-width: 768px) {
-    /* margin-top: 4px; */
+    position: absolute;
+	 bottom: -10px;
+	 left: 40px;
   }
   @media screen and (min-width: 1280px) {
-    /* margin-top: 14px; */
+    left: 20px;
   }
 `;
 export const ErrorMessage = styled.div`
