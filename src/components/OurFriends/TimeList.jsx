@@ -15,8 +15,9 @@ const TimeList = ({workDays}) =>{
     return(
         <ListTime name="days" onClick={(e) => handleOpenList()}>
                       <TimeTitle>working hours
-                      {openList ? <IconChevronUp fill={theme[currentTheme].color.btnDark}/>:<IconChevronDown fill={theme[currentTheme].color.btnLogOut}/>}</TimeTitle>
-                    <TimeWrap style={{display: openList ? "block":"none"}}>
+                      {openList ? <IconChevronUp fill={theme[currentTheme].color.btnDark}/>
+                      :<IconChevronDown fill={theme[currentTheme].color.btnLogOut}/>}</TimeTitle>
+                      <TimeWrap style={{display: openList ? "block":"none"}}>
                         {workDays.map((day, index)=>{
                             const dayOfWeek = daysOfWeek[index];
                              return(
