@@ -1,3 +1,4 @@
+import { Container } from 'components/Container/Container';
 import {
   Card,
   CardInfoContainer,
@@ -11,33 +12,41 @@ import {
   ReadMore,
   Rectangle,
   Wrapper,
+  WrapperImage,
 } from './NewsList.styled';
 
 const NewsList = ({ newsList }) => {
   // console.log('newsList', newsList);
 
   return (
-    <NewsContainer>
-      {newsList.map(news => (
-        <NewsItem key={news._id}>
-          <Rectangle />
+    <Container>
+      <NewsContainer>
+        {newsList.map(news => (
+          <NewsItem key={news._id}>
+            <Rectangle />
 
-          <Card>
-            <Image src={news.imgUrl} />
-            <CardInfoContainer>
-              <Description>
-                <CardTitle>{news.title}</CardTitle>
-                <CardText>{news.text}</CardText>
-              </Description>
-              <Wrapper>
-                <Data>{news.date}</Data>
-                <ReadMore url={news.url}>Read more</ReadMore>
-              </Wrapper>
-            </CardInfoContainer>
-          </Card>
-        </NewsItem>
-      ))}
-    </NewsContainer>
+            <Card>
+              <WrapperImage>
+                <Image src={news.imgUrl} />
+              </WrapperImage>
+
+              <CardInfoContainer>
+                <Description>
+                  <CardTitle>{news.title}</CardTitle>
+                  <CardText>{news.text}</CardText>
+                </Description>
+                <Wrapper>
+                  <Data>
+                    {dateFormat(news.date, 'dddd, mmmm dS, yyyy, h:MM:ss TT')}
+                  </Data>
+                  <ReadMore url={news.url}>Read more</ReadMore>
+                </Wrapper>
+              </CardInfoContainer>
+            </Card>
+          </NewsItem>
+        ))}
+      </NewsContainer>
+    </Container>
   );
 };
 
