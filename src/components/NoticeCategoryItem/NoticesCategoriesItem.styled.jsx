@@ -1,4 +1,3 @@
-import Btn from 'components/Btn/Btn';
 import styled from 'styled-components';
 
 export const NotiveItem = styled.div`
@@ -23,7 +22,7 @@ export const Top = styled.div`
 export const Status = styled.div`
     background: #CCE4FB;
     border-radius: 0 12px 12px 0;
-    padding: 10px 15px;
+    padding: 10px 15px 10px 8px;
     position: relative;
 
     &::after {
@@ -37,9 +36,11 @@ export const Status = styled.div`
     }
 `
 
-export const Favorite = styled.div`
+export const Favorite = styled.button`
     background: #CCE4FB;
+    border: none;
     border-radius: 50%;
+    display: flex;
     padding: 8px;
 `
 
@@ -48,11 +49,22 @@ export const Information = styled.div`
     justify-content: space-around;
 `
 
-export const BtnStyled = styled(Btn)`
-     border: none;
-     margin-left: auto;
-     padding: 0;
+export const BtnStyled = styled.button`
+    background: ${props => props.bg ?? 'transparent'};
+    border: 2px solid #54ADFF;  
+    border-radius: 40px;  
+    color: ${props => props.color ?? '#fff'};
+    letter-spacing: 0.04em;
+    padding: 8px 24px;
 `;
+
+export const BtnStyledWithIcon = styled(BtnStyled)`
+    align-items: center; 
+    display: flex;
+    gap:8px;
+    justify-content: center; 
+`;
+
 
 export const InformationItem = styled.div`
     align-items: center;
@@ -78,4 +90,64 @@ export const LearnMore = styled.button`
     border-radius: 40px;  
     color: #54ADFF;
     padding: 8px 0;
+`
+
+export const ModalHeader = styled.div`
+    display: flex;
+    gap:24px;
+`
+
+export const ModalPhoto = styled.div`
+    border-radius: 0 0 40px 40px;
+    overflow: hidden;
+    position: relative;
+`
+
+export const ModalStatus = styled.span`
+    background: #CCE4FB;
+    border-radius: 0 12px 12px 0;
+    color: #111
+    left: 0;
+    padding: 12px;
+    position: absolute;
+    top: 16px;
+`
+
+export const ModalInfo = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+`
+
+export const ModalPersonality = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+`
+
+export const ModalPersonalityField = styled.div`
+    display: flex;
+`
+
+export const ModalPersonalityKey = styled.p`
+    font-weight: 600;
+    flex: 0 0 30%;
+`
+
+export const ModalPersonalityValue = styled.p`
+    flex: 1;
+`
+
+export const ModalPersonalityLink = styled.a`
+    color: #FFC107;
+`
+
+export const ModalComments = styled.div`
+    letter-spacing: 0.04em;
+`
+
+export const ModalButtons = styled.div`
+    display:flex;
+    gap:20px;
+    margin-left: auto
 `
