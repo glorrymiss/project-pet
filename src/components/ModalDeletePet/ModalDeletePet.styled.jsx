@@ -20,10 +20,9 @@ export const Title = styled.h2`
     letter-spacing: -0.28px;
   }
 `;
-export const Text = styled.p`
-margin: 0 auto;
-width: 240px;
-padding: 0 20px;
+export const WrapText = styled.div`
+  margin: 0 auto;
+  width: 240px;
   text-align: center;
   font-size: 14px;
   font-style: normal;
@@ -34,11 +33,19 @@ padding: 0 20px;
   @media screen and (min-width: 768px) {
     font-size: 16px;
     letter-spacing: -0.16px;
+    width: 393px;
+  }
+`;
+export const Text = styled.p`
+  @media screen and (min-width: 768px) {
+   padding: 0 10px;
   }
 `;
 export const Span = styled.span`
+display: block;
   font-weight: 700;
   @media screen and (min-width: 768px) {
+	display: inline;
   }
 `;
 
