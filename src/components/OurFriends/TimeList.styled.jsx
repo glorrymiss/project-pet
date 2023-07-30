@@ -36,7 +36,7 @@ justify-content: space-between;
 
 export const TimeWrap =styled.div`
 position: absolute;
-background-color: white;
+background-color: ${({ theme }) => theme.color.cardBG};
 border: 1px solid ${({ theme }) => theme.color.btnDark};
 padding:12px;
 display:flex;
