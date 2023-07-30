@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 // import { addPet, addNotice } from './operations';
-import { fetchPets } from './operation';
+import { fetchPetDel, fetchPets } from './operation';
 
 const initialState = {
   items: [],
@@ -36,14 +36,31 @@ const petsSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
 	  builder
-		  .addCase(fetchPets.fulfilled, (state, action) => {
-			// console.log(action.payload);
-			state.items = action.payload.results;
-			// console.log(action.payload);
-      //   state.token = action.payload.token;
-      //   state.isLoggedIn = true;
-      //   state.isFirstLogin = true;
+      .addCase(fetchPets.pending, state => {
+        state.loading = true;
       })
+      .addCase(fetchPets.fulfilled, (state, { payload }) => {
+        state.items = payload.results;
+        state.loading = false;
+      })
+      .addCase(fetchPets.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.loading = false;
+      })
+      .addCase(fetchPetDel.pending, state => {
+        state.loading = true;
+      })
+		  .addCase(fetchPetDel.fulfilled, (state, { payload }) => {
+			console.log(payload);
+        state.items = state.items.filter(
+          pet => pet.id !== payload._id
+        );
+        state.loading = false;
+      })
+      .addCase(fetchPetDel.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.loading = false;
+      });
       // .addMatcher(
       //   action => [addPet.pending, addNotice.pending].includes(action.type),
       //   pendingReducer

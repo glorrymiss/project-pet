@@ -1,3 +1,4 @@
+import dateFormat from 'dateformat';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import {
@@ -21,7 +22,7 @@ import { validationSchema } from './ValidationSchema';
 import { useDispatch } from 'react-redux';
 import { updateUserInfo } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
-import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
+import { ModalLog } from 'components/ModalLog/ModalLog';
 import theme from 'components/theme';
 import { Notify } from 'notiflix';
 
@@ -72,69 +73,57 @@ export const UserForm = () => {
     const { name, value } = e.target;
     setFieldValue(name, value);
   };
-  // const changeBirthday = () => {
-  //  if (user.birthday) {
-  // 	 const day = user.birthday.slise(8, user.birthday.length);
-  // 	 const month = user.birthday.slise(6, 8);
-  // 	 const year = user.birthday.slise(0, 4);
-  // 	 console.log(`${day}.${month}.${year}`);
-  // 	  return `${day}.${month}.${year}`;
-  //  };
-  // 	};
-  const changeBirthday = `${user.birthday.slice(
-    8,
-    user.birthday.length
-	)}.${user.birthday.slice(5, 7)}.${user.birthday.slice(0, 4)}`;
+  const changeBirthday = user.birthday
+    ? dateFormat(user.birthday, 'dd.mm.yyyy')
+    : '';
+  //   const changeBirthday = `${user.birthday.slice(
+  //     8,
+  //     user.birthday.length
+  //   )}.${user.birthday.slice(5, 7)}.${user.birthday.slice(0, 4)}`;
 
-  const {
-    isSubmitting,
-    setFieldValue,
-    handleBlur,
-    handleSubmit,
-    values,
-    errors,
-    touched,
-  } = useFormik({
-    initialValues: {
-      avatar: isAvatar,
-      name: user.name,
-      email: user.email,
-      birthday: user.birthday || '',
-      phone: user.phone || '',
-      city: user.city || '',
-    },
+  const { setFieldValue, handleBlur, handleSubmit, values, errors, touched } =
+    useFormik({
+      initialValues: {
+        avatar: isAvatar,
+        name: user.name,
+        email: user.email,
+        birthday: user.birthday || '',
+        phone: user.phone || '',
+        city: user.city || '',
+      },
 
-    validationSchema: validationSchema,
-    onSubmit: async values => {
-      const v = {};
-      if (avatarUrl && avatarUrl !== user.avatar) {
-        v.avatar = values.avatar;
-      }
-      if (values.name !== user.name) {
-        v.name = values.name;
-      }
-      if (values.email !== user.email) {
-        v.email = values.email;
-      }
-      if (values.birthday !== user.birthday) {
-        v.birthday = values.birthday;
-      }
-      if (values.phone !== user.phone) {
-        v.phone = values.phone;
-      }
-      if (values.city !== user.city) {
-        v.city = values.city;
-      }
-      alert(JSON.stringify(v, null, 2));
-      setIsFile(false);
-		 const res = await dispatch(updateUserInfo(v));
-		 setIsEdit(false);
-      if (res.error) {
-        Notify.failure(error.message);
-      }
-      
-    },
-  });
+      validationSchema: validationSchema,
+      onSubmit: async values => {
+        const v = {};
+        console.log(values.avatar);
+        if (avatarUrl && avatarUrl !== user.avatar) {
+          v.avatar = values.avatar;
+        }
+        if (values.name !== user.name) {
+          v.name = values.name;
+        }
+        if (values.email !== user.email) {
+          v.email = values.email;
+        }
+        if (values.birthday !== user.birthday) {
+          v.birthday = values.birthday;
+        }
+        if (values.phone !== user.phone) {
+          v.phone = values.phone;
+        }
+        if (values.city !== user.city) {
+          v.city = values.city;
+        }
+        alert(JSON.stringify(v, null, 2));
+        setIsFile(false);
+        const res = await dispatch(updateUserInfo(v));
+        if (res.error) {
+          Notify.failure(error.message);
+          setIsEdit(true);
+        }
+        setIsEdit(false);
+      },
+    });
 
   return (
     <Wrap>
@@ -221,6 +210,7 @@ export const UserForm = () => {
             id="birthday"
             name="birthday"
             type={!isEdit ? 'text' : 'date'}
+            placeholder="00.00.0000"
             onChange={isChangeInput}
             value={!isEdit ? changeBirthday : values.birthday}
             onBlur={handleBlur}
@@ -261,26 +251,17 @@ export const UserForm = () => {
             <ErrorMessage>{errors.city}</ErrorMessage>
           ) : null}
         </InfoItem>
-        {isEdit && (
-          <StyledBtnSave
-            type="submit"
-            text="Save"
-            onClick={handleSubmit}
-            disabled={!isSubmitting}
-          />
-        )}
-        {!isEdit && (
-          <StyledBtn
-            icon={'Iconlogout'}
-            text={'Log Out'}
-            transparent={true}
-            onClick={isOpenModal}
-          />
-        )}
+        {isEdit && <StyledBtnSave type="submit">Save</StyledBtnSave>}
       </WrapInfo>
-      {isModal && (
-        <ModalApproveAction close={isCloseModal} currentTheme={currentTheme} />
+      {!isEdit && (
+        <StyledBtn
+          icon={'Iconlogout'}
+          text={'Log Out'}
+          transparent={true}
+          onClick={isOpenModal}
+        />
       )}
+      {isModal && <ModalLog close={isCloseModal} />}
     </Wrap>
   );
 };
