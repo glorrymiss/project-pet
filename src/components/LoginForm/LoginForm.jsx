@@ -1,4 +1,4 @@
-import * as Component from './LoginForm.styled'
+
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +12,7 @@ import IconEyeClosed from 'images/icons/IconEyeClosed'
 import IconEyeOpen from 'images/icons/IconEyeOpen';
 import IconCross from 'images/icons/IconCross';
 import Notiflix from 'notiflix';
+import { Button, FieldStyled, FormStyled, IconCrossStyle, Label, StyledNavLink, SuccessText, Text, TextError, Title, Wrap, WrapIcons } from './LoginForm.styled';
 
 
 
@@ -70,12 +71,12 @@ return(
           const isPasswordValid = values.password && values.password.length>=6;
           
     return(
-     <Component.FormStyled  onSubmit={handleSubmit}>
-        <Component.Title>Login</Component.Title>
-        <Component.Wrap>
+     <FormStyled onSubmit={handleSubmit}>
+        <Title>Login</Title>
+        <Wrap>
         
-         <Component.Label>
-              <Component.FieldStyled 
+         <Label>
+              <FieldStyled 
                 error={errors.email && touched.email && errors.email}
                 valid={values.email}
                 type="email"
@@ -85,13 +86,13 @@ return(
                 onBlur={handleBlur}
                 placeholder='Email'
                 required/>
-              {errors.email && touched.email && errors.email  && <Component.IconCrossStyle fill={theme[currentTheme].color.error}/>}
-              {values.email && !errors.email &&  <Component.WrapIcons><IconCheck fill={theme[currentTheme].color.indicator}/></Component.WrapIcons>}
-              <Component.TextError>{errors.email && touched.email && errors.email}</Component.TextError>
-          </Component.Label>
+              {errors.email && touched.email && errors.email  && <IconCrossStyle fill={theme[currentTheme].color.error}/>}
+              {values.email && !errors.email &&  <WrapIcons><IconCheck fill={theme[currentTheme].color.indicator}/></WrapIcons>}
+              <TextError>{errors.email && touched.email && errors.email}</TextError>
+          </Label>
         
-          <Component.Label>
-              <Component.FieldStyled
+          <Label>
+              <FieldStyled
                 error={errors.password && touched.password && errors.password}
                 type={openPassword ? 'text':'password'}
                 name="password"
@@ -109,7 +110,7 @@ return(
                 }}
                 required/>
                 
-              <Component.WrapIcons>
+              <WrapIcons>
                 <div onClick={handleOpenPassword}>
                   {openPassword ? 
                       <IconEyeOpen
@@ -128,19 +129,19 @@ return(
                 </div>
               {errors.password && touched.password && errors.password  && <IconCross fill={theme[currentTheme].color.error}/>}
               {values.password && !errors.password &&  <IconCheck fill={theme[currentTheme].color.indicator}/>}
-              </Component.WrapIcons>
+              </WrapIcons>
 
           
           
 
                   {errors.password && touched.password && errors.password &&
-                  <Component.TextError>{errors.password}</Component.TextError>}
-                  {!errors.password && touched.password && <Component.SuccessText>Password is secure</Component.SuccessText>}
-              </Component.Label> 
-        </Component.Wrap>
-        <Component.Button type='submit'>Login</Component.Button>
-        <Component.Text>Don't have an account?<Component.StyledNavLink to="/register">Register</Component.StyledNavLink></Component.Text>
-     </Component.FormStyled>
+                  <TextError>{errors.password}</TextError>}
+                  {!errors.password && touched.password && <SuccessText>Password is secure</SuccessText>}
+              </Label> 
+        </Wrap>
+        <Button type='submit'>Login</Button>
+        <Text>Don't have an account?<StyledNavLink to="/register">Register</StyledNavLink></Text>
+     </FormStyled>
            )
             }}
         </Formik>

@@ -8,7 +8,7 @@ export const List = styled.ul`
     gap: 20px;
     margin: 24px auto 75px;
     @media screen and (min-width: 768px) {
-        /* padding: 0 32px; */
+        
         flex-direction: row;
         gap:32px;
         margin: 40px 32px 172px;
@@ -21,8 +21,6 @@ export const List = styled.ul`
 `
 
 export const Item = styled.li`
-    /* padding-top: 16px;
-    padding-left:12px; */
     height:240px;
     width:280px;
     display:flex;

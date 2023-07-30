@@ -1,12 +1,7 @@
 import styled from 'styled-components'
 
 export const ListTime = styled.ul`
- /* ${({ openList }) =>
-      openList ?
-      "display: none" :
-      "display: block"}; */
-      
-cursor: pointer;    
+      cursor: pointer;    
 position:relative;
 border:none;
 font-size: 12px;
@@ -47,7 +42,7 @@ padding:12px;
 display:flex;
 gap:6px;
 border-radius: 8px;
-box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
+box-shadow: ${({ theme }) => theme.boxShadow};
 `
 
 export const Text = styled.span`
