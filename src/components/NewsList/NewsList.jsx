@@ -36,9 +36,7 @@ const NewsList = ({ newsList }) => {
                   <CardText>{news.text}</CardText>
                 </Description>
                 <Wrapper>
-                  {/* <Data>
-                    {dateFormat(news.date, 'dddd, mmmm dS, yyyy, h:MM:ss TT')}
-                  </Data> */}
+                  <Data>{news.date}</Data>
                   <ReadMore url={news.url}>Read more</ReadMore>
                 </Wrapper>
               </CardInfoContainer>
