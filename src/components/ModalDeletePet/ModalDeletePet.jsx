@@ -12,15 +12,14 @@ import {
 import { useDispatch } from 'react-redux';
 import { fetchPetDel } from 'redux/pets/operation';
 
- const ModalDeletePet = ({  id , close}) => {
-	// console.log(id);
+ const ModalDeletePet = ({  id , close}) => {;
   const dispatch = useDispatch();
   const hendleDeletePet = () => {
     dispatch(fetchPetDel(id));
     close();
   };
   return (
-    <Modal onClick={close}>
+    <Modal onClick={()=>close()}>
       <StyledSection>
         <Title>Delete adverstiment?</Title>
         <WrapText>
