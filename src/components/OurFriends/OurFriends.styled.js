@@ -114,6 +114,7 @@ line-height: normal;
   }
 `
 export const Link = styled.a`
+cursor:pointer;
 color: ${({ theme }) => theme.color.secondary};
 text-decoration:none;
 font-size: 12px;
