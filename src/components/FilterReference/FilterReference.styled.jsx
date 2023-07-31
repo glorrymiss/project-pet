@@ -4,7 +4,7 @@ const Wrapper = styled.div`
   @media screen and (max-width: 1280px) {
     position: absolute;
     top: 68px;
-    right: -152px;
+    right: -140px;
     width: 86px;
   }
 
@@ -19,6 +19,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 4px;
+  z-index: 100;
 
   max-height: 32px;
 
