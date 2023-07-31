@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
-// import { addNotice, addPet } from 'redux/pets/pets-operations';
 import { showToast } from '../toastify';
 
 import StatusIndicator from '../StatusIndicator/StatusIndicator';
@@ -30,7 +28,6 @@ const AddPetChooseForm = () => {
 
   const [formData, setFormData] = useState({});
 
-  // const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleChooseChange = (option, number) => {
@@ -86,15 +83,6 @@ const AddPetChooseForm = () => {
         formDataSend.append(key, sendDataForm[key]);
       }
       setIsLoading(true);
-      // dispatch(addPet(formDataSend)).then(response => {
-      //   if (typeof response.payload !== 'object') {
-      //     showToast('error', 'This is an error message.');
-      //     setIsLoading(false);
-      //   } else {
-      //     showToast('success', 'This is a success message.');
-      //     setShowModal(true);
-      //   }
-      // });
     } else {
       const formDataSend = new FormData();
 
@@ -102,15 +90,20 @@ const AddPetChooseForm = () => {
         formDataSend.append(key, sendDataForm[key]);
       }
       setIsLoading(true);
-      // dispatch(addNotice(formDataSend)).then(response => {
-      //   if (typeof response.payload !== 'object') {
-      //     showToast('error', 'This is an error message.');
-      //     setIsLoading(false);
-      //   } else {
-      //     showToast('success', 'This is a success message.');
-      //     setShowModal(true);
-      //   }
-      // });
+    }
+    switch (formData.category) {
+      case 'your-pet':
+        navigate('/user');
+        break;
+      case 'sell':
+        navigate('/notices/sell');
+        break;
+      case 'lost-found':
+        navigate('/notices/lost-found');
+        break;
+
+      default:
+        navigate('/user');
     }
   };
 
