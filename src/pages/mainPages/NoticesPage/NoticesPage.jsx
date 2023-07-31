@@ -1,4 +1,4 @@
-import Btn from 'components/Btn/Btn';
+// import Btn from 'components/Btn/Btn';
 // import { Container } from 'components/Container/Container';
 import Filter from 'components/Filter/Filter';
 import FormSearch from 'components/FormSearch/FormSearch';
@@ -8,34 +8,41 @@ import Title from 'components/Title/Title';
 import theme from 'components/theme';
 import { useAuth } from 'hooks';
 import { Helmet } from 'react-helmet';
-import { Outlet } from 'react-router-dom';
-import { FlexBox } from './NoticesPage.styled';
+import { Outlet, useParams } from 'react-router-dom';
+import {
+  BtnAddPet,
+  FiltersContainer,
+  FlexBox,
+  WrapperFilter,
+} from './NoticesPage.styled';
 import { useEffect, useState } from 'react';
+import IconPlus from 'images/icons/IconPlus';
 
-const getNotices = async page => {
-  // const res = await axios.get('api/news', { page: page });
-  // return res.data;
+const getNotices = async ({ page, limit, search = '', categoryName }) => {
+  // const res = await axios.get(
+  //   `api/news?category=${categoryName}&search=${search}&page=${page}&limit=${limit}`
+  // );
+  return { quantityNotices: 0, notices: [] };
 };
 
 const NoticesPage = () => {
   const { currentTheme } = useAuth();
   const [noticesList, setNoticesList] = useState([]);
-  const [quantityNews, setQuantityNews] = useState(0);
+  const [quantityNotices, setQuantityNotices] = useState(0);
   const [page, setPage] = useState(1);
-  console.log('noticesList', noticesList);
+  const [searchValue, setSearchValue] = useState('');
+  const { categoryName } = useParams();
 
   useEffect(() => {
     setPage(1);
-    getNotices(page).then(res => {
-      const { quantityNews, news } = res;
-      setNoticesList(news);
-      setQuantityNews(quantityNews);
-    });
-  }, [page]);
-
-  const handleClickAddPet = () => {
-    console.log('handleClickAddPet');
-  };
+    getNotices({ page, limit: 12, search: searchValue, categoryName }).then(
+      res => {
+        const { quantityNotices, notices } = res;
+        setNoticesList(notices);
+        setQuantityNotices(quantityNotices);
+      }
+    );
+  }, [page, searchValue, categoryName]);
 
   return (
     <FlexBox>
@@ -47,31 +54,26 @@ const NoticesPage = () => {
         Find your favorite pet
       </Title>
 
-      <FormSearch />
+      <FormSearch setSearchValue={setSearchValue} />
 
-      <div
-        style={{
-          marginTop: 43,
-          display: 'flex',
-          justifyContent: 'space-between',
-        }}
-      >
-        <NoticesCategoriesNav />
-        <div style={{ display: 'flex', columnGap: 12 }}>
+      <FiltersContainer>
+        <NoticesCategoriesNav notices={noticesList} />
+        <WrapperFilter>
           <Filter />
-          {/* <NavLink to="/add-pet">Add Pet</NavLink> */}
-          <Btn
-            text="Add Pet"
-            icon="IconPlusSmall"
-            onClick={handleClickAddPet}
-            size="small"
-          />
-        </div>
-      </div>
+          <BtnAddPet to="/add-pet">
+            Add Pet <IconPlus fill={theme[currentTheme].color.bodyColor} />
+          </BtnAddPet>
+        </WrapperFilter>
+      </FiltersContainer>
 
       <Outlet />
 
-      <Pagination page={page} setPage={setPage} quantity={quantityNews} />
+      <Pagination
+        currentPage={page}
+        totalPages={Math.ceil(quantityNotices / 6)}
+        onPageChange={setPage}
+        paginationLength={6} // Adjust this number as per your preference
+      />
     </FlexBox>
   );
 };
