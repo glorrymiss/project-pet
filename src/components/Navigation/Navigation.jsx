@@ -9,6 +9,7 @@ export const Navigation = ({ isOpenMenu }) => {
       <StyledNavLink to="/news">News</StyledNavLink>
       <StyledNavLink to="/notices/sell">Find pet</StyledNavLink>
       <StyledNavLink to="/friends">Our friends</StyledNavLink>
+      <StyledNavLink to="/team">Our team</StyledNavLink>
     </NavContainer>
   );
 };
