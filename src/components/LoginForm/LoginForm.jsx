@@ -13,6 +13,8 @@ import IconEyeOpen from 'images/icons/IconEyeOpen';
 import IconCross from 'images/icons/IconCross';
 import Notiflix from 'notiflix';
 import { Button, FieldStyled, FormStyled, IconCrossStyle, Label, StyledNavLink, SuccessText, Text, TextError, Title, Wrap, WrapIcons } from './LoginForm.styled';
+import Loader from 'components/Loader/Loader';
+
 
 
 
@@ -31,6 +33,7 @@ const validationSchema = Yup.object().shape({
 
 const LoginForm = () => {
     const dispatch = useDispatch();
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const { currentTheme } = useAuth();
     const [openPassword, setOpenPassword] = useState(false);
@@ -38,20 +41,25 @@ const LoginForm = () => {
     const handleOpenPassword = () => setOpenPassword(openPassword => !openPassword);
 
    const handleLogInSubmit = async (values) => {
+    
      const res = await dispatch(
         logIn({
            email: values.email,
            password: values.password,
          })
        );
+       setIsLoading(true)
        if (res.error || res.payload.status === 401) {
         Notiflix.Notify.failure(res.payload.message);
       } else {
-        navigate('/user');
+       navigate('/user');
+        setIsLoading(false)
       }
     }
     
 return(
+  <>
+  {isLoading && <Loader/>}
     <Formik
       initialValues={{
         email: '',
@@ -74,8 +82,7 @@ return(
      <FormStyled onSubmit={handleSubmit}>
         <Title>Login</Title>
         <Wrap>
-        
-         <Label>
+        <Label>
               <FieldStyled 
                 error={errors.email && touched.email && errors.email}
                 valid={values.email}
@@ -145,6 +152,7 @@ return(
            )
             }}
         </Formik>
+        </>
       )
     };
 export default LoginForm
