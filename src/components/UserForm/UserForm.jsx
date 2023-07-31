@@ -17,6 +17,7 @@ import {
   ErrorMessage,
   StyledBtnFile,
   IconCameraOk,
+  ErrorMessageRes,
 } from './UserForm.styled';
 import photoDefault from '../../images/userPageImages/photoDefault.svg';
 // import IconCamera from 'images/icons/IconCamera';
@@ -24,13 +25,13 @@ import { validationSchema } from './ValidationSchema';
 import { useDispatch } from 'react-redux';
 import { updateUserInfo } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
-import { ModalLog } from 'components/ModalLog/ModalLog';
+import ModalLog from 'components/ModalLog/ModalLog';
 import theme from 'components/theme';
 import { Notify } from 'notiflix';
 import IconCheck from 'images/icons/IconCheck';
 import IconCross from 'images/icons/IconCross';
 
-export const UserForm = () => {
+ const UserForm = () => {
   const { user, error, currentTheme } = useAuth();
   // console.log(user);
   const dispatch = useDispatch();
@@ -95,7 +96,7 @@ export const UserForm = () => {
       validationSchema: validationSchema,
       onSubmit: async values => {
         const v = {};
-      //   console.log(values.avatar);
+        //   console.log(values.avatar);
         if (avatarUrl && avatarUrl !== user.avatar) {
           v.avatar = values.avatar;
         }
@@ -114,12 +115,12 @@ export const UserForm = () => {
         if (values.city !== user.city) {
           v.city = values.city;
         }
-      //   alert(JSON.stringify(v, null, 2));
+        //   alert(JSON.stringify(v, null, 2));
         setIsFile(false);
         const res = await dispatch(updateUserInfo(v));
         if (res.error) {
           Notify.failure(error.message);
-          setIsEdit(true);
+          return;
         }
         setIsEdit(false);
       },
@@ -195,7 +196,6 @@ export const UserForm = () => {
           {errors.email && touched.email ? (
             <ErrorMessage>{errors.email}</ErrorMessage>
           ) : null}
-          {error && <ErrorMessage>Email is not unique</ErrorMessage>}
         </InfoItem>
         <InfoItem>
           <TextTitle htmlFor="birthday">Birthday:</TextTitle>
@@ -246,6 +246,7 @@ export const UserForm = () => {
           ) : null}
         </InfoItem>
         {isEdit && <StyledBtnSave type="submit">Save</StyledBtnSave>}
+        {error && <ErrorMessageRes>{error.message}</ErrorMessageRes>}
       </WrapInfo>
       {!isEdit && (
         <StyledBtn
@@ -259,3 +260,5 @@ export const UserForm = () => {
     </Wrap>
   );
 };
+
+export default UserForm;

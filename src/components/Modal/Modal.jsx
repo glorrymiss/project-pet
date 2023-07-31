@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { Backdrop, ModalContainer, BtnStyled } from './Modal.styled';
 
-export const Modal = ({ children, onClick }) => {
+ const Modal = ({ children, onClick }) => {
 	const handleKeyDown = useCallback(
     evt => {
       if (evt.code === 'Escape') {
@@ -34,3 +34,4 @@ export const Modal = ({ children, onClick }) => {
     </Backdrop>
   );
 };
+export default Modal;
