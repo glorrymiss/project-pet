@@ -8,10 +8,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Pagination } from '../../../components/Pagination/Pagination';
 import FormSearch from 'components/FormSearch/FormSearch';
-// import { NotFound404 } from 'components/NotFound/NotFound';
-import { Background } from 'components/Hero/Hero.styled';
-import { Cat, Links } from 'components/NotFound/NotFound.styled';
-import { CardTitle } from 'components/NewsList/NewsList.styled';
+import { Cat } from 'components/NotFound/NotFound.styled';
 /*
 /**|======================================
 /**| import images
