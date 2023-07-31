@@ -7,18 +7,18 @@ export const Wrap = styled.div`
   margin-top: 18px;
   padding-bottom: 20px;
   border-radius: 20px;
-  background: var(--unnamed, #fff);
+  background: ${p => p.theme.color.cardBG};
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
   @media screen and (min-width: 768px) {
     margin-top: 24px;
     display: flex;
     flex-direction: row-reverse;
     border-radius: 40px;
-	 padding-bottom: 28px;
+    padding-bottom: 28px;
   }
   @media screen and (min-width: 1280px) {
     display: block;
-	 padding-bottom: 45px;
+    padding-bottom: 45px;
   }
 `;
 export const WrapFoto = styled.div`
@@ -222,7 +222,7 @@ export const ErrorMessageRes = styled.div`
     bottom: 0px;
     left: 150px;
   }
-  @media screen and (min-width: 1240) {
+  @media screen and (min-width: 1280) {
     font-size: 14px;
     bottom: 45px;
     left: 20px;

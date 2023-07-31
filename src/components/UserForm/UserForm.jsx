@@ -25,13 +25,13 @@ import { validationSchema } from './ValidationSchema';
 import { useDispatch } from 'react-redux';
 import { updateUserInfo } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
-import { ModalLog } from 'components/ModalLog/ModalLog';
+import ModalLog from 'components/ModalLog/ModalLog';
 import theme from 'components/theme';
 import { Notify } from 'notiflix';
 import IconCheck from 'images/icons/IconCheck';
 import IconCross from 'images/icons/IconCross';
 
-export const UserForm = () => {
+ const UserForm = () => {
   const { user, error, currentTheme } = useAuth();
   // console.log(user);
   const dispatch = useDispatch();
@@ -260,3 +260,5 @@ export const UserForm = () => {
     </Wrap>
   );
 };
+
+export default UserForm;

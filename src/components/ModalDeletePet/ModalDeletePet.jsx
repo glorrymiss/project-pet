@@ -1,4 +1,4 @@
-import { Modal } from 'components/Modal/Modal';
+import Modal from 'components/Modal/Modal';
 import {
   StyledSection,
   Title,
@@ -12,7 +12,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { fetchPetDel } from 'redux/pets/operation';
 
-export const ModalDeletePet = ({  id , close}) => {
+ const ModalDeletePet = ({  id , close}) => {
 	// console.log(id);
   const dispatch = useDispatch();
   const hendleDeletePet = () => {
@@ -42,3 +42,4 @@ export const ModalDeletePet = ({  id , close}) => {
     </Modal>
   );
 };
+export default ModalDeletePet;

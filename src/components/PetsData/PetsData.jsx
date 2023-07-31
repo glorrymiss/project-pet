@@ -18,11 +18,11 @@ import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchPets } from 'redux/pets/operation';
 import { usePets } from '../../hooks';
-import { ModalDeletePet } from 'components/ModalDeletePet/ModalDeletePet';
+import ModalDeletePet from 'components/ModalDeletePet/ModalDeletePet';
 // import { useAuth } from 'hooks';
 // import Btn from 'components/Btn/Btn';
 
-export const PetsData = () => {
+  const PetsData = () => {
   const dispatch = useDispatch();
 	const { pets } = usePets();
 	const [isModal, setIsModal] = useState(false);
@@ -108,3 +108,5 @@ export const PetsData = () => {
     </Container>
   );
 };
+
+export default PetsData;
