@@ -1,37 +1,24 @@
 import Btn from 'components/Btn/Btn';
+import IconCamera from 'images/icons/IconCamera';
 import styled from 'styled-components';
-
-export const Container = styled.div`
-  width: 100%;
-  margin-top: 40px;
-  padding: 0 auto 24px;
-  background-color: ${p => p.theme.color.background};
-  @media screen and (min-width: 320px) {
-    width: 280px;
-  }
-  @media screen and (min-width: 768px) {
-    width: 704px;
-    margin-top: 0;
-    padding-top: 60px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    width: 395px;
-  }
-`;
 
 export const Wrap = styled.div`
   position: relative;
   margin-top: 18px;
+  padding-bottom: 20px;
   border-radius: 20px;
+  background: var(--unnamed, #fff);
+  box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
   @media screen and (min-width: 768px) {
     margin-top: 24px;
     display: flex;
     flex-direction: row-reverse;
     border-radius: 40px;
+	 padding-bottom: 28px;
   }
   @media screen and (min-width: 1280px) {
     display: block;
+	 padding-bottom: 45px;
   }
 `;
 export const WrapFoto = styled.div`
@@ -103,8 +90,11 @@ export const Text = styled.input`
   }
 `;
 export const StyledBtnSave = styled.button`
+  cursor: pointer;
   width: 190px;
   padding: 4px 12px;
+  display: block;
+  margin-left: 120px;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -124,8 +114,13 @@ export const StyledBtnSave = styled.button`
   @media screen and (min-width: 1280px) {
     width: 255px;
   }
+  &:hover {
+    background: ${({ theme }) => theme.color.gradient};
+    color: ${({ theme }) => theme.color.background};
+  }
 `;
 export const StyledBtnEdit = styled(Btn)`
+  cursor: pointer;
   ${({ isEdit }) => isEdit && `display: none;`};
   z-index: 2;
   position: absolute;
@@ -138,26 +133,52 @@ export const StyledBtnEdit = styled(Btn)`
   }
 `;
 export const StyledLabel = styled.label`
+  cursor: pointer;
   ${({ isEdit }) => !isEdit && `display: none;`};
   ${({ isFile }) => isFile && `display: none;`};
   position: absolute;
-  bottom: 37px;
+  bottom: 20px;
   left: 50%;
   transform: translate(-50%, 0);
   color: ${p => p.theme.color.btnDark};
   text-align: center;
+  @media screen and (min-width: 768px) {
+    bottom: 37px;
+  }
+  &:hover {
+    color: ${({ theme }) => theme.color.gradient};
+  }
 `;
 export const WrapFileOk = styled.div`
   height: 24px;
   display: flex;
   align-items: center;
   position: absolute;
-  bottom: 37px;
+  bottom: 20px;
   left: 50%;
   transform: translate(-50%, 0);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 22px;
+  fill: ${p => p.theme.color.ErrorMessage};
+  @media screen and (min-width: 768px) {
+    bottom: 37px;
+  }
+`;
+export const StyledBtnFile = styled.button`
+  cursor: pointer;
+  padding-left: 2px;
+  gap: 12px;
+  border: none;
+  fill: inherit;
+  &:hover {
+    border: 2px solid ${({ theme }) => theme.color.btnLight};
+    border-radius: 50%;
+  }
 `;
 
 export const StyledBtn = styled(Btn)`
+  cursor: pointer;
   margin-top: 8px;
   padding-left: 2px;
   gap: 12px;
@@ -167,11 +188,12 @@ export const StyledBtn = styled(Btn)`
   color: ${p => p.theme.color.btnLogOut};
   @media screen and (min-width: 768px) {
     position: absolute;
-	 bottom: -10px;
-	 left: 40px;
+    bottom: 21px;
+    left: 40px;
   }
   @media screen and (min-width: 1280px) {
-    left: 20px;
+    bottom: 25px;
+    left: 10px;
   }
 `;
 export const ErrorMessage = styled.div`
@@ -185,4 +207,7 @@ export const ErrorMessage = styled.div`
     bottom: -10px;
     left: 110px;
   }
+`;
+export const IconCameraOk = styled(IconCamera)`
+  height: 20px;
 `;

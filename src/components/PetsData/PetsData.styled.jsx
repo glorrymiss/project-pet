@@ -6,7 +6,6 @@ position: relative;
   width: 100%;
   margin-top: 46px;
   padding: 0 auto 24px;
-  background-color: ${p => p.theme.color.background};
   @media screen and (min-width: 320px) {
     width: 280px;
   }
@@ -36,6 +35,9 @@ export const WrapItem = styled.li`
   position: relative;
   margin-top: 30px;
   border-radius: 20px;
+  background: var(--unnamed, #fff);
+  box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
+
   @media screen and (min-width: 768px) {
     height: 256px;
     margin-top: 22px;
@@ -44,6 +46,7 @@ export const WrapItem = styled.li`
     border-radius: 40px;
   }
   @media screen and (min-width: 1280px) {
+    margin-top: 24px;
     height: 100%;
     gap: 12px;
   }
@@ -116,6 +119,7 @@ export const Text = styled.p`
   }
 `;
 export const StyledBtnPlus = styled(Btn)`
+  cursor: pointer;
   padding: 8px 20px;
   position: absolute;
   top: 0;
@@ -131,6 +135,7 @@ export const StyledBtnPlus = styled(Btn)`
 `;
 
 export const StyledBtn = styled(Btn)`
+  cursor: pointer;
   position: absolute;
   padding-left: 2px;
   top: 0;
