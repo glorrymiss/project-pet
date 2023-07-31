@@ -30,18 +30,18 @@ export const HeroTitle = styled.h1`
   font-weight: 700;
   width: 280px;
   line-height: 1.37;
+  padding-top: 2rem;
   margin-left: 1rem;
-  margin-top: 2rem;
 
   @media screen and (min-width: 768px) {
-    margin: 60px 0px 0px 32px;
     font-size: 68px;
     line-height: 1.47;
     width: 588px;
+    /* background-color: rgba(253, 257, 242, 0.5); */
   }
 
   @media screen and (min-width: 1280px) {
-    font-size: 68px;
+    padding-top: 188px;
     font-weight: 800;
     line-height: 1.3;
     width: 500px;
@@ -52,7 +52,7 @@ export const Background = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 83vh;
+  height: calc(99dvh - 85px);
 
   background-image: url(${bg_sm_1x});
 
@@ -93,14 +93,11 @@ export const BackgroundMainPage = styled.div`
       transform: scale(1);
     }
   }
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
 
-  background-size: cover, cover;
+  background-size: 120%, cover;
   background-position: bottom, center;
   background-repeat: no-repeat;
-  height: 83vh;
+  height: calc(99dvh - 85px);
 
   background-image: url(${mb_bg_1x}), url(${bg_sm_1x});
 
@@ -111,9 +108,7 @@ export const BackgroundMainPage = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    justify-content: flex-start;
-    background-size: contain, cover;
-    background-position: bottom, center;
+    background-position: top, center;
 
     background-image: url(${tb_bg_1x}), url(${bg_md_1x});
 
@@ -125,7 +120,6 @@ export const BackgroundMainPage = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
-    align-items: center;
     background-size: 70%, cover;
     background-position: right, center;
 

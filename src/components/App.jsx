@@ -34,7 +34,6 @@ const AddPetPage = lazy(() =>
   import('../pages/secondaryPages/AddPetPage/AddPetPage')
 );
 const NotFoundPage = lazy(() => import('../pages/mainPages/NotFoundPage'));
-const TeamPage = lazy(() => import('../pages/mainPages/TeamPage/TeamPage'));
 
 export const App = () => {
   const [currentTheme, setCurrentTheme] = useState('light');
@@ -68,7 +67,6 @@ export const App = () => {
           </Route>
           <Route path="/friends" element={<OurFriendsPage />} />
           <Route path="*" element={<NotFoundPage />} />
-          <Route path="/team" element={<TeamPage />} />
           <Route
             path="/login"
             element={
