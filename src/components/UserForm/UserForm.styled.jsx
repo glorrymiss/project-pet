@@ -211,3 +211,20 @@ export const ErrorMessage = styled.div`
 export const IconCameraOk = styled(IconCamera)`
   height: 20px;
 `;
+export const ErrorMessageRes = styled.div`
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+  color: ${p => p.theme.color.error};
+  font-size: 14px;
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    bottom: 0px;
+    left: 150px;
+  }
+  @media screen and (min-width: 1240) {
+    font-size: 14px;
+    bottom: 45px;
+    left: 20px;
+  }
+`;
