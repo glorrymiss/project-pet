@@ -4,6 +4,14 @@ export const PaginationWrp = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 40px 0px;
+
+  @media screen and (min-width: 768px) {
+    margin: 60px 0px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin: 68px 0px;
+  }
 `;
 
 export const PaginationList = styled.ul`
@@ -15,6 +23,7 @@ export const PaginationList = styled.ul`
   border-radius: 45px;
   padding: 8px 16px 9px 14px;
   width: 280px;
+
   @media screen and (min-width: 768px) {
     width: 310px;
     padding: 8px 11px 9px 12px;
