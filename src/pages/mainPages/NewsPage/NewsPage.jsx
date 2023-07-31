@@ -83,7 +83,7 @@ const NewsPage = () => {
           currentPage={page}
           totalPages={Math.ceil(quantityNews / 6)}
           onPageChange={setPage}
-          paginationLength={5} // Adjust this number as per your preference
+          paginationLength={6} // Adjust this number as per your preference
         />
       )}
     </FlexBox>

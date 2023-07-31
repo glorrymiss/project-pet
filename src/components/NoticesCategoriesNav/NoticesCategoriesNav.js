@@ -1,17 +1,30 @@
 import { useAuth } from 'hooks';
+import { BtnNavLink, ContainerNav } from './NoticesCategoriesNav.styled';
 
-const { NavLink } = require('react-router-dom');
-
-const NoticesCategoriesNav = () => {
+const NoticesCategoriesNav = ({ notices }) => {
   const { isLoggedIn } = useAuth();
   return (
-    <nav>
-      <NavLink to="sell">sell</NavLink>
-      <NavLink to="lost-found">lost/found</NavLink>
-      <NavLink to="for-free">in good hands</NavLink>
-      {isLoggedIn && <NavLink to="favorite">favorite ads</NavLink>}
-      {isLoggedIn && <NavLink to="own">my ads</NavLink>}
-    </nav>
+    <ContainerNav>
+      <BtnNavLink to="sell" state={{ notices }}>
+        sell
+      </BtnNavLink>
+      <BtnNavLink to="lost-found" state={{ notices }}>
+        lost/found
+      </BtnNavLink>
+      <BtnNavLink to="for-free" state={{ notices }}>
+        in good hands
+      </BtnNavLink>
+      {isLoggedIn && (
+        <BtnNavLink to="favorite" state={{ notices }}>
+          favorite ads
+        </BtnNavLink>
+      )}
+      {isLoggedIn && (
+        <BtnNavLink to="own" state={{ notices }}>
+          my ads
+        </BtnNavLink>
+      )}
+    </ContainerNav>
   );
 };
 

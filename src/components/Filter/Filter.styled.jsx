@@ -13,8 +13,10 @@ const Btn = styled.button`
   justify-content: center;
   align-items: center;
 
+  box-sizing: border-box;
+
   width: 40px;
-  height: 40px;
+  // height: 40px;
   padding: 8px;
 
   background-color: ${({ theme, isOpen, age, gender }) =>
@@ -44,7 +46,7 @@ const Btn = styled.button`
   @media screen and (min-width: 768px) {
     gap: 8px;
     min-width: 152px;
-    height: 44px;
+    height: 40px;
 
     font-family: Manrope;
     font-weight: 700;
@@ -87,8 +89,7 @@ const Filters = styled.div`
   will-change: opacity, max-height;
   overflow: hidden;
 
-  transition:
-    opacity ${({ isOpen }) => (isOpen ? '200ms' : '550ms')}
+  transition: opacity ${({ isOpen }) => (isOpen ? '200ms' : '550ms')}
       cubic-bezier(0.4, 0, 0.2, 1),
     height 300ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
