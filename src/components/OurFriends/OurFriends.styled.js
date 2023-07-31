@@ -100,7 +100,19 @@ line-height: normal;
    font-size:16px;
   }
     `
+export const TextTime = styled.p`
+color: ${({ theme }) => theme.color.secondary};
 
+font-size: 12px;
+font-weight: 400;
+line-height: normal;
+@media screen and (min-width: 768px) {
+    font-size: 14px;
+    }
+@media screen and (min-width: 1280px) {
+   font-size:16px;
+  }
+`
 export const Link = styled.a`
 color: ${({ theme }) => theme.color.secondary};
 text-decoration:none;
