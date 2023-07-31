@@ -15,9 +15,11 @@ import {
   StyledBtnSave,
   StyledBtnEdit,
   ErrorMessage,
+  StyledBtnFile,
+  IconCameraOk,
 } from './UserForm.styled';
 import photoDefault from '../../images/userPageImages/photoDefault.svg';
-import IconCamera from 'images/icons/IconCamera';
+// import IconCamera from 'images/icons/IconCamera';
 import { validationSchema } from './ValidationSchema';
 import { useDispatch } from 'react-redux';
 import { updateUserInfo } from 'redux/auth/operations';
@@ -25,6 +27,8 @@ import { useAuth } from 'hooks';
 import { ModalLog } from 'components/ModalLog/ModalLog';
 import theme from 'components/theme';
 import { Notify } from 'notiflix';
+import IconCheck from 'images/icons/IconCheck';
+import IconCross from 'images/icons/IconCross';
 
 export const UserForm = () => {
   const { user, error, currentTheme } = useAuth();
@@ -76,10 +80,6 @@ export const UserForm = () => {
   const changeBirthday = user.birthday
     ? dateFormat(user.birthday, 'dd.mm.yyyy')
     : '';
-  //   const changeBirthday = `${user.birthday.slice(
-  //     8,
-  //     user.birthday.length
-  //   )}.${user.birthday.slice(5, 7)}.${user.birthday.slice(0, 4)}`;
 
   const { setFieldValue, handleBlur, handleSubmit, values, errors, touched } =
     useFormik({
@@ -95,7 +95,7 @@ export const UserForm = () => {
       validationSchema: validationSchema,
       onSubmit: async values => {
         const v = {};
-        console.log(values.avatar);
+      //   console.log(values.avatar);
         if (avatarUrl && avatarUrl !== user.avatar) {
           v.avatar = values.avatar;
         }
@@ -114,7 +114,7 @@ export const UserForm = () => {
         if (values.city !== user.city) {
           v.city = values.city;
         }
-        alert(JSON.stringify(v, null, 2));
+      //   alert(JSON.stringify(v, null, 2));
         setIsFile(false);
         const res = await dispatch(updateUserInfo(v));
         if (res.error) {
@@ -140,8 +140,8 @@ export const UserForm = () => {
           alt="avatar"
         />
         <StyledLabel htmlFor="avatar" isEdit={isEdit} isFile={isFile}>
-          <IconCamera />
-          {isFile ? 'Confirm' : 'Edit photo'}
+          <IconCameraOk />
+          Edit photo
         </StyledLabel>
         <input
           id="avatar"
@@ -154,19 +154,13 @@ export const UserForm = () => {
         />
         {isFile && (
           <WrapFileOk>
-            <StyledBtn
-              icon={'IconCheck'}
-              transparent={true}
-              fill={theme[currentTheme].color.indicator}
-              onClick={isFaleOkEdit}
-            />
+            <StyledBtnFile onClick={isFaleOkEdit}>
+              <IconCheck fill={theme[currentTheme].color.indicator} />
+            </StyledBtnFile>
             <p>Confirm</p>
-            <StyledBtn
-              icon={'IconCross'}
-              transparent={true}
-              fill="#F43F5E"
-              onClick={isFaleEdit}
-            />
+            <StyledBtnFile onClick={isFaleEdit}>
+              <IconCross fill={theme[currentTheme].color.error} />
+            </StyledBtnFile>
           </WrapFileOk>
         )}
       </WrapFoto>

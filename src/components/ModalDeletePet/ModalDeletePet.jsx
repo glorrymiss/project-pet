@@ -12,7 +12,8 @@ import {
 import { useDispatch } from 'react-redux';
 import { fetchPetDel } from 'redux/pets/operation';
 
-export const ModalDeletePet = ({ close, id }) => {
+export const ModalDeletePet = ({  id , close}) => {
+	// console.log(id);
   const dispatch = useDispatch();
   const hendleDeletePet = () => {
     dispatch(fetchPetDel(id));

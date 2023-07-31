@@ -11,6 +11,7 @@ import {
   TextTitle,
   Text,
 } from './PetsData.styled';
+import dateFormat from 'dateformat';
 import photoPetsDefault from '../../images/userPageImages/photoPetsDefault.svg';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -26,20 +27,22 @@ export const PetsData = () => {
 	const { pets } = usePets();
 	const [isModal, setIsModal] = useState(false);
 
-  useEffect(() => {
-    dispatch(fetchPets());
-  }, [dispatch]);
   const navigate = useNavigate();
   const navAddPet = () => {
     navigate('/add-pet');
 	};
 	
 	const isOpenModal = () => {
+		// console.log();
     setIsModal(true);
   };
   const isCloseModal = () => {
     setIsModal(false);
-  };
+	};
+	
+	useEffect(() => {
+    dispatch(fetchPets());
+  }, [dispatch]);
 
   return (
     <Container>
@@ -67,7 +70,9 @@ export const PetsData = () => {
                     transparent={true}
                     onClick={isOpenModal}
                   />
-							{isModal && <ModalDeletePet close={isCloseModal} id={pet._id} />}
+                  {isModal && (
+                    <ModalDeletePet close={isCloseModal} id={pet._id} />
+                  )}
                   <InfoItem>
                     <Text>
                       <TextTitle>Name: </TextTitle>
@@ -77,7 +82,9 @@ export const PetsData = () => {
                   <InfoItem>
                     <Text>
                       <TextTitle>Date of birth: </TextTitle>
-                      {pet.birthday}
+                      {pet.birthday
+                        ? dateFormat(pet.birthday, 'dd.mm.yyyy')
+                        : ''}
                     </Text>
                   </InfoItem>
                   <InfoItem>

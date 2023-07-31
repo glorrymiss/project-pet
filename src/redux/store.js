@@ -12,7 +12,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 // import { contactsReducer } from './contacts/slice';
 import { authReducer } from './auth/slice';
-import  petsReducer  from './pets/pets-slice';
+import  {petsReducer}  from './pets/pets-slice';
 
 const middleware = [
   ...getDefaultMiddleware({
