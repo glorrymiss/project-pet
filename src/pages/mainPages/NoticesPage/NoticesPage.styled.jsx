@@ -5,6 +5,7 @@ export const FlexBox = styled.div`
   flex-direction: column;
   height: 100%;
   padding: 0 20px;
+  align-items: center;
 
   @media screen and (min-width: 768px) {
     padding: 0 32px;

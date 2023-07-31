@@ -11,6 +11,8 @@ export const NewsContainer = styled.ul`
   row-gap: 24px;
 
   @media screen and (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 32px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -59,6 +61,7 @@ export const Card = styled.div`
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
 
   @media screen and (min-width: 768px) {
+    height: 556px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -85,7 +88,6 @@ export const Image = styled.img`
   }
 
   @media screen and (min-width: 1280px) {
-    margin-top: 14px;
   }
 `;
 
@@ -100,6 +102,7 @@ export const CardInfoContainer = styled.div`
   // padding-bottom: 12px;
 
   // @media screen and (min-width: 768px) {
+  gap: 0;
   // }
 
   // @media screen and (min-width: 1280px) {
@@ -124,6 +127,8 @@ export const CardTitle = styled.h2`
   font-weight: 700;
   line-height: normal;
   letter-spacing: -0.24px;
+  max-height: 98px;
+  overflow: hidden;
 `;
 
 export const CardText = styled.p`
@@ -134,6 +139,9 @@ export const CardText = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+
+  max-height: 135px;
+  overflow: hidden;
 `;
 
 export const Wrapper = styled.div`
@@ -145,4 +153,6 @@ export const Wrapper = styled.div`
 `;
 export const Data = styled.p``;
 
-export const ReadMore = styled.a``;
+export const ReadMore = styled.a`
+  color: ${({ theme }) => theme.color.btnDark};
+`;
