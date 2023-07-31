@@ -115,7 +115,7 @@ const TeamPage = () => {
     },
   ];
 
-  const tagsToRender = data[selectedCardIdx]?.tags || [];
+  // const tagsToRender = data[selectedCardIdx]?.tags || [];
 
   return (
     <TeamPageStyled>
