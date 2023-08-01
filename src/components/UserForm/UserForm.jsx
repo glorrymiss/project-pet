@@ -140,8 +140,13 @@ import IconCross from 'images/icons/IconCross';
           src={avatarUrl ? avatarUrl : photoDefault}
           alt="avatar"
         />
-        <StyledLabel htmlFor="avatar" isEdit={isEdit} isFile={isFile}>
-          <IconCameraOk />
+        <StyledLabel
+          htmlFor="avatar"
+          isEdit={isEdit}
+          isFile={isFile}
+          height={20}
+        >
+          <IconCameraOk fill={theme[currentTheme].color.btnDark} />
           Edit photo
         </StyledLabel>
         <input
@@ -156,7 +161,7 @@ import IconCross from 'images/icons/IconCross';
         {isFile && (
           <WrapFileOk>
             <StyledBtnFile onClick={isFaleOkEdit}>
-              <IconCheck fill={theme[currentTheme].color.indicator} />
+              <IconCheck fill={theme[currentTheme].color.btnDark} />
             </StyledBtnFile>
             <p>Confirm</p>
             <StyledBtnFile onClick={isFaleEdit}>

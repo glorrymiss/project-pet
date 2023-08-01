@@ -79,6 +79,7 @@ export const Text = styled.input`
   letter-spacing: 0.48px;
   box-sizing: border-box;
   border-radius: 20px;
+  color: ${p => p.theme.color.secondary};
   border: 1px solid ${p => p.theme.color.btnDark};
   @media screen and (min-width: 768px) {
     width: 230px;
@@ -136,11 +137,13 @@ export const StyledLabel = styled.label`
   cursor: pointer;
   ${({ isEdit }) => !isEdit && `display: none;`};
   ${({ isFile }) => isFile && `display: none;`};
+  ${({ isEdit, isFile }) =>
+    !isFile && isEdit && `display: flex; align-items: center`};
   position: absolute;
   bottom: 20px;
   left: 50%;
   transform: translate(-50%, 0);
-  color: ${p => p.theme.color.btnDark};
+  /* color: ${p => p.theme.color.btnDark}; */
   text-align: center;
   @media screen and (min-width: 768px) {
     bottom: 37px;
@@ -150,16 +153,17 @@ export const StyledLabel = styled.label`
   }
 `;
 export const WrapFileOk = styled.div`
-  height: 24px;
+  /* height: 24px; */
   display: flex;
   align-items: center;
   position: absolute;
-  bottom: 20px;
+  bottom: 18px;
   left: 50%;
   transform: translate(-50%, 0);
   font-size: 12px;
   font-weight: 400;
   line-height: 22px;
+  letter-spacing: 0.48px;
   fill: ${p => p.theme.color.ErrorMessage};
   @media screen and (min-width: 768px) {
     bottom: 37px;
@@ -167,12 +171,15 @@ export const WrapFileOk = styled.div`
 `;
 export const StyledBtnFile = styled.button`
   cursor: pointer;
-  padding-left: 2px;
-  gap: 12px;
+  background-color: ${p => p.theme.color.background};
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  margin: 0 8px;
   border: none;
   fill: inherit;
   &:hover {
-    border: 2px solid ${({ theme }) => theme.color.btnLight};
+    border: 2px solid ${({ theme }) => theme.color.background};
     border-radius: 50%;
   }
 `;

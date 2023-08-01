@@ -5,6 +5,7 @@ export const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: ${p => p.theme.color.secondary};
   @media screen and (min-width: 768px) {
     padding: 0 32px;
     display: block;
