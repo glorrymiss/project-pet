@@ -65,7 +65,7 @@ const SecondFormMyPet = ({
         <InputContainer>
           <Label htmlFor="birthday">Date of birth</Label>
           <Input
-            type="text"
+            type="date"
             id="birthday"
             name="birthday"
             value={formDataState.birthday}
