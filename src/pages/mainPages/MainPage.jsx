@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Hero } from '../../components/Hero/Hero';
 import { Footer } from '../../components/Footer/Footer';
 import Loader from '../../components/Loader/Loader';
+import { Background } from '../../components/Hero/Hero.styled';
 
 const MainPage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -15,7 +16,9 @@ const MainPage = () => {
   return (
     <>
       {isLoading ? (
-        <Loader />
+        <Background>
+          <Loader />
+        </Background>
       ) : (
         <>
           <Hero />
