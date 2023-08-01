@@ -1,7 +1,7 @@
 import { Container, Title } from './UserData.styled';
-import  UserForm  from 'components/UserForm/UserForm';
+import { UserForm } from 'components/UserForm/UserForm';
 
- const UserData = () => {
+export const UserData = () => {
   return (
     <Container>
       <Title>My information:</Title>
@@ -9,4 +9,3 @@ import  UserForm  from 'components/UserForm/UserForm';
     </Container>
   );
 };
-export default UserData;

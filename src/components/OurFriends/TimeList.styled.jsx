@@ -52,8 +52,5 @@ export const Text = styled.span`
 export const TimeTitle = styled.p`
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
 `
-
-
-   

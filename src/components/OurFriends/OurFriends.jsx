@@ -1,9 +1,6 @@
 import friends from '../../path/to/friends.json'
-import { CardTitle, Image, Item, Link, List, MainWrap, Text, TextTime, TextWrap, WrapImage } from './OurFriends.styled';
+import * as Component from './OurFriends.styled'
 import TimeList from './TimeList';
-// import React from 'react';
-import ImagePlaceholder from '../../images/OurFriendsPageImages/images_placeholder.png'
-
 
 const OurFriends = () => {
    
@@ -11,50 +8,50 @@ const first = friends[0].workDays[0]
 console.log(first);
 return(
 
-    <List>
+    <Component.List>
      {friends.map(({id,title, url,address,imageUrl,addressUrl,email,phone, workDays})=>{
        
              return(
              
-                <Item key={id}>
-                    <CardTitle><a href={url} target="_blank"
-                  rel="noopener noreferrer">{title}</a></CardTitle>
+                <Component.Item key={id}>
+                    <Component.CardTitle><a href={url} target="_blank"
+                  rel="noopener noreferrer">{title}</a></Component.CardTitle>
                  
-                    <MainWrap>
-                        <WrapImage>
-                           {imageUrl?<Image src={imageUrl} alt={title}/>:<Image src={ImagePlaceholder} alt="Placeholder"/>} 
-                        </WrapImage>
-                    <TextWrap>
+                    <Component.MainWrap>
+                        <Component.WrapImage>
+                            <Component.Image src={imageUrl} alt={title}/>
+                        </Component.WrapImage>
+                    <Component.TextWrap>
                         <div>
-                        <Text>Time</Text>
+                        <Component.Text>Time</Component.Text>
                     {workDays ? 
                     <TimeList workDays={workDays}/>
-                     : <TextTime>Day and night</TextTime>}
+                     : <Component.Link>Day and night</Component.Link>}
                     </div>
                     
-                    <div><Text>Address</Text>
-                  {address ?  <Link href={addressUrl} target="_blank"
+                    <div><Component.Text>Address</Component.Text>
+                  {address ?  <Component.Link href={addressUrl} target="_blank"
                   rel="noopener noreferrer">
                     {address}
-                    </Link> : <Link>Only website</Link>}</div>
+                    </Component.Link> : <Component.Link>Only website</Component.Link>}</div>
                     
-                  <div> <Text>Email</Text>
-                   {email? <Link href={`mailto:${email}`} target="_blank"
-                  rel="noopener noreferrer">{email}</Link> : <Link href={url} target="_blank"
-                  rel="noopener noreferrer">Only website</Link>}</div>
+                  <div> <Component.Text>Email</Component.Text>
+                   {email? <Component.Link href={`mailto:${email}`} target="_blank"
+                  rel="noopener noreferrer">{email}</Component.Link> : <Component.Link href={url} target="_blank"
+                  rel="noopener noreferrer">Only website</Component.Link>}</div>
                    
-                  <div><Text>Phone</Text>
-                  {phone? <Link href={`tel:${phone}`}>{phone}</Link>: <Link href={`mailto:${email}`} target="_blank"
-                  rel="noopener noreferrer">Email only</Link>}
+                  <div><Component.Text>Phone</Component.Text>
+                  {phone? <Component.Link href={`tel:${phone}`}>{phone}</Component.Link>: <Component.Link href={`mailto:${email}`} target="_blank"
+                  rel="noopener noreferrer">Email only</Component.Link>}
                   </div>
-                    </TextWrap>
-                    </MainWrap>
-                </Item>
+                    </Component.TextWrap>
+                    </Component.MainWrap>
+                </Component.Item>
              )
         })
            
             }
-    </List>
+    </Component.List>
 
 )
 }

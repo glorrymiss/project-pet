@@ -1,4 +1,4 @@
-import Modal from 'components/Modal/Modal';
+import { Modal } from 'components/Modal/Modal';
 import {
   StyledSection,
   Title,
@@ -12,14 +12,14 @@ import {
 import { useDispatch } from 'react-redux';
 import { fetchPetDel } from 'redux/pets/operation';
 
- const ModalDeletePet = ({  id , close}) => {;
+export const ModalDeletePet = ({ close, id }) => {
   const dispatch = useDispatch();
   const hendleDeletePet = () => {
     dispatch(fetchPetDel(id));
     close();
   };
   return (
-    <Modal onClick={()=>close()}>
+    <Modal onClick={close}>
       <StyledSection>
         <Title>Delete adverstiment?</Title>
         <WrapText>
@@ -41,4 +41,3 @@ import { fetchPetDel } from 'redux/pets/operation';
     </Modal>
   );
 };
-export default ModalDeletePet;

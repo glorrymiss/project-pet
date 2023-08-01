@@ -3,13 +3,11 @@ import { Navigate, useLocation } from 'react-router-dom';
 
 export const RestrictedRoute = ({ component: Component, redirectTo = '/' }) => {
   const { isLoggedIn } = useAuth();
+  // console.log('isLoggedIn', isLoggedIn);
   const location = useLocation();
 
   return isLoggedIn ? (
-    <Navigate
-      to={location?.state?.redirectBack || redirectTo}
-      state={{ filter: location?.state?.filter }}
-    />
+    <Navigate to={redirectTo} state={{ filter: location?.state?.filter }} />
   ) : (
     Component
   );

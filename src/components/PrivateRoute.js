@@ -6,20 +6,13 @@ import { useAuth } from 'hooks';
  * - Otherwise render <Navigate> to redirectTo
  */
 
-export const PrivateRoute = ({
-  component: Component,
-  redirectTo = '/',
-  redirectBack,
-}) => {
+export const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
   const [searchParams] = useSearchParams();
   const { isLoggedIn, isRefreshing } = useAuth();
   const shouldRedirect = !isLoggedIn && !isRefreshing;
 
   return shouldRedirect ? (
-    <Navigate
-      to={redirectTo}
-      state={{ filter: searchParams.get('filter'), redirectBack }}
-    />
+    <Navigate to={redirectTo} state={{ filter: searchParams.get('filter') }} />
   ) : (
     Component
   );

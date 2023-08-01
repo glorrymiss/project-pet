@@ -15,23 +15,18 @@ import {
   StyledBtnSave,
   StyledBtnEdit,
   ErrorMessage,
-  StyledBtnFile,
-  IconCameraOk,
-  ErrorMessageRes,
 } from './UserForm.styled';
 import photoDefault from '../../images/userPageImages/photoDefault.svg';
-// import IconCamera from 'images/icons/IconCamera';
+import IconCamera from 'images/icons/IconCamera';
 import { validationSchema } from './ValidationSchema';
 import { useDispatch } from 'react-redux';
 import { updateUserInfo } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
-import ModalLog from 'components/ModalLog/ModalLog';
+import { ModalLog } from 'components/ModalLog/ModalLog';
 import theme from 'components/theme';
 import { Notify } from 'notiflix';
-import IconCheck from 'images/icons/IconCheck';
-import IconCross from 'images/icons/IconCross';
 
- const UserForm = () => {
+export const UserForm = () => {
   const { user, error, currentTheme } = useAuth();
   // console.log(user);
   const dispatch = useDispatch();
@@ -81,6 +76,10 @@ import IconCross from 'images/icons/IconCross';
   const changeBirthday = user.birthday
     ? dateFormat(user.birthday, 'dd.mm.yyyy')
     : '';
+  //   const changeBirthday = `${user.birthday.slice(
+  //     8,
+  //     user.birthday.length
+  //   )}.${user.birthday.slice(5, 7)}.${user.birthday.slice(0, 4)}`;
 
   const { setFieldValue, handleBlur, handleSubmit, values, errors, touched } =
     useFormik({
@@ -96,7 +95,7 @@ import IconCross from 'images/icons/IconCross';
       validationSchema: validationSchema,
       onSubmit: async values => {
         const v = {};
-        //   console.log(values.avatar);
+        console.log(values.avatar);
         if (avatarUrl && avatarUrl !== user.avatar) {
           v.avatar = values.avatar;
         }
@@ -115,12 +114,12 @@ import IconCross from 'images/icons/IconCross';
         if (values.city !== user.city) {
           v.city = values.city;
         }
-        //   alert(JSON.stringify(v, null, 2));
+        alert(JSON.stringify(v, null, 2));
         setIsFile(false);
         const res = await dispatch(updateUserInfo(v));
         if (res.error) {
           Notify.failure(error.message);
-          return;
+          setIsEdit(true);
         }
         setIsEdit(false);
       },
@@ -140,14 +139,9 @@ import IconCross from 'images/icons/IconCross';
           src={avatarUrl ? avatarUrl : photoDefault}
           alt="avatar"
         />
-        <StyledLabel
-          htmlFor="avatar"
-          isEdit={isEdit}
-          isFile={isFile}
-          height={20}
-        >
-          <IconCameraOk fill={theme[currentTheme].color.btnDark} />
-          Edit photo
+        <StyledLabel htmlFor="avatar" isEdit={isEdit} isFile={isFile}>
+          <IconCamera />
+          {isFile ? 'Confirm' : 'Edit photo'}
         </StyledLabel>
         <input
           id="avatar"
@@ -160,13 +154,19 @@ import IconCross from 'images/icons/IconCross';
         />
         {isFile && (
           <WrapFileOk>
-            <StyledBtnFile onClick={isFaleOkEdit}>
-              <IconCheck fill={theme[currentTheme].color.btnDark} />
-            </StyledBtnFile>
+            <StyledBtn
+              icon={'IconCheck'}
+              transparent={true}
+              fill={theme[currentTheme].color.indicator}
+              onClick={isFaleOkEdit}
+            />
             <p>Confirm</p>
-            <StyledBtnFile onClick={isFaleEdit}>
-              <IconCross fill={theme[currentTheme].color.error} />
-            </StyledBtnFile>
+            <StyledBtn
+              icon={'IconCross'}
+              transparent={true}
+              fill="#F43F5E"
+              onClick={isFaleEdit}
+            />
           </WrapFileOk>
         )}
       </WrapFoto>
@@ -201,6 +201,7 @@ import IconCross from 'images/icons/IconCross';
           {errors.email && touched.email ? (
             <ErrorMessage>{errors.email}</ErrorMessage>
           ) : null}
+          {error && <ErrorMessage>Email is not unique</ErrorMessage>}
         </InfoItem>
         <InfoItem>
           <TextTitle htmlFor="birthday">Birthday:</TextTitle>
@@ -251,7 +252,6 @@ import IconCross from 'images/icons/IconCross';
           ) : null}
         </InfoItem>
         {isEdit && <StyledBtnSave type="submit">Save</StyledBtnSave>}
-        {error && <ErrorMessageRes>{error.message}</ErrorMessageRes>}
       </WrapInfo>
       {!isEdit && (
         <StyledBtn
@@ -265,5 +265,3 @@ import IconCross from 'images/icons/IconCross';
     </Wrap>
   );
 };
-
-export default UserForm;

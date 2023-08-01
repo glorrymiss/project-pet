@@ -1,69 +1,69 @@
-import { PadLarge, PadSmallFour, PadSmallOne, PadSmallThree, 
-  PadSmallTwo, PawEight, PawFive, PawFour,
-   PawOne, PawSeven, PawSix, PawThree, PawTwo} from "./Loader.styled";
-
-
- const Loader = () => {
+export const Loader = () => {
   return (
-    <div>
-    <PawOne>
-      <PadLarge/>
-      <PadSmallOne/>
-      <PadSmallTwo/>
-      <PadSmallThree/>
-      <PadSmallFour/>
-    </PawOne>
-    <PawTwo>
-      <PadLarge/>
-      <PadSmallOne/>
-      <PadSmallTwo/>
-      <PadSmallThree/>
-      <PadSmallFour/>
-    </PawTwo>
-    <PawThree>
-      <PadLarge/>
-      <PadSmallOne/>
-      <PadSmallTwo/>
-      <PadSmallThree/>
-      <PadSmallFour/>
-    </PawThree>
-    <PawFour>
-      <PadLarge/>
-      <PadSmallOne/>
-      <PadSmallTwo/>
-      <PadSmallThree/>
-      <PadSmallFour/>
-    </PawFour>
-    <PawFive>
-      <PadLarge/>
-      <PadSmallOne/>
-      <PadSmallTwo/>
-      <PadSmallThree/>
-      <PadSmallFour/>
-    </PawFive>
-    <PawSix>
-      <PadLarge/>
-      <PadSmallOne/>
-      <PadSmallTwo/>
-      <PadSmallThree/>
-      <PadSmallFour/>
-    </PawSix>
-    <PawSeven>
-      <PadLarge/>
-      <PadSmallOne/>
-      <PadSmallTwo/>
-      <PadSmallThree/>
-      <PadSmallFour/>
-    </PawSeven>
-    <PawEight>
-      <PadLarge/>
-      <PadSmallOne/>
-      <PadSmallTwo/>
-      <PadSmallThree/>
-      <PadSmallFour/>
-    </PawEight>
-    </div>
+    <>
+      <div className="paw1">
+        <div className="pad large"></div>
+        <div className="pad small1"></div>
+        <div className="pad small2"></div>
+        <div className="pad small3"></div>
+        <div className="pad small4"></div>
+      </div>
+
+      <div className="paw2">
+        <div className="pad large"></div>
+        <div className="pad small1"></div>
+        <div className="pad small2"></div>
+        <div className="pad small3"></div>
+        <div className="pad small4"></div>
+      </div>
+
+      <div className="paw3">
+        <div className="pad large"></div>
+        <div className="pad small1"></div>
+        <div className="pad small2"></div>
+        <div className="pad small3"></div>
+        <div className="pad small4"></div>
+      </div>
+
+      <div className="paw4">
+        <div className="pad large"></div>
+        <div className="pad small1"></div>
+        <div className="pad small2"></div>
+        <div className="pad small3"></div>
+        <div className="pad small4"></div>
+      </div>
+
+      <div className="paw5">
+        <div className="pad large"></div>
+        <div className="pad small1"></div>
+        <div className="pad small2"></div>
+        <div className="pad small3"></div>
+        <div className="pad small4"></div>
+      </div>
+
+      <div className="paw6">
+        <div className="pad large"></div>
+        <div className="pad small1"></div>
+        <div className="pad small2"></div>
+        <div className="pad small3"></div>
+        <div className="pad small4"></div>
+      </div>
+
+      <div className="paw7">
+        <div className="pad large"></div>
+        <div className="pad small1"></div>
+        <div className="pad small2"></div>
+        <div className="pad small3"></div>
+        <div className="pad small4"></div>
+      </div>
+
+      <div className="paw8">
+        <div className="pad large"></div>
+        <div className="pad small1"></div>
+        <div className="pad small2"></div>
+        <div className="pad small3"></div>
+        <div className="pad small4"></div>
+      </div>
+    </>
   );
 };
-
-export default Loader;

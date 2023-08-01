@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 
 export const NewsContainer = styled.ul`
+  // flex-grow: 1;
+
   padding-top: 24px;
 
   display: grid;
+  // grid-template-columns: 1fr 1fr 1fr;
+  // column-gap: 31px;
   row-gap: 24px;
 
   @media screen and (min-width: 768px) {
@@ -12,7 +16,10 @@ export const NewsContainer = styled.ul`
   }
 
   @media screen and (min-width: 1280px) {
+    flex-grow: 1;
+
     padding-top: 60px;
+
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: 31px;
@@ -40,6 +47,8 @@ export const Rectangle = styled.div`
 export const Card = styled.div`
   margin-top: 12px;
   padding-bottom: 12px;
+  // width: 395px;
+  // height: 578px;
 
   display: flex;
   flex-direction: column;
@@ -89,7 +98,15 @@ export const CardInfoContainer = styled.div`
   align-items: flex-start;
   gap: 40px;
   height: 100%;
+
+  // padding-bottom: 12px;
+
+  // @media screen and (min-width: 768px) {
   gap: 0;
+  // }
+
+  // @media screen and (min-width: 1280px) {
+  // }
 `;
 
 export const Description = styled.div`

@@ -1,8 +1,8 @@
-import Modal from 'components/Modal/Modal';
+import { Modal } from 'components/Modal/Modal';
 
 import { StyledSection, Text, Title, StyledBtn } from './ModalCongtats.styled';
 
-const ModalCongrats = ({ closeModal }) => {
+export const ModalCongrats = ({ closeModal }) => {
   return (
     <Modal closeModal={closeModal}>
       <StyledSection>
@@ -17,4 +17,3 @@ const ModalCongrats = ({ closeModal }) => {
     </Modal>
   );
 };
-export default ModalCongrats;

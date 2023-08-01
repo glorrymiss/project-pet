@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import ModalCongrats from 'components/ModalCongrats/ModalCongrats';
+import { ModalCongrats } from 'components/ModalCongrats/ModalCongrats';
 import { selectIsLoggedIn, selectIsFirstLogin } from 'redux/auth/selectors';
-import  PetsData from 'components/PetsData/PetsData';
-import UserData from 'components/UserData/UserData';
+import { PetsData } from 'components/PetsData/PetsData';
+import { UserData } from 'components/UserData/UserData';
 import { Container } from './UserPage.styled';
 
 const UserPage = () => {

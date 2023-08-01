@@ -38,7 +38,6 @@ const ThirdFormLost = ({
   handleNextData,
   handlePrevStep,
   chooseOption,
-  handleSubmitForm,
 }) => {
   const [state, setState] = useState({
     file: '',
@@ -69,9 +68,9 @@ const ThirdFormLost = ({
           onChange={onChange}
         />
         {value === 'female' ? (
-          <FemaleIcon fill={isActive ? '#fff' : '#888888'} />
+          <FemaleIcon fill="#F43F5E" />
         ) : (
-          <MaleIcon fill={isActive ? '#fff' : '#888888'} />
+          <MaleIcon fill="#54ADFF" />
         )}
         {value === 'female' ? 'Female' : 'Male'}
       </SexLabelStyled>
@@ -199,11 +198,7 @@ const ThirdFormLost = ({
           </InputContainer>
         </PointBlock>
         <ButtonRoutes>
-          <ButtonNext
-            type="submit"
-            textButton="Done"
-            handleNextData={handleDone}
-          />
+          <ButtonNext textButton="Done" handleNextData={handleDone} />
           <ButtonPrev textButton="Back" handlePrevStep={handlePrevStep} />
         </ButtonRoutes>
       </WrapperForm>

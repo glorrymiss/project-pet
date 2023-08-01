@@ -2,28 +2,44 @@ import {
   Container,
   WrapItem,
   Title,
+  InfoItem,
   StyledBtnPlus,
+  StyledBtn,
+  WrapFoto,
+  Avatar,
+  WrapInfo,
+  TextTitle,
   Text,
 } from './PetsData.styled';
+import photoPetsDefault from '../../images/userPageImages/photoPetsDefault.svg';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useEffect} from 'react';
+import { useEffect, useState } from 'react';
 import { fetchPets } from 'redux/pets/operation';
 import { usePets } from '../../hooks';
-import PetItem from 'components/PetItem/PetItem';
+import { ModalDeletePet } from 'components/ModalDeletePet/ModalDeletePet';
+// import { useAuth } from 'hooks';
+// import Btn from 'components/Btn/Btn';
 
-  const PetsData = () => {
+export const PetsData = () => {
   const dispatch = useDispatch();
 	const { pets } = usePets();
+	const [isModal, setIsModal] = useState(false);
 
+  useEffect(() => {
+    dispatch(fetchPets());
+  }, [dispatch]);
   const navigate = useNavigate();
   const navAddPet = () => {
     navigate('/add-pet');
 	};
 	
-	useEffect(() => {
-    dispatch(fetchPets());
-  }, [dispatch]);
+	const isOpenModal = () => {
+    setIsModal(true);
+  };
+  const isCloseModal = () => {
+    setIsModal(false);
+  };
 
   return (
     <Container>
@@ -31,13 +47,52 @@ import PetItem from 'components/PetItem/PetItem';
       <StyledBtnPlus icon={'IconPlus'} text={'Add Pet'} onClick={navAddPet} />
 
       {pets.length === 0 ? (
-        <Text>You don't have pets</Text>
+        <p>You don't have pets</p>
       ) : (
         <ul>
           {pets.map(pet => {
             return (
               <WrapItem key={pet._id}>
-                <PetItem pet={pet} />
+                <WrapFoto>
+                  <Avatar>
+                    <img
+                      src={!pet.photoUrl ? photoPetsDefault : pet.photoUrl}
+                      alt="Avatar"
+                    />
+                  </Avatar>
+                </WrapFoto>
+                <WrapInfo>
+                  <StyledBtn
+                    icon={'IconTrash2'}
+                    transparent={true}
+                    onClick={isOpenModal}
+                  />
+							{isModal && <ModalDeletePet close={isCloseModal} id={pet._id} />}
+                  <InfoItem>
+                    <Text>
+                      <TextTitle>Name: </TextTitle>
+                      {pet.name}
+                    </Text>
+                  </InfoItem>
+                  <InfoItem>
+                    <Text>
+                      <TextTitle>Date of birth: </TextTitle>
+                      {pet.birthday}
+                    </Text>
+                  </InfoItem>
+                  <InfoItem>
+                    <Text>
+                      <TextTitle>Type: </TextTitle>
+                      {pet.type}
+                    </Text>
+                  </InfoItem>
+                  <InfoItem>
+                    <Text>
+                      <TextTitle>Comments: </TextTitle>
+                      {pet.comments}
+                    </Text>
+                  </InfoItem>
+                </WrapInfo>
               </WrapItem>
             );
           })}
@@ -46,5 +101,3 @@ import PetItem from 'components/PetItem/PetItem';
     </Container>
   );
 };
-
-export default PetsData;

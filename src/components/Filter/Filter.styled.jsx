@@ -72,7 +72,6 @@ const Filters = styled.div`
   top: 44px;
   right: 0;
   box-sizing: border-box;
-  z-index: 99;
 
   display: flex;
   flex-direction: column;
@@ -90,8 +89,7 @@ const Filters = styled.div`
   will-change: opacity, max-height;
   overflow: hidden;
 
-  transition:
-    opacity ${({ isOpen }) => (isOpen ? '200ms' : '550ms')}
+  transition: opacity ${({ isOpen }) => (isOpen ? '200ms' : '550ms')}
       cubic-bezier(0.4, 0, 0.2, 1),
     height 300ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
