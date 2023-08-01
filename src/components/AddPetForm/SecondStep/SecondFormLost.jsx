@@ -85,7 +85,7 @@ const SecondFormLost = ({
         <InputContainer>
           <Label htmlFor="date">Date of birth</Label>
           <Input
-            type="text"
+            type="date"
             id="date"
             name="date"
             value={formDataState.date}

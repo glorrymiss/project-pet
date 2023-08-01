@@ -10,9 +10,9 @@ export const fetchPets = createAsyncThunk(
   'pets/getAll',
   async (_, thunkAPI) => {
     try {
-		 const response = await axios.get('api/pets/');
-		//  console.log(response.data);
-		 return response.data;
+      const response = await axios.get('api/pets/');
+      console.log(response.data);
+      return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -31,7 +31,12 @@ export const fetchPetDel = createAsyncThunk(
   }
 );
 
-// export const {addPet} = () => {};
-
-// export const {addNotice} = () => {};
-
+export const addPet = createAsyncThunk('api/pets/', async (pet, thunkAPI) => {
+  console.log('pet', pet);
+  try {
+    const response = await axios.post(`api/pets/`, pet);
+    return response.data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.message);
+  }
+});

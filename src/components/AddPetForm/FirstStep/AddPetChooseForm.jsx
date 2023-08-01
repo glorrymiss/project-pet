@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { showToast } from '../toastify';
-
+import { Notify } from 'notiflix';
 import StatusIndicator from '../StatusIndicator/StatusIndicator';
 import ButtonRoutes from '../Buttons/ButtonRoutes';
 import { ButtonNext, ButtonPrev, ButtonChooseOption } from '../Buttons/Buttons';
@@ -16,6 +16,8 @@ import ThirdFormMyPet from '../ThirdStep/ThirdFormMyPet';
 import ThirdFormSell from '../ThirdStep/ThirdFormSell';
 import ThirdFormLost from '../ThirdStep/ThirdFormLost';
 import { Title } from './AddPetChooseForm.styled';
+import { addPet } from 'redux/pets/operation';
+import { useDispatch } from 'react-redux';
 
 const AddPetChooseForm = () => {
   const [step, setStep] = useState(1);
@@ -24,11 +26,26 @@ const AddPetChooseForm = () => {
   const [activeButton, setActiveButton] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  console.log('isLoading', isLoading);
-
   const [formData, setFormData] = useState({});
+  const [formDataState, setFormDataState] = useState(formData);
+  console.log('formDataState', formDataState);
+  console.log('isLoading', isLoading);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
+  console.log('formData', formData);
+  const [state, setState] = useState({
+    file: '',
+    comments: formData.comments || '',
+    location: formData.location || '',
+    sex: formData.sex || '',
+    price: formData.price || '',
+    active: null,
+    errors: {},
+  });
+
+  console.log('state', state);
+  console.log('formData', formData);
 
   const handleChooseChange = (option, number) => {
     setFormData(prevData => ({ ...prevData, category: option }));
@@ -91,6 +108,9 @@ const AddPetChooseForm = () => {
       }
       setIsLoading(true);
     }
+    // console.log('formData', formData);
+    // dispatch(addPet(formData));
+
     switch (formData.category) {
       case 'your-pet':
         navigate('/user');
@@ -159,6 +179,7 @@ const AddPetChooseForm = () => {
             currentStatus={currentStatus}
             handleNextData={handleNextData}
             handlePrevStep={handlePrevStep}
+            setFormData={setFormData}
           />
         </FormContainer>
       )}
@@ -173,6 +194,9 @@ const AddPetChooseForm = () => {
                 handlePrevStep={handlePrevStep}
                 formData={formData}
                 chooseOption={chooseOption}
+                state={state}
+                setState={setState}
+                setFormData={setFormData}
               />
             </FormContainer>
           )}

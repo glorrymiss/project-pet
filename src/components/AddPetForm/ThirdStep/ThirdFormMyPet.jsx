@@ -24,32 +24,38 @@ const ThirdFormMyPet = ({
   formData,
   currentStatus,
   chooseOption,
+  setFormData,
 }) => {
   const [state, setState] = useState({
-    file: '',
-    comments: '',
-    location: formData.location || '',
-    sex: formData.sex || '',
-    price: formData.sex || '',
+    file: formData.file || '',
+    comments: formData.comments || '',
     active: null,
     errors: {},
   });
+  const [formDataState, setFormDataState] = useState(formData);
+  console.log('state', state);
 
   const handleDone = () => {
     validationSchemaThirdAddMy
       .validate(state, { abortEarly: false })
       .then(() => {
         handleNextData(state);
+        console.log('qwe', state);
+        setFormData(prevState => ({
+          ...prevState,
+          file: state.file,
+          comments: state.comments,
+        }));
       })
+
       .catch(err => {
         const validationErrors = {};
         err.inner.forEach(error => {
           validationErrors[error.path] = error.message;
         });
-        setState(prevState => ({ ...prevState, errors: validationErrors }));
       });
   };
-
+  console.log('setFormData', setFormData);
   const handleFileChange = e => {
     const file = e.target.files[0];
 
