@@ -28,9 +28,6 @@ const ThirdFormMyPet = ({
   const [state, setState] = useState({
     file: '',
     comments: '',
-    location: formData.location || '',
-    sex: formData.sex || '',
-    price: formData.sex || '',
     active: null,
     errors: {},
   });
@@ -46,7 +43,7 @@ const ThirdFormMyPet = ({
         err.inner.forEach(error => {
           validationErrors[error.path] = error.message;
         });
-        setState(prevState => ({ ...prevState, errors: validationErrors }));
+        setState(prevState => ({ ...prevState }));
       });
   };
 

@@ -8,10 +8,7 @@ const nameValidation = Yup.string()
   .matches(/^[a-zA-Z\s]+?$/iu, 'Only Latin letters');
 
 const dateValidation = Yup.string()
-  .matches(
-    /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,
-    'Correct format: dd.mm.yyyy'
-  )
+
   .test('is-date-valid', 'Future date not allowed', value => {
     if (value) {
       const date = value.split('.');
@@ -71,19 +68,16 @@ export const validationSchemaAdd = Yup.object({
 
 export const validationSchemaThirdAddMy = Yup.object({
   comments: Yup.string()
-    // .min(2, 'Too Short! 2 characters minimum')
     .max(120, 'Too Long! 120 characters maximum')
     .label('Comment'),
-  // .required('Comments is required')
-  imageURL: imageValidation,
+  // imageURL: imageValidation,
+  file: imageValidation,
 });
 
 export const validationSchemaThirdAddSell = Yup.object({
   comments: Yup.string()
-    // .min(2, 'Too Short! 2 characters minimum')
     .max(120, 'Too Long! 120 characters maximum')
     .label('Comment'),
-  // .required('Comments is required')
   file: imageValidation,
   location: locationValidation,
   // sex: sexValidation,
@@ -96,10 +90,8 @@ export const validationSchemaThirdAddSell = Yup.object({
 
 export const validationSchemaThirdAddLost = Yup.object({
   comments: Yup.string()
-    // .min(2, 'Too Short! 2 characters minimum')
     .max(120, 'Too Long! 120 characters maximum')
     .label('Comment'),
-  // .required('Comments is required')
   file: imageValidation,
   location: locationValidation,
   // sex: sexValidation,
