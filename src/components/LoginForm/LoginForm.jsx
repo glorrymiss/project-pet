@@ -43,6 +43,7 @@ const LoginForm = () => {
    const handleLogInSubmit = async (values) => {
     
      const res = await dispatch(
+    
         logIn({
            email: values.email,
            password: values.password,
@@ -51,6 +52,7 @@ const LoginForm = () => {
        setIsLoading(true)
        if (res.error || res.payload.status === 401) {
         Notiflix.Notify.failure(res.payload.message);
+        setIsLoading(false)
       } else {
        navigate('/user');
         setIsLoading(false)
@@ -59,7 +61,8 @@ const LoginForm = () => {
     
 return(
   <>
-  {isLoading && <Loader/>}
+  {isLoading ? <Loader/> :
+  
     <Formik
       initialValues={{
         email: '',
@@ -152,6 +155,7 @@ return(
            )
             }}
         </Formik>
+       }
         </>
       )
     };

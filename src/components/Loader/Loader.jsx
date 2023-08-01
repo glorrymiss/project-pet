@@ -1,11 +1,11 @@
 import { PadLarge, PadSmallFour, PadSmallOne, PadSmallThree, 
   PadSmallTwo, PawEight, PawFive, PawFour,
-   PawOne, PawSeven, PawSix, PawThree, PawTwo} from "./Loader.styled";
+   PawOne, PawSeven, PawSix, PawThree, PawTwo, Wrap} from "./Loader.styled";
 
 
  const Loader = () => {
   return (
-    <div>
+    <Wrap>
     <PawOne>
       <PadLarge/>
       <PadSmallOne/>
@@ -62,7 +62,7 @@ import { PadLarge, PadSmallFour, PadSmallOne, PadSmallThree,
       <PadSmallThree/>
       <PadSmallFour/>
     </PawEight>
-    </div>
+    </Wrap>
   );
 };
 
