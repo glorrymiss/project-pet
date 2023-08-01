@@ -9,9 +9,9 @@ export const validationSchema = Yup.object({
     .required('Name is required')
     .min(2, 'Name must be min 2')
     .max(50, 'Name must be max 50')
-    .matches(regexName, 'Name must be max 16'),
+    .matches(regexName, 'Invalid name'),
   birthday: Yup.date()
-    .min(1900)
+    .min(1900, 'Birthday is old')
     .max(new Date(), 'Birthday is future')
     .notRequired(),
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -22,7 +22,7 @@ export const validationSchema = Yup.object({
     .notRequired(),
   city: Yup.string()
     .min(4, 'Word must be min 4')
-    .max(16, 'Word must be max 16')
+    .max(50, 'Word must be max 50')
     .matches(regexCity, 'The first letter must be uppercase')
     .notRequired(),
 });
