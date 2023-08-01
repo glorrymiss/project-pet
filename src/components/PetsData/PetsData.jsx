@@ -3,6 +3,7 @@ import {
   WrapItem,
   Title,
   StyledBtnPlus,
+  Text,
 } from './PetsData.styled';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -30,13 +31,13 @@ import PetItem from 'components/PetItem/PetItem';
       <StyledBtnPlus icon={'IconPlus'} text={'Add Pet'} onClick={navAddPet} />
 
       {pets.length === 0 ? (
-        <p>You don't have pets</p>
+        <Text>You don't have pets</Text>
       ) : (
         <ul>
           {pets.map(pet => {
             return (
-					<WrapItem key={pet._id}>
-						<PetItem pet={pet} />
+              <WrapItem key={pet._id}>
+                <PetItem pet={pet} />
               </WrapItem>
             );
           })}

@@ -2,23 +2,24 @@ import Btn from 'components/Btn/Btn';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-position: relative;
+  position: relative;
   width: 100%;
   margin-top: 46px;
-  padding: 0 auto 24px;
+  padding-bottom: 137px;
   @media screen and (min-width: 320px) {
     width: 280px;
   }
   @media screen and (min-width: 768px) {
     margin-top: 40px;
     width: 704px;
-    padding-top: 0px;
+    padding-bottom: 121px;
   }
 
   @media screen and (min-width: 1280px) {
     width: 100%;
     margin-top: 0;
     padding-top: 60px;
+    padding-bottom: 57px;
   }
 `;
 export const Title = styled.h2`
@@ -65,5 +66,15 @@ export const StyledBtnPlus = styled(Btn)`
   }
   @media screen and (min-width: 1280px) {
     top: 60px;
+  }
+`;
+export const Text = styled.p`
+margin-top: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.8px;
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
   }
 `;
