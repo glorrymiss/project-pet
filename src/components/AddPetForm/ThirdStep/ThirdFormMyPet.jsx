@@ -127,7 +127,11 @@ const ThirdFormMyPet = ({
       </CommentsContainerMyPet>
 
       <ButtonRoutes>
-        <ButtonNext textButton="Done" handleNextData={handleDone} />
+        <ButtonNext
+          type="submit"
+          textButton="Done"
+          handleNextData={handleDone}
+        />
         <ButtonPrev textButton="Back" handlePrevStep={handlePrevStep} />
       </ButtonRoutes>
     </div>

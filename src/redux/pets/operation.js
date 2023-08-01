@@ -23,8 +23,8 @@ export const fetchPetDel = createAsyncThunk(
   'pets/deletePet',
   async (id, thunkAPI) => {
     try {
-      const response = await axios.delete(`api/pets/${id}`);
-      return response.data;
+      await axios.delete(`api/pets/${id}`);
+      return id;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

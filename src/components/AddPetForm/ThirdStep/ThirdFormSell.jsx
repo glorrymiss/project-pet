@@ -71,9 +71,9 @@ const ThirdFormSell = ({
           onChange={onChange}
         />
         {value === 'female' ? (
-          <FemaleIcon fill="#F43F5E" />
+          <FemaleIcon fill={isActive ? '#fff' : '#888888'} />
         ) : (
-          <MaleIcon fill="#54ADFF" />
+          <MaleIcon fill={isActive ? '#fff' : '#888888'} />
         )}
         {value === 'female' ? 'Female' : 'Male'}
       </SexLabelStyled>

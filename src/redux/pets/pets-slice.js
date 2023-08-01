@@ -40,7 +40,8 @@ const petsSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchPets.fulfilled, (state, { payload }) => {
-        state.items = payload.results;
+			state.items = payload.results;
+			// console.log(state.items);
         state.loading = false;
       })
       .addCase(fetchPets.rejected, (state, { payload }) => {
@@ -51,10 +52,9 @@ const petsSlice = createSlice({
         state.loading = true;
       })
 		  .addCase(fetchPetDel.fulfilled, (state, { payload }) => {
-			console.log(payload);
-        state.items = state.items.filter(
-          pet => pet.id !== payload._id
-        );
+			//   console.log(payload);
+			  state.items = state.items.filter(pet => pet._id !== payload);
+			//   console.log(state.items);
         state.loading = false;
       })
       .addCase(fetchPetDel.rejected, (state, { payload }) => {
@@ -76,4 +76,4 @@ const petsSlice = createSlice({
   },
 });
 
-export default petsSlice.reducer;
+export const petsReducer = petsSlice.reducer;
