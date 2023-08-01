@@ -1,4 +1,4 @@
-import { Modal } from 'components/Modal/Modal';
+import Modal from 'components/Modal/Modal';
 import {
   StyledSection,
   Title,
@@ -9,7 +9,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
 
-export const ModalLog = ({ close }) => {
+ const ModalLog = ({ close }) => {
   const dispatch = useDispatch();
   const hendlelogout = () => {
     dispatch(logOut());
@@ -31,3 +31,5 @@ export const ModalLog = ({ close }) => {
     </Modal>
   );
 };
+
+export default ModalLog;

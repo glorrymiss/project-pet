@@ -1,13 +1,7 @@
 import { Hero } from '../../components/Hero/Hero';
-import { Footer } from '../../components/Footer/Footer';
 
 const MainPage = () => {
-  return (
-    <>
-      <Hero />
-      <Footer />
-    </>
-  );
+  return <Hero />;
 };
 
 export default MainPage;

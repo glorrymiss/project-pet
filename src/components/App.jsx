@@ -34,7 +34,6 @@ const AddPetPage = lazy(() =>
   import('../pages/secondaryPages/AddPetPage/AddPetPage')
 );
 const NotFoundPage = lazy(() => import('../pages/mainPages/NotFoundPage'));
-const TeamPage = lazy(() => import('../pages/mainPages/TeamPage/TeamPage'));
 
 export const App = () => {
   const [currentTheme, setCurrentTheme] = useState('light');
@@ -59,6 +58,8 @@ export const App = () => {
           <Route path="/main" element={<MainPage />} />
           <Route path="/news" element={<NewsPage />} />
           <Route path="/notices" element={<NoticesPage />}>
+            <Route index element={<NoticesCategoriesList />} />
+            {/* <Route path="sell" element={<NoticesCategoriesList />} /> */}
             <Route path=":categoryName" element={<NoticesCategoriesList />} />
             {/* <Route path="sell" element={<div>sell</div>} />
             <Route path="lost-found" element={<div>lost/found</div>} />
@@ -68,7 +69,6 @@ export const App = () => {
           </Route>
           <Route path="/friends" element={<OurFriendsPage />} />
           <Route path="*" element={<NotFoundPage />} />
-          <Route path="/team" element={<TeamPage />} />
           <Route
             path="/login"
             element={
@@ -87,14 +87,22 @@ export const App = () => {
           <Route
             path="/user"
             element={
-              <PrivateRoute redirectTo="/news" component={<UserPage />} />
+              <PrivateRoute
+                redirectTo="/login"
+                redirectBack="/user"
+                component={<UserPage />}
+              />
               // <PrivateRoute redirectTo="/login" component={<UserPage />} />
             }
           />
           <Route
             path="/add-pet"
             element={
-              <PrivateRoute redirectTo="/news" component={<AddPetPage />} />
+              <PrivateRoute
+                redirectTo="/login"
+                redirectBack="/add-pet"
+                component={<AddPetPage />}
+              />
               // <PrivateRoute redirectTo="/login" component={<UserPage />} />
             }
           />

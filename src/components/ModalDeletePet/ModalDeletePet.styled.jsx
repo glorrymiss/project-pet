@@ -2,8 +2,11 @@ import Btn from 'components/Btn/Btn';
 import styled from 'styled-components';
 
 export const StyledSection = styled.div`
-padding: 22px 0;
-width: 100%;
+  padding: 22px 0 46px;
+  width: 100%;
+  @media screen and (min-width: 768px) {
+    padding: 22px 0;
+  }
 `;
 export const Title = styled.h2`
   margin: 0 auto 14px;
@@ -60,6 +63,7 @@ export const WrapBtn = styled.div`
   }
 `;
 export const StyledBtn = styled(Btn)`
+  cursor: pointer;
   background-color: ${p => p.theme.color.background};
   color: ${p => p.theme.color.btnDark};
   width: 256px;
@@ -78,3 +82,5 @@ export const StyledBtnYes = styled(StyledBtn)`
   background-color: ${p => p.theme.color.btnDark};
   gap: 8px;
 `;
+
+

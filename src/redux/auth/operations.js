@@ -23,7 +23,7 @@ export const register = createAsyncThunk(
     try {
       const res = await axios.post('api/users/register', credentials);
       // After successful registration, add the token to the HTTP header
-      setAuthHeader(res.data.token);
+      setAuthHeader(res.data.user.token);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({
@@ -116,10 +116,10 @@ export const updateUserInfo = createAsyncThunk(
       // const user = { avatar, name, email, phone, city, birthday };
       // return user;
     } catch (error) {
-		 return thunkAPI.rejectWithValue({
-       status: error.response.status,
-       message: error.response.data.message,
-     });
+      return thunkAPI.rejectWithValue({
+        status: error.response.status,
+        message: error.response.data.message,
+      });
     }
   }
 );

@@ -1,26 +1,32 @@
 import { useCallback, useEffect } from 'react';
 import { Backdrop, ModalContainer, BtnStyled } from './Modal.styled';
 
-export const Modal = ({ children, onClick }) => {
-  const handleCloseModal = useCallback(
-    ({ target, currentTarget, code }) => {
-      if (target === currentTarget || code === 'Escape') {
+ const Modal = ({ children, onClick }) => {
+	const handleKeyDown = useCallback(
+    evt => {
+      if (evt.code === 'Escape') {
         onClick();
       }
     },
     [onClick]
   );
 
+  const handleBackdropClick = evt => {
+    if (evt.currentTarget === evt.target) {
+      onClick();
+    }
+  };
+
   useEffect(() => {
-    document.addEventListener('keydown', handleCloseModal);
+    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.removeEventListener('keydown', handleCloseModal);
+      window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [handleCloseModal]);
+  }, [handleKeyDown]);
 
   return (
-    <Backdrop onClick={handleCloseModal}>
+    <Backdrop onClick={handleBackdropClick}>
       <ModalContainer>
         <BtnStyled icon={'IconCross'} transparent={true} onClick={onClick} />
         {children}
@@ -28,3 +34,4 @@ export const Modal = ({ children, onClick }) => {
     </Backdrop>
   );
 };
+export default Modal;

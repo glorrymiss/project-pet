@@ -30,6 +30,7 @@ export const WrapBtn = styled.div`
   }
 `;
 export const StyledBtn = styled(Btn)`
+  cursor: pointer;
   background-color: ${p => p.theme.color.background};
   color: ${p => p.theme.color.btnDark};
   width: 256px;
