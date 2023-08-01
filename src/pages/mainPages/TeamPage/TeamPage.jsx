@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { TeamPageStyled } from './TeamPage.styled';
+import { TeamPageStyled, AddInfo } from './TeamPage.styled';
 import { Carousel } from 'react-3dm-carousel';
+import { Background } from 'components/Hero/Hero.styled';
+import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai';
 /*
 /**|======================================
 /**| images
@@ -21,6 +23,11 @@ import YuliiaZherebetska from '../../../images/Teamimages/YuliiaZherebetska.png'
 const TeamPage = () => {
   const onTitleClickHandler = card => {
     console.log('clicked card', card);
+    // Check if the card has a valid routeTo URL
+    if (card.routeTo) {
+      // Redirect to the specified URL
+      window.location.href = card.routeTo;
+    }
   };
   const [selectedCardIdx, setSelectedCardIdx] = useState(0);
 
@@ -28,113 +35,133 @@ const TeamPage = () => {
     {
       id: '1',
       title: 'Dmytro Kovach',
-      description: 'This is the content of card 1.',
+      description: 'Backend developer',
       image: DmytroKovach,
-      tags: ['Link'],
-      routeTo: 'https://github.com/Iuriius',
+      tags: ['https://www.linkedin.com/in/dmytro-kovach'],
+      routeTo: ['https://github.com/FreeNit'],
     },
     {
       id: '2',
       title: 'Ihor Masechko',
-      description: 'This is the content of card 2.',
+      description: 'Frontend developer',
       image: IhorMasechko,
-      tags: ['Link'],
-      routeTo: 'https://github.com/Iuriius',
+      tags: ['https://www.linkedin.com/in/ihor-masechko'],
+      routeTo: ['https://github.com/IhorMasechko'],
     },
     {
       id: '3',
       title: 'Iurii Kyrychenko',
-      description: 'This is the content of card 3.',
+      description: 'Frontend developer',
       image: IuriiKyrychenko,
-      tags: ['Link'],
-      routeTo: 'https://github.com/Iuriius',
+      tags: ['https://www.linkedin.com/in/iurii-kyrychenko'],
+      routeTo: ['https://github.com/Iuriius'],
     },
     {
       id: '4',
       title: 'Kateryna Karasevych',
-      description: 'This is the content of card 4.',
+      description: 'Backend developer',
       image: KaterynaKarasevych,
-      tags: ['Link'],
-      routeTo: 'https://github.com/Iuriius',
+      tags: ['https://github.com/KaterinaKarasevich'],
+      routeTo: ['https://github.com/KaterinaKarasevich'],
     },
     {
       id: '5',
-      title: 'Maksym   Fito',
-      description: 'This is the content of card 5.',
+      title: 'Maksym Fito',
+      description: 'Frontend developer',
       image: MaksymFito,
-      tags: ['Link'],
-      routeTo: 'https://github.com/Iuriius',
+      tags: ['https://www.linkedin.com/in/maksym-fito'],
+      routeTo: ['https://github.com/Maks383'],
     },
     {
       id: '6',
       title: 'Margaryta Myagkova',
-      description: 'This is the content of card 6.',
+      description: 'Frontend developer',
       image: MargarytaMyagkova,
-      tags: ['Link'],
-      routeTo: 'https://github.com/Iuriius',
+      tags: ['https://www.linkedin.com/in/margaryta-myagkova'],
+      routeTo: ['https://github.com/Phoenix7778'],
     },
     {
       id: '7',
       title: 'Mykhailo Stryzhka',
-      description: 'This is the content of card 7.',
+      description: 'Team lead',
       image: MykhailoStryzhka,
-      tags: ['Link'],
-      routeTo: 'https://github.com/Iuriius',
+      tags: ['https://www.linkedin.com/in/mykhailo-stryzhka'],
+      routeTo: ['https://github.com/MishaStryzhka'],
     },
     {
       id: '8',
       title: 'Nadiia Harbuza',
-      description: 'This is the content of card 8.',
+      description: 'Frontend developer',
       image: NadiiaHarbuza,
-      tags: ['Link'],
-      routeTo: 'https://github.com/Iuriius',
+      tags: ['https://www.linkedin.com/in/nadiia-harbuza'],
+      routeTo: ['https://github.com/nadikkk'],
     },
     {
       id: '9',
-      title: 'Olena Blahodir',
-      description: 'This is the content of card 9.',
-      image: OlenaBlahodir,
-      tags: ['Link'],
-      routeTo: 'https://github.com/Iuriius',
+      title: 'Yuliia Zherebetska',
+      description: 'Scrum master',
+      image: YuliiaZherebetska,
+      tags: ['https://www.linkedin.com/in/yuliia-zherebetska'],
+      routeTo: ['https://github.com/glorrymiss'],
     },
     {
       id: '10',
       title: 'Olha Obushchak',
-      description: 'This is the content of card 10.',
+      description: 'Backend developer',
       image: OlhaObushchak,
-      tags: ['Link'],
-      routeTo: 'https://github.com/Iuriius',
+      tags: ['https://www.linkedin.com/in/olga-obushchak'],
+      routeTo: ['https://github.com/oolga77'],
     },
     {
       id: '11',
-      title: 'Yuliia Zherebetska',
-      description: 'This is the content of card 11.',
-      image: YuliiaZherebetska,
-      tags: ['Link'],
-      routeTo: 'https://github.com/Iuriius',
+      title: 'Olena Blahodir',
+      description: 'Frontend developer',
+      image: OlenaBlahodir,
+      tags: ['https://www.linkedin.com/in/elena-blahodir'],
+      routeTo: ['https://github.com/Elenalx'],
     },
   ];
 
-  const tagsToRender = data[selectedCardIdx]?.tags || [];
+  // const tagsToRender = data[selectedCardIdx]?.tags || [];
 
   return (
-    <TeamPageStyled>
-      <Carousel
-        cardsData={data}
-        setSelectedCardIdx={setSelectedCardIdx}
-        rotation={true}
-        rotationDuration={60}
-        tilt={false}
-        freeRoam={false}
-        freeRoamLowerBounds={-180}
-        freeRoamUpperBounds={0}
-        onTitleClickHandler={onTitleClickHandler}
-        startingAnimation={true}
-        rotateOnScroll={true}
-        drag={true}
-        style={{ width: '100vw', height: '100vh' }}
-      />
-    </TeamPageStyled>
+    <Background>
+      <TeamPageStyled>
+        <Carousel
+          cardsData={data}
+          setSelectedCardIdx={setSelectedCardIdx}
+          rotation={true}
+          rotationDuration={33}
+          tilt={false}
+          freeRoam={false}
+          freeRoamLowerBounds={-180}
+          freeRoamUpperBounds={0}
+          onTitleClickHandler={onTitleClickHandler}
+          startingAnimation={true}
+          rotateOnScroll={true}
+          drag={true}
+          style={{ transform: 'scale(0.5)' }}
+        />
+        <AddInfo>
+          {data[selectedCardIdx].tags.map(tag => (
+            <p key={tag}>
+              <a href={data[selectedCardIdx].tags}>
+                <AiFillLinkedin />
+                &nbsp; {tag}
+              </a>
+            </p>
+          ))}
+          {data[selectedCardIdx].routeTo.map(routeTo => (
+            <p key={routeTo}>
+              <a href={data[selectedCardIdx].routeTo}>
+                <AiFillGithub />
+                &nbsp; {routeTo}
+              </a>
+            </p>
+          ))}
+        </AddInfo>
+      </TeamPageStyled>
+    </Background>
   );
 };
 
