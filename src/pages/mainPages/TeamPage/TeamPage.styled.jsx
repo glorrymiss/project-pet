@@ -4,7 +4,7 @@ export const TeamPageStyled = styled.div`
   position: relative;
   > div:not(:last-child) {
     overflow: visible;
-    transform: scale(0.5);
+    transform: scale(0.6);
     position: fixed;
     top: 0;
     left: 0;
@@ -35,7 +35,7 @@ export const AddInfo = styled.div`
 
   @media screen and (min-width: 768px) {
     font-size: 24px;
-    top: 70%;
+    top: 75%;
     left: 15%;
   }
 
