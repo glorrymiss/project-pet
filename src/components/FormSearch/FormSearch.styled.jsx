@@ -12,9 +12,11 @@ export const StuledInput = styled.input`
   border-radius: 24px;
   box-shadow:${({ theme }) => theme.boxShadow};
   padding: 10px 12px;
-
+  outline: none;
   background-color:${({ theme }) => theme.color.cardBG};
-
+  :focus{
+    box-shadow: ${({ theme }) => theme.boxShadowHover}
+  }
   @media screen and (min-width: 768px) {
     font-size: 20px;
     letter-spacing: 0.8px;
