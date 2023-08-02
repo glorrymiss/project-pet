@@ -21,11 +21,11 @@ const NoticesCategoriesList = () => {
     setSearchParams(null);
   } //це щоб лінтер не ругався
 
-  console.log('categoryName', categoryName);
+  // console.log('categoryName', categoryName);
 
   useEffect(() => {
     if (categoryName === 'favorite') {
-      console.log('page', page);
+      // console.log('page', page);
 
       getFavoriteNotices({
         page,
@@ -34,7 +34,7 @@ const NoticesCategoriesList = () => {
         categoryName,
       })
         .then(res => {
-          console.log('res', res);
+          // console.log('res', res);
 
           if (res.status === 204) return;
 
@@ -43,7 +43,7 @@ const NoticesCategoriesList = () => {
           setQuantityNotices(totalHits);
         })
         .catch(err => {
-          console.log('err', err);
+          // console.log('err', err);
 
           setNoticesList([]);
           seterror(err);
