@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import {
   Header,
-  NotiveItem,
+  NoticeItem,
   Status,
   Information,
   InformationItem,
@@ -94,7 +94,7 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
   // };
 
   return (
-    <NotiveItem>
+    <NoticeItem>
       <Header img={animal}>
         <Top>
           <Status>{animal.status}</Status>
@@ -197,7 +197,7 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
           </BtnStyled>
         </ModalButtons>
       </Modal>
-    </NotiveItem>
+    </NoticeItem>
   );
 };
 
