@@ -6,12 +6,13 @@ export const TeamPageStyled = styled.div`
     overflow: visible;
     transform: scale(0.6);
     position: fixed;
-    top: 0;
+    top: -5%;
     left: 0;
     z-index: 1;
   }
 
   @media screen and (min-width: 768px) {
+    top: 0;
   }
   @media screen and (min-width: 1280px) {
   }
