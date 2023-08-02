@@ -122,6 +122,9 @@ margin-bottom: 8px;
 
 color:${({ theme }) => theme.color.background};
 background-color: ${({ theme }) => theme.color.btnDark};
+:hover{
+    background:${({ theme }) => theme.color.gradient};
+}
 @media screen and (min-width: 768px) {
     width: 478px;
     margin-bottom: 20px;
