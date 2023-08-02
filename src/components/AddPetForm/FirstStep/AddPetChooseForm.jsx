@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { showToast } from '../toastify';
-import { Notify } from 'notiflix';
 import StatusIndicator from '../StatusIndicator/StatusIndicator';
 import ButtonRoutes from '../Buttons/ButtonRoutes';
 import { ButtonNext, ButtonPrev, ButtonChooseOption } from '../Buttons/Buttons';
@@ -16,8 +15,6 @@ import ThirdFormMyPet from '../ThirdStep/ThirdFormMyPet';
 import ThirdFormSell from '../ThirdStep/ThirdFormSell';
 import ThirdFormLost from '../ThirdStep/ThirdFormLost';
 import { Title } from './AddPetChooseForm.styled';
-import { addPet } from 'redux/pets/operation';
-import { useDispatch } from 'react-redux';
 
 const AddPetChooseForm = () => {
   const [step, setStep] = useState(1);
@@ -26,26 +23,23 @@ const AddPetChooseForm = () => {
   const [activeButton, setActiveButton] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [formData, setFormData] = useState({});
-  const [formDataState, setFormDataState] = useState(formData);
-  console.log('formDataState', formDataState);
-  console.log('isLoading', isLoading);
-  const dispatch = useDispatch();
+  const [formData, setFormData] = useState({ file: '' });
+  console.log('formData', formData);
+  // console.log('isLoading', isLoading);
 
   const navigate = useNavigate();
-  console.log('formData', formData);
-  const [state, setState] = useState({
-    file: '',
-    comments: formData.comments || '',
-    location: formData.location || '',
-    sex: formData.sex || '',
-    price: formData.price || '',
-    active: null,
-    errors: {},
-  });
+  // console.log('formData', formData);
+  // const [state, setState] = useState({
+  //   file: '',
+  //   comments: formData.comments || '',
+  //   location: formData.location || '',
+  //   sex: formData.sex || '',
+  //   price: formData.price || '',
+  //   active: null,
+  //   errors: {},
+  // });
 
-  console.log('state', state);
-  console.log('formData', formData);
+  // console.log('state', state);
 
   const handleChooseChange = (option, number) => {
     setFormData(prevData => ({ ...prevData, category: option }));
@@ -63,7 +57,7 @@ const AddPetChooseForm = () => {
 
   const handleNextData = stepData => {
     setIsLoading(true);
-    if (chooseOption && currentStatus < 3) {
+    if (chooseOption) {
       setStep(step + 1);
       setCurrentStatus(currentStatus + 1);
     }
@@ -71,6 +65,8 @@ const AddPetChooseForm = () => {
     setFormData(prevData => {
       return { ...prevData, ...stepData };
     });
+
+    // console.log('step', step);
   };
 
   const handlePrevStep = stepData => {
@@ -175,11 +171,11 @@ const AddPetChooseForm = () => {
         <FormContainer>
           <SecondRenderStep
             formData={formData}
+            setFormData={setFormData}
             chooseOption={chooseOption}
             currentStatus={currentStatus}
             handleNextData={handleNextData}
             handlePrevStep={handlePrevStep}
-            setFormData={setFormData}
           />
         </FormContainer>
       )}
@@ -194,8 +190,8 @@ const AddPetChooseForm = () => {
                 handlePrevStep={handlePrevStep}
                 formData={formData}
                 chooseOption={chooseOption}
-                state={state}
-                setState={setState}
+                // state={state}
+                // setState={setState}
                 setFormData={setFormData}
               />
             </FormContainer>
@@ -204,6 +200,7 @@ const AddPetChooseForm = () => {
             <FormContainerThird>
               {chooseOption === 'sell' ? (
                 <ThirdFormSell
+                  setFormData={setFormData}
                   currentStatus={currentStatus}
                   handleNextData={handleSubmitForm}
                   handlePrevStep={handlePrevStep}
@@ -221,6 +218,7 @@ const AddPetChooseForm = () => {
                   handleNextData={handleSubmitForm}
                   handlePrevStep={handlePrevStep}
                   formData={formData}
+                  setFormData={setFormData}
                   chooseOption={chooseOption}
                 />
               )}

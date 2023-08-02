@@ -17,6 +17,11 @@ import {
   InputComments,
   LabelAddedPhoto,
 } from './ThirdStep.styled';
+// import { useDispatch } from 'react-redux';
+// import axios from 'axios';
+import { Notify } from 'notiflix';
+import { addPet } from 'services';
+// import { addPet } from 'redux/pets/operation';
 
 const ThirdFormMyPet = ({
   handleNextData,
@@ -27,35 +32,40 @@ const ThirdFormMyPet = ({
   setFormData,
 }) => {
   const [state, setState] = useState({
-    file: formData.file || '',
-    comments: formData.comments || '',
     active: null,
     errors: {},
   });
-  const [formDataState, setFormDataState] = useState(formData);
-  console.log('state', state);
 
-  const handleDone = () => {
+  const handleDone = async () => {
     validationSchemaThirdAddMy
-      .validate(state, { abortEarly: false })
+      .validate(formData, { abortEarly: false })
       .then(() => {
-        handleNextData(state);
-        console.log('qwe', state);
-        setFormData(prevState => ({
-          ...prevState,
-          file: state.file,
-          comments: state.comments,
-        }));
+        // console.log('qwe', state);
+        addPet(formData)
+          .then(res => {
+            // console.log('res', res.response);
+            handleNextData(state);
+          })
+          .catch(error => {
+            // console.log('error', error.response);
+            Notify.failure(error.response.data.message, {
+              timeout: 4000,
+            });
+            setFormData(prevState => ({ ...prevState, file: null }));
+          });
+        // handleNextData(state);
       })
-
       .catch(err => {
+        // console.log('err', err);
+
         const validationErrors = {};
         err.inner.forEach(error => {
           validationErrors[error.path] = error.message;
         });
+        setState(prevState => ({ ...prevState, errors: validationErrors }));
       });
   };
-  console.log('setFormData', setFormData);
+  // console.log('setFormData', setFormData);
   const handleFileChange = e => {
     const file = e.target.files[0];
 
@@ -63,7 +73,7 @@ const ThirdFormMyPet = ({
       return;
     }
 
-    setState(prevState => ({ ...prevState, file }));
+    setFormData(prevState => ({ ...prevState, file }));
   };
 
   const handlePhotoClick = e => {
@@ -73,10 +83,10 @@ const ThirdFormMyPet = ({
     }
 
     const file = e.target.files[0];
-    setState(prevState => ({ ...prevState, file }));
+    setFormData(prevState => ({ ...prevState, file }));
   };
 
-  const { file, comments, errors } = state;
+  const { errors } = state;
 
   return (
     <div>
@@ -98,10 +108,13 @@ const ThirdFormMyPet = ({
             style={{ display: 'none' }}
           />
         </div>
-        {file ? (
+        {formData?.file ? (
           <>
             <LabelAddedPhoto htmlFor="photo" onClick={handlePhotoClick}>
-              <PreviewPhoto src={URL.createObjectURL(file)} alt="Pet" />
+              <PreviewPhoto
+                src={URL.createObjectURL(formData.file)}
+                alt="Pet"
+              />
             </LabelAddedPhoto>
           </>
         ) : (
@@ -120,10 +133,10 @@ const ThirdFormMyPet = ({
         <LabelComments htmlFor="comments">Comments</LabelComments>
         <InputComments
           id="comments"
-          value={comments}
+          value={formData?.comments}
           placeholder="Type comment"
           onChange={e =>
-            setState(prevState => ({
+            setFormData(prevState => ({
               ...prevState,
               comments: e.target.value,
             }))

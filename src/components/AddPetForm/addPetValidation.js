@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 const nameValidation = Yup.string()
   .min(2, 'Too Short! 2 characters minimum')
-  .max(16, 'Too Long! 16 characters maximum')
+  .max(120, 'Too Long! 16 characters maximum')
   .label('Name')
   .required('Name is required')
   .matches(/^[a-zA-Z\s]+?$/iu, 'Only Latin letters');
@@ -62,17 +62,17 @@ export const validationSchemaAdd = Yup.object({
   breed: breedValidation,
   title: Yup.string()
     .min(2, 'Too Short! 2 characters minimum')
-    .max(26, 'Too Long! 26 characters maximum')
+    .max(64, 'Too Long! 64 characters maximum')
     .required('Title is required'),
 });
 
 export const validationSchemaThirdAddMy = Yup.object({
-  comments: Yup.string()
-    // .min(2, 'Too Short! 2 characters minimum')
-    .max(120, 'Too Long! 120 characters maximum')
-    .label('Comment'),
-  // .required('Comments is required')
-  file: imageValidation,
+  comments: Yup.string(),
+  //   .min(2, 'Too Short! 2 characters minimum')
+  //   .max(120, 'Too Long! 120 characters maximum')
+  //   .label('Comment')
+  //   .required('Comments is required'),
+  // file: imageValidation,
 });
 
 export const validationSchemaThirdAddSell = Yup.object({
