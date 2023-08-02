@@ -50,7 +50,7 @@ const NewsPage = () => {
 
   useEffect(() => {
     setError(null);
-    getNews({ page, limit: 6, search: search })
+    getNews({ page, limit: 6, search: search || '' })
       .then(res => {
         const { quantityNews, news } = res;
         setNewsList(news);
