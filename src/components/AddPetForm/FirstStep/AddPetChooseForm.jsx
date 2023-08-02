@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { showToast } from '../toastify';
-
 import StatusIndicator from '../StatusIndicator/StatusIndicator';
 import ButtonRoutes from '../Buttons/ButtonRoutes';
 import { ButtonNext, ButtonPrev, ButtonChooseOption } from '../Buttons/Buttons';
@@ -24,11 +23,23 @@ const AddPetChooseForm = () => {
   const [activeButton, setActiveButton] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  console.log('isLoading', isLoading);
-
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({ file: '' });
+  console.log('formData', formData);
+  // console.log('isLoading', isLoading);
 
   const navigate = useNavigate();
+  // console.log('formData', formData);
+  // const [state, setState] = useState({
+  //   file: '',
+  //   comments: formData.comments || '',
+  //   location: formData.location || '',
+  //   sex: formData.sex || '',
+  //   price: formData.price || '',
+  //   active: null,
+  //   errors: {},
+  // });
+
+  // console.log('state', state);
 
   const handleChooseChange = (option, number) => {
     setFormData(prevData => ({ ...prevData, category: option }));
@@ -46,7 +57,7 @@ const AddPetChooseForm = () => {
 
   const handleNextData = stepData => {
     setIsLoading(true);
-    if (chooseOption && currentStatus < 3) {
+    if (chooseOption) {
       setStep(step + 1);
       setCurrentStatus(currentStatus + 1);
     }
@@ -54,6 +65,8 @@ const AddPetChooseForm = () => {
     setFormData(prevData => {
       return { ...prevData, ...stepData };
     });
+
+    // console.log('step', step);
   };
 
   const handlePrevStep = stepData => {
@@ -91,6 +104,9 @@ const AddPetChooseForm = () => {
       }
       setIsLoading(true);
     }
+    // console.log('formData', formData);
+    // dispatch(addPet(formData));
+
     switch (formData.category) {
       case 'your-pet':
         navigate('/user');
@@ -155,6 +171,7 @@ const AddPetChooseForm = () => {
         <FormContainer>
           <SecondRenderStep
             formData={formData}
+            setFormData={setFormData}
             chooseOption={chooseOption}
             currentStatus={currentStatus}
             handleNextData={handleNextData}
@@ -173,6 +190,9 @@ const AddPetChooseForm = () => {
                 handlePrevStep={handlePrevStep}
                 formData={formData}
                 chooseOption={chooseOption}
+                // state={state}
+                // setState={setState}
+                setFormData={setFormData}
               />
             </FormContainer>
           )}
@@ -180,6 +200,7 @@ const AddPetChooseForm = () => {
             <FormContainerThird>
               {chooseOption === 'sell' ? (
                 <ThirdFormSell
+                  setFormData={setFormData}
                   currentStatus={currentStatus}
                   handleNextData={handleSubmitForm}
                   handlePrevStep={handlePrevStep}
@@ -197,6 +218,7 @@ const AddPetChooseForm = () => {
                   handleNextData={handleSubmitForm}
                   handlePrevStep={handlePrevStep}
                   formData={formData}
+                  setFormData={setFormData}
                   chooseOption={chooseOption}
                 />
               )}

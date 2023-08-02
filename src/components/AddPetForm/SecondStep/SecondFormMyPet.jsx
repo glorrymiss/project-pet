@@ -15,8 +15,9 @@ import {
 const SecondFormMyPet = ({
   handleNextData,
   handlePrevStep,
-  formData,
   currentStatus,
+  // formDataState,
+  formData,
 }) => {
   const [formDataState, setFormDataState] = useState(formData);
   const [errors, setErrors] = useState({});
@@ -56,7 +57,7 @@ const SecondFormMyPet = ({
             type="text"
             id="name"
             name="name"
-            value={formDataState.name}
+            // value={formDataState.name}
             onChange={handleChange}
             placeholder="Type name pet"
           />
@@ -68,7 +69,7 @@ const SecondFormMyPet = ({
             type="date"
             id="birthday"
             name="birthday"
-            value={formDataState.birthday}
+            // value={formDataState.birthday}
             onChange={handleChange}
             required
             placeholder="dd.mm.yyyy"
@@ -81,7 +82,7 @@ const SecondFormMyPet = ({
             type="text"
             id="breed"
             name="breed"
-            value={formDataState.breed}
+            // value={formDataState.breed}
             onChange={handleChange}
             required
             placeholder="Type breed"

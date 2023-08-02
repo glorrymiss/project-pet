@@ -8,6 +8,7 @@ const SecondRenderStep = ({
   handlePrevStep,
   chooseOption,
   formData,
+  setFormData,
   currentStatus,
 }) => {
   const optionToTitleForm = {
@@ -27,6 +28,7 @@ const SecondRenderStep = ({
           handleNextData={handleNextData}
           handlePrevStep={handlePrevStep}
           formData={formData}
+          setFormData={setFormData}
         />
       )}
 

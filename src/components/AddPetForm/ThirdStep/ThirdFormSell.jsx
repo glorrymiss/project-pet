@@ -32,6 +32,8 @@ import {
   SexButtonsWrap,
   LabelAddedPhoto,
 } from './ThirdStep.styled';
+import { addNotices } from 'services';
+import { Notify } from 'notiflix';
 
 const ThirdFormSell = ({
   formData,
@@ -39,21 +41,30 @@ const ThirdFormSell = ({
   handleNextData,
   handlePrevStep,
   chooseOption,
+  setFormData,
 }) => {
   const [state, setState] = useState({
-    file: '',
-    comments: '',
-    location: formData.location || '',
-    sex: formData.sex || '',
-    price: formData.sex || '',
-    active: null,
+    // file: '',
+    // comments: '',
+    // location: formData.location || '',
+    // sex: formData.sex || '',
+    // price: formData.sex || '',
+    // active: null,
     errors: {},
   });
+
+  const { file, comments, location = '', price = '' } = formData;
 
   const [selectedValue, setSelectedValue] = React.useState('');
 
   const handleChange = event => {
+    console.log('event.target', event.target);
+
     setSelectedValue(event.target.value);
+    setFormData(prevState => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
   };
 
   const SexButton = ({ checked, onChange, value, label }) => {
@@ -82,11 +93,27 @@ const ThirdFormSell = ({
 
   const handleDone = () => {
     validationSchemaThirdAddSell
-      .validate(state, { abortEarly: false })
+      .validate(formData, { abortEarly: false })
       .then(() => {
-        handleNextData(state);
+        console.log('state', state);
+        addNotices(formData)
+          .then(res => {
+            // console.log('res', res);
+            handleNextData(state);
+          })
+          .catch(error => {
+            console.log('error', error.response);
+            Notify.failure(error.response.data.message, {
+              timeout: 4000,
+            });
+            setFormData(prevState => ({ ...prevState, file: null }));
+          });
+
+        // handleNextData(state);
       })
       .catch(err => {
+        console.log('err', err);
+
         const validationErrors = {};
         err.inner.forEach(error => {
           validationErrors[error.path] = error.message;
@@ -102,7 +129,7 @@ const ThirdFormSell = ({
       return;
     }
 
-    setState(prevState => ({ ...prevState, file }));
+    setFormData(prevState => ({ ...prevState, file }));
   };
 
   const handlePhotoClick = e => {
@@ -112,10 +139,10 @@ const ThirdFormSell = ({
     }
 
     const file = e.target.files[0];
-    setState(prevState => ({ ...prevState, file }));
+    setFormData(prevState => ({ ...prevState, file }));
   };
 
-  const { file, comments, location, errors, price } = state;
+  const { errors } = state;
 
   return (
     <div>
@@ -179,7 +206,7 @@ const ThirdFormSell = ({
               id="location"
               value={location}
               onChange={e =>
-                setState(prevState => ({
+                setFormData(prevState => ({
                   ...prevState,
                   location: e.target.value,
                 }))
@@ -196,7 +223,7 @@ const ThirdFormSell = ({
               id="price"
               value={price}
               onChange={e =>
-                setState(prevState => ({
+                setFormData(prevState => ({
                   ...prevState,
                   price: e.target.value,
                 }))
@@ -212,7 +239,7 @@ const ThirdFormSell = ({
               value={comments}
               placeholder="Type comment"
               onChange={e =>
-                setState(prevState => ({
+                setFormData(prevState => ({
                   ...prevState,
                   comments: e.target.value,
                 }))

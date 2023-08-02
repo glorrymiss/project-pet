@@ -31,6 +31,8 @@ import {
   SexButtonsWrap,
   LabelAddedPhoto,
 } from './ThirdStep.styled';
+import { addNotices } from 'services';
+import { Notify } from 'notiflix';
 
 const ThirdFormLost = ({
   formData,
@@ -39,12 +41,13 @@ const ThirdFormLost = ({
   handlePrevStep,
   chooseOption,
   handleSubmitForm,
+  setFormData,
 }) => {
   const [state, setState] = useState({
-    file: '',
-    comments: '',
-    location: formData.location || '',
-    sex: formData.sex || '',
+    // file: '',
+    // comments: '',
+    // location: formData.location || '',
+    // sex: formData.sex || '',
     active: null,
     errors: {},
   });
@@ -52,7 +55,13 @@ const ThirdFormLost = ({
   const [selectedValue, setSelectedValue] = React.useState('');
 
   const handleChange = event => {
+    console.log('event.target', event.target);
+
     setSelectedValue(event.target.value);
+    setFormData(prevState => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
   };
 
   const SexButton = ({ checked, onChange, value }) => {
@@ -80,11 +89,27 @@ const ThirdFormLost = ({
 
   const handleDone = () => {
     validationSchemaThirdAddLost
-      .validate(state, { abortEarly: false })
+      .validate(formData, { abortEarly: false })
       .then(() => {
-        handleNextData(state);
+        console.log('state', state);
+        addNotices(formData)
+          .then(res => {
+            // console.log('res', res);
+            handleNextData(state);
+          })
+          .catch(error => {
+            console.log('error', error.response);
+            Notify.failure(error.response.data.message, {
+              timeout: 4000,
+            });
+            setFormData(prevState => ({ ...prevState, file: null }));
+          });
+
+        // handleNextData(state);
       })
       .catch(err => {
+        console.log('err', err);
+
         const validationErrors = {};
         err.inner.forEach(error => {
           validationErrors[error.path] = error.message;
@@ -100,7 +125,7 @@ const ThirdFormLost = ({
       return;
     }
 
-    setState(prevState => ({ ...prevState, file }));
+    setFormData(prevState => ({ ...prevState, file }));
   };
 
   const handlePhotoClick = e => {
@@ -110,10 +135,10 @@ const ThirdFormLost = ({
     }
 
     const file = e.target.files[0];
-    setState(prevState => ({ ...prevState, file }));
+    setFormData(prevState => ({ ...prevState, file }));
   };
 
-  const { file, comments, location, errors } = state;
+  const { errors } = state;
 
   return (
     <div>
@@ -144,10 +169,13 @@ const ThirdFormLost = ({
                   style={{ display: 'none' }}
                 />
               </div>
-              {file ? (
+              {formData.file ? (
                 <>
                   <LabelAddedPhoto htmlFor="photo" onClick={handlePhotoClick}>
-                    <PreviewPhoto src={URL.createObjectURL(file)} alt="Pet" />
+                    <PreviewPhoto
+                      src={URL.createObjectURL(formData.file)}
+                      alt="Pet"
+                    />
                   </LabelAddedPhoto>
                 </>
               ) : (
@@ -169,9 +197,9 @@ const ThirdFormLost = ({
             <Input
               type="text"
               id="location"
-              value={location}
+              value={formData?.location || ''}
               onChange={e =>
-                setState(prevState => ({
+                setFormData(prevState => ({
                   ...prevState,
                   location: e.target.value,
                 }))
@@ -184,10 +212,10 @@ const ThirdFormLost = ({
             <LabelCommentsSell htmlFor="comments">Comments</LabelCommentsSell>
             <InputCommentsLost
               id="comments"
-              value={comments}
+              value={formData?.comments || ''}
               placeholder="Type comment"
               onChange={e =>
-                setState(prevState => ({
+                setFormData(prevState => ({
                   ...prevState,
                   comments: e.target.value,
                 }))
