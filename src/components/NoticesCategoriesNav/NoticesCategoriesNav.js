@@ -1,29 +1,15 @@
 import { useAuth } from 'hooks';
 import { BtnNavLink, ContainerNav } from './NoticesCategoriesNav.styled';
 
-const NoticesCategoriesNav = ({ notices }) => {
+const NoticesCategoriesNav = () => {
   const { isLoggedIn } = useAuth();
   return (
     <ContainerNav>
-      <BtnNavLink to="sell" state={{ notices }}>
-        sell
-      </BtnNavLink>
-      <BtnNavLink to="lost-found" state={{ notices }}>
-        lost/found
-      </BtnNavLink>
-      <BtnNavLink to="for-free" state={{ notices }}>
-        in good hands
-      </BtnNavLink>
-      {isLoggedIn && (
-        <BtnNavLink to="favorite" state={{ notices }}>
-          favorite ads
-        </BtnNavLink>
-      )}
-      {isLoggedIn && (
-        <BtnNavLink to="own" state={{ notices }}>
-          my ads
-        </BtnNavLink>
-      )}
+      <BtnNavLink to="sell">sell</BtnNavLink>
+      <BtnNavLink to="lost-found">lost/found</BtnNavLink>
+      <BtnNavLink to="for-free">in good hands</BtnNavLink>
+      {isLoggedIn && <BtnNavLink to="favorite">favorite ads</BtnNavLink>}
+      {isLoggedIn && <BtnNavLink to="own">my ads</BtnNavLink>}
     </ContainerNav>
   );
 };
