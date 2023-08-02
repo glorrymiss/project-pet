@@ -70,15 +70,6 @@ border: 1px solid
         : theme.color.btnDark};
 outline: none;
 color: #888;
-:focus{
-    border: 2px solid
-    ${({ theme, error, valid }) =>
-      error
-        ? theme.color.error
-        : valid
-        ? theme.color.indicator
-        : theme.color.btnDark};
-}
 @media screen and (min-width: 768px) {
     width:448px;
 }
