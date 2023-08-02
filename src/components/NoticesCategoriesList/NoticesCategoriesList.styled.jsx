@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
 export const NoticeContainer = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    gap:32px
-`
+  margin-top: 42px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  // flex-wrap: wrap;
+  width: 100%;
+  gap: 32px;
+`;
