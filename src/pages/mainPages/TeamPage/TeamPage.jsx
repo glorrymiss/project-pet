@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { TeamPageStyled, AddInfo } from './TeamPage.styled';
 import { Carousel } from 'react-3dm-carousel';
 import { Background } from 'components/Hero/Hero.styled';
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai';
+import Loader from '../../../components/Loader/Loader';
 /*
 /**|======================================
 /**| images
@@ -21,11 +22,17 @@ import OlhaObushchak from '../../../images/Teamimages/OlhaObushchak.png';
 import YuliiaZherebetska from '../../../images/Teamimages/YuliiaZherebetska.png';
 
 const TeamPage = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
+
   const onTitleClickHandler = card => {
     console.log('clicked card', card);
-    // Check if the card has a valid routeTo URL
     if (card.routeTo) {
-      // Redirect to the specified URL
       window.location.href = card.routeTo;
     }
   };
@@ -122,46 +129,60 @@ const TeamPage = () => {
     },
   ];
 
-  // const tagsToRender = data[selectedCardIdx]?.tags || [];
-
   return (
-    <Background>
-      <TeamPageStyled>
-        <Carousel
-          cardsData={data}
-          setSelectedCardIdx={setSelectedCardIdx}
-          rotation={true}
-          rotationDuration={33}
-          tilt={false}
-          freeRoam={false}
-          freeRoamLowerBounds={-180}
-          freeRoamUpperBounds={0}
-          onTitleClickHandler={onTitleClickHandler}
-          startingAnimation={true}
-          rotateOnScroll={true}
-          drag={true}
-          style={{ transform: 'scale(0.5)' }}
-        />
-        <AddInfo>
-          {data[selectedCardIdx].tags.map(tag => (
-            <p key={tag}>
-              <a href={data[selectedCardIdx].tags}>
-                <AiFillLinkedin />
-                &nbsp; {tag}
-              </a>
-            </p>
-          ))}
-          {data[selectedCardIdx].routeTo.map(routeTo => (
-            <p key={routeTo}>
-              <a href={data[selectedCardIdx].routeTo}>
-                <AiFillGithub />
-                &nbsp; {routeTo}
-              </a>
-            </p>
-          ))}
-        </AddInfo>
-      </TeamPageStyled>
-    </Background>
+    <>
+      {isLoading ? (
+        <Background>
+          <Loader />
+        </Background>
+      ) : (
+        <Background>
+          <TeamPageStyled>
+            <Carousel
+              cardsData={data}
+              setSelectedCardIdx={setSelectedCardIdx}
+              rotation={true}
+              rotationDuration={33}
+              tilt={false}
+              freeRoam={false}
+              freeRoamLowerBounds={-180}
+              freeRoamUpperBounds={0}
+              onTitleClickHandler={onTitleClickHandler}
+              startingAnimation={true}
+              rotateOnScroll={true}
+              drag={true}
+              style={{ transform: 'scale(0.5)' }}
+            />
+            <AddInfo>
+              {data[selectedCardIdx].tags.map(tag => (
+                <p key={tag}>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={data[selectedCardIdx].tags}
+                  >
+                    <AiFillLinkedin />
+                    &nbsp; {tag}
+                  </a>
+                </p>
+              ))}
+              {data[selectedCardIdx].routeTo.map(routeTo => (
+                <p key={routeTo}>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={data[selectedCardIdx].routeTo}
+                  >
+                    <AiFillGithub />
+                    &nbsp; {routeTo}
+                  </a>
+                </p>
+              ))}
+            </AddInfo>
+          </TeamPageStyled>
+        </Background>
+      )}
+    </>
   );
 };
 

@@ -71,6 +71,7 @@ export const TextTitle = styled.label`
 `;
 export const Text = styled.input`
   width: 190px;
+  outline: none;
   padding: 4px 12px;
   font-size: 12px;
   font-style: normal;
@@ -88,6 +89,9 @@ export const Text = styled.input`
   }
   @media screen and (min-width: 1280px) {
     width: 255px;
+  }
+  &:focus {
+    border: 2px solid ${p => p.theme.color.btnDark};
   }
 `;
 export const StyledBtnSave = styled.button`
@@ -150,6 +154,7 @@ export const StyledLabel = styled.label`
   }
   &:hover {
     color: ${({ theme }) => theme.color.gradient};
+    box-shadow: ${({ theme }) => theme.boxShadowHover};
   }
 `;
 export const WrapFileOk = styled.div`
@@ -171,16 +176,15 @@ export const WrapFileOk = styled.div`
 `;
 export const StyledBtnFile = styled.button`
   cursor: pointer;
-  background-color: ${p => p.theme.color.background};
   padding: 0;
   width: 24px;
   height: 24px;
   margin: 0 8px;
   border: none;
   fill: inherit;
+  box-shadow: ${({ theme }) => theme.boxShadow};
   &:hover {
-    border: 2px solid ${({ theme }) => theme.color.background};
-    border-radius: 50%;
+    box-shadow: ${({ theme }) => theme.boxShadowHover};
   }
 `;
 

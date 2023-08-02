@@ -67,20 +67,18 @@ export const validationSchemaAdd = Yup.object({
 });
 
 export const validationSchemaThirdAddMy = Yup.object({
-  comments: Yup.string(),
-  //   .min(2, 'Too Short! 2 characters minimum')
-  //   .max(120, 'Too Long! 120 characters maximum')
-  //   .label('Comment')
-  //   .required('Comments is required'),
-  // file: imageValidation,
+  comments: Yup.string()
+    .max(120, 'Too Long! 120 characters maximum')
+    .label('Comment'),
+  // imageURL: imageValidation,
+  file: imageValidation,
+
 });
 
 export const validationSchemaThirdAddSell = Yup.object({
   comments: Yup.string()
-    // .min(2, 'Too Short! 2 characters minimum')
     .max(120, 'Too Long! 120 characters maximum')
     .label('Comment'),
-  // .required('Comments is required')
   file: imageValidation,
   location: locationValidation,
   // sex: sexValidation,
@@ -93,10 +91,8 @@ export const validationSchemaThirdAddSell = Yup.object({
 
 export const validationSchemaThirdAddLost = Yup.object({
   comments: Yup.string()
-    // .min(2, 'Too Short! 2 characters minimum')
     .max(120, 'Too Long! 120 characters maximum')
     .label('Comment'),
-  // .required('Comments is required')
   file: imageValidation,
   location: locationValidation,
   // sex: sexValidation,

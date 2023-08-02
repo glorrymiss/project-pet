@@ -49,6 +49,7 @@ export const HeroTitle = styled.h1`
 `;
 
 export const Background = styled.div`
+  position: relative;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
