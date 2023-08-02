@@ -20,6 +20,7 @@ import notfound_md_1x from 'images/NotFoundImages/notfound-md@1x-1.webp';
 import notfound_md_2x from 'images/NotFoundImages/notfound-md@2x-2.webp';
 import notfound_lg_1x from 'images/NotFoundImages/notfound-lg@1x-1.webp';
 import notfound_lg_2x from 'images/NotFoundImages/notfound-lg@2x-2.webp';
+import { useSearchParams } from 'react-router-dom';
 
 const getNews = async ({ page, limit, search = '' }) => {
   const res = await axios.get(
@@ -34,7 +35,12 @@ const NewsPage = () => {
   const [newsList, setNewsList] = useState([]);
   const [quantityNews, setQuantityNews] = useState(null);
   const [page, setPage] = useState(1);
-  const [searchValue, setSearchValue] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const search = searchParams.get('search');
+
+  if (null) {
+    setSearchParams(null);
+  } //////////////
 
   useEffect(() => {
     if (newsList.length === 0) {
@@ -44,14 +50,14 @@ const NewsPage = () => {
 
   useEffect(() => {
     setError(null);
-    getNews({ page, limit: 6, search: searchValue })
+    getNews({ page, limit: 6, search: search })
       .then(res => {
         const { quantityNews, news } = res;
         setNewsList(news);
         setQuantityNews(quantityNews);
       })
       .catch(error => setError(error));
-  }, [page, searchValue]);
+  }, [page, search]);
 
   return (
     <FlexBox>
@@ -61,7 +67,7 @@ const NewsPage = () => {
 
       <Title color={theme[currentTheme].color.secondary}>News</Title>
 
-      <FormSearch setSearchValue={setSearchValue} />
+      <FormSearch />
 
       {error && (
         <>
