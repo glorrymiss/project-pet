@@ -11,6 +11,7 @@ import { Helmet } from 'react-helmet';
 import { Navigate, Outlet, useParams } from 'react-router-dom';
 import {
   BtnAddPet,
+  BtnAddPetMob,
   FiltersContainer,
   FlexBox,
   WrapperFilter,
@@ -97,6 +98,9 @@ const NoticesPage = () => {
           <BtnAddPet to="/add-pet">
             Add Pet <IconPlus fill={theme[currentTheme].color.bodyColor} />
           </BtnAddPet>
+          <BtnAddPetMob to="/add-pet">
+            Add Pet <IconPlus fill={theme[currentTheme].color.bodyColor} />
+          </BtnAddPetMob>
         </WrapperFilter>
       </FiltersContainer>
 

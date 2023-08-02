@@ -1,18 +1,34 @@
 import styled from 'styled-components';
 
-export const NotiveItem = styled.div`
-  flex: 1 0 calc(25% - 32px);
+export const NoticeItem = styled.div`
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  height: 456px;
+  width: 288px;
+
+  @media screen and (min-width: 768px) {
+    height: 400px;
+  }
 `;
 
 export const Header = styled.div`
   background: url('${props => props.img.photoUrl}');
   background-repeat: no-repeat;
   background-size: 288px 288px;
+  background-position: center;
+  background-size: cover;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 200px;
   padding: 10px;
+  gap: 16px;
+  height: 288px;
+
+  @media screen and (min-width: 768px) {
+    height: 100%;
+  }
 `;
 
 export const Top = styled.div`
@@ -58,6 +74,11 @@ export const BtnStyled = styled.button`
   color: ${props => props.color ?? '#fff'};
   letter-spacing: 0.04em;
   padding: 8px 24px;
+  &:hover {
+    background: ${({ theme }) => theme.color.gradient};
+    color: ${({ theme }) => theme.color.background};
+    cursor: pointer;
+  }
 `;
 
 export const BtnStyledWithIcon = styled(BtnStyled)`
@@ -68,12 +89,23 @@ export const BtnStyledWithIcon = styled(BtnStyled)`
 `;
 
 export const InformationItem = styled.div`
+  font-family: Manrope;
+  font-size: 12px;
+  font-weight: 600;
   align-items: center;
   background: #cce4fb;
   border-radius: 16px;
   display: flex;
   gap: 4px;
-  padding: 2px 10px;
+  padding: 2px 5px;
+  width: 70px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  > span {
+    flex: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
 `;
 
 export const Footer = styled.div`
@@ -105,13 +137,13 @@ export const ModalPhoto = styled.div`
 `;
 
 export const ModalStatus = styled.span`
-    background: #CCE4FB;
-    border-radius: 0 12px 12px 0;
-    color: #111
-    left: 0;
-    padding: 12px;
-    position: absolute;
-    top: 16px;
+  background: #cce4fb;
+  border-radius: 0 12px 12px 0;
+  color: #111;
+  left: 0;
+  padding: 12px;
+  position: absolute;
+  top: 16px;
 `;
 
 export const ModalInfo = styled.div`

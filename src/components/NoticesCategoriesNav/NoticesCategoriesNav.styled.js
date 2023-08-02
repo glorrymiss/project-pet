@@ -3,8 +3,9 @@ import styled from 'styled-components';
 
 export const ContainerNav = styled.nav`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  column-gap: 12px;
+  gap: 12px;
 `;
 
 export const BtnNavLink = styled(NavLink)`
