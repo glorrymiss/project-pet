@@ -25,7 +25,7 @@ const AddPetChooseForm = () => {
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({ file: '' });
   console.log('formData', formData);
-  // console.log('isLoading', isLoading);
+  console.log('isLoading', isLoading);
 
   const navigate = useNavigate();
   // console.log('formData', formData);
