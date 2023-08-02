@@ -43,7 +43,7 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
   const addToFavorite = id => {
     addFavoriteNotices(id)
       .then(res => {
-        console.log('res', res);
+        // console.log('res', res);
         if (res.status === 204) {
           Notify.success('Notices ad removed from favorites', {
             timeout: 4000,
@@ -59,18 +59,18 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
         setIsOpen(false);
       })
       .catch(err => {
-        console.log('err', err);
+        // console.log('err', err);
         setError(err);
         Notify.failure(err.response.data.message, {
           timeout: 4000,
         });
       });
 
-    console.log(`id is ${id}`);
+    // console.log(`id is ${id}`);
   };
 
   const goToContact = () => {
-    console.log(`go to ${animal.contactLink}`);
+    // console.log(`go to ${animal.contactLink}`);
   };
 
   const acceptColor = '#54ADFF';
