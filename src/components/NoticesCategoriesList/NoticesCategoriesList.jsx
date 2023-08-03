@@ -22,7 +22,6 @@ const NoticesCategoriesList = () => {
   const gender = searchParams.get('gender') || '';
   const age = searchParams.get('age') || '';
   const [error, seterror] = useState(null);
-  // console.log('gender', gender);
 
   if (2 === 1) {
     console.log('error', error);
