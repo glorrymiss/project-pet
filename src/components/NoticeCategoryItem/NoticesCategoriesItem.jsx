@@ -37,17 +37,20 @@ import {
 import { Notify } from 'notiflix';
 import { useDispatch } from 'react-redux';
 import { updateUserInfo } from 'redux/auth/operations';
+import ModalAttention from 'components/ModalAttention/ModalAttention';
 
 const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
   const [error, setError] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const { isLoggedIn, user } = useAuth();
   const dispatch = useDispatch();
+	const [isModalAtention, setModalAtention] = useState(false);
 
   if (2 === 1) {
     removeNotices('id');
     console.log('error', error);
-  }
+	}
+	const isCloseModal = () => setModalAtention(false);
 
   const handleClose = () => setIsOpen(false);
 
@@ -89,7 +92,7 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
             timeout: 4000,
           });
         }
-        setIsOpen(false);
+      //   setIsOpen(false);
       })
       .catch(err => {
         setError(err);
@@ -111,9 +114,16 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
                 ? 'In good hands'
                 : animal.category}
             </Status>
-            <Favorite onClick={() => addToFavorite(animal._id)}>
+            <Favorite
+              onClick={
+                isLoggedIn
+                  ? () => addToFavorite(animal._id)
+                  : () => setModalAtention(true)
+              }
+            >
               {ListIcons(null, 'IconHeart')}
             </Favorite>
+            {isModalAtention && <ModalAttention close={isCloseModal} />}
           </Top>
           {isLoggedIn && (
             <DeletePet onClick={() => removeNotices(animal._id)}>

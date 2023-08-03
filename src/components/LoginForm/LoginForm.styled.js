@@ -96,6 +96,7 @@ color: #888;
 `
 
 export const Button = styled.button`
+cursor: pointer;
 display: flex;
 width: 256px;
 height: 48px;

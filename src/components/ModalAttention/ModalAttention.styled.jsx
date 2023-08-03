@@ -83,11 +83,11 @@ export const StyledNavLink = styled(NavLink)`
   letter-spacing: 0.64px;
 
   &:hover {
-    box-shadow: ${({ theme }) => theme.boxShadow};
+    box-shadow: ${({ theme }) => theme.boxShadowHover};
   }
 
   @media screen and (min-width: 768px) {
-     width: 165px; 
+    width: 165px;
   }
 
   @media screen and (min-width: 1280px) {
