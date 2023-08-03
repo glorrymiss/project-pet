@@ -24,6 +24,11 @@ export const Avatar = styled.div`
     border-radius: 40px;
   }
 `;
+export const Foto = styled.img`
+  object-fit: cover;
+  height: 100%;
+`;
+
 export const WrapInfo = styled.div`
   position: relative;
   width: 100%;
