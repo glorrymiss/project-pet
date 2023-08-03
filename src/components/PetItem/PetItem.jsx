@@ -7,6 +7,7 @@ import {
   WrapInfo,
   TextTitle,
   Text,
+  Foto,
 } from './PetItem.styled';
 import ModalDeletePet from 'components/ModalDeletePet/ModalDeletePet';
 import dateFormat from 'dateformat';
@@ -25,7 +26,7 @@ const PetItem = ({pet}) => {
     <>
       <WrapFoto>
         <Avatar>
-          <img
+          <Foto
             src={!pet.photoUrl ? photoPetsDefault : pet.photoUrl}
             alt="Avatar"
           />
