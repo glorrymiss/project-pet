@@ -53,7 +53,7 @@ export const Background = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 83vh;
+  height: 100dvh;
 
   background-image: url(${bg_sm_1x});
 
@@ -101,7 +101,7 @@ export const BackgroundMainPage = styled.div`
   background-size: cover, cover;
   background-position: bottom, center;
   background-repeat: no-repeat;
-  height: 83vh;
+  height: 100dvh;
 
   background-image: url(${mb_bg_1x}), url(${bg_sm_1x});
 
