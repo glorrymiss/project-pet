@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAuth } from 'hooks';
 
 import {
   Header,
@@ -22,6 +23,8 @@ import {
   ModalButtons,
   BtnStyledWithIcon,
   ModalStatus,
+  DeletePet,
+  Wrapper,
 } from './NoticesCategoriesItem.styled';
 import Modal from 'shared/modal/NoticeItemModal/NoticeItemModal';
 import ListIcons from 'images/icons/ListIcons';
@@ -36,7 +39,7 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
   if (2 === 1) {
     removeNotices('id');
     console.log('error', error);
-  } //це щоб лінтер не ругався
+  }
 
   const handleClose = () => setIsOpen(false);
 
@@ -65,18 +68,28 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
   };
 
   const acceptColor = '#54ADFF';
+  const { isLoggedIn } = useAuth();
 
   return (
     <NoticeItem>
       <Header img={animal}>
-        <Top>
-          <Status>
-            {animal.category === 'for-free' ? 'In good hands' : animal.category}
-          </Status>
-          <Favorite onClick={() => addToFavorite(animal._id)}>
-            {ListIcons(null, 'IconHeart')}
-          </Favorite>
-        </Top>
+        <Wrapper>
+          <Top>
+            <Status>
+              {animal.category === 'for-free'
+                ? 'In good hands'
+                : animal.category}
+            </Status>
+            <Favorite onClick={() => addToFavorite(animal._id)}>
+              {ListIcons(null, 'IconHeart')}
+            </Favorite>
+          </Top>
+          {isLoggedIn && (
+            <DeletePet onClick={() => removeNotices(animal._id)}>
+              {ListIcons(null, 'IconTrash2')}
+            </DeletePet>
+          )}
+        </Wrapper>
         <Information>
           <InformationItem>
             {ListIcons(null, 'IconLocation1')}
