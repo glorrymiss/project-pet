@@ -13,6 +13,7 @@ import {
   ItemText,
   ItemCheckbox,
 } from './FilterLists.styled';
+import { useSearchParams } from 'react-router-dom';
 
 const ageInformationData = [
   { text: '3-12 m', filter: '3m-12m' },
@@ -27,9 +28,26 @@ const FilterLists = ({
   toggleMenu,
   setGenderFilter,
   setAgeFilter,
-  age,
-  gender,
 }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const newSetSearchParams = (key, value) => {
+    setSearchParams(pref => {
+      const Query = {};
+      for (const [key, value] of pref.entries()) {
+        Query[key] = value;
+      }
+
+      return {
+        ...Query,
+        [key]: value,
+      };
+    });
+  };
+
+  const gender = searchParams.get('gender') || '';
+  const age = searchParams.get('age') || '';
+
   return (
     <>
       <List>
@@ -44,9 +62,13 @@ const FilterLists = ({
               <ItemCheckbox
                 type="checkbox"
                 checked={age === item.filter}
-                onChange={() =>
-                  setAgeFilter(age === item.filter ? '' : item.filter)
-                }
+                onChange={() => {
+                  newSetSearchParams(
+                    'age',
+                    age === item.filter ? '' : item.filter
+                  );
+                  setAgeFilter(age === item.filter ? '' : item.filter);
+                }}
               />
               {age === item.filter && (
                 <CheckedIcon isShown={isAgeMenuOpen}>
@@ -76,7 +98,10 @@ const FilterLists = ({
               <ItemCheckbox
                 type="checkbox"
                 checked={gender === item}
-                onChange={() => setGenderFilter(gender === item ? '' : item)}
+                onChange={() => {
+                  newSetSearchParams('gender', gender === item ? '' : item);
+                  setGenderFilter(gender === item ? '' : item);
+                }}
               />
               {gender === item && (
                 <CheckedIcon isShown={isGenderMenuOpen}>

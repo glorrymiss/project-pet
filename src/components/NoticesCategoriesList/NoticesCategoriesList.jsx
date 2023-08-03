@@ -19,7 +19,10 @@ const NoticesCategoriesList = () => {
   const [quantityNotices, setQuantityNotices] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') || '';
+  const gender = searchParams.get('gender') || '';
+  const age = searchParams.get('age') || '';
   const [error, seterror] = useState(null);
+  // console.log('gender', gender);
 
   if (2 === 1) {
     console.log('error', error);
@@ -33,6 +36,8 @@ const NoticesCategoriesList = () => {
         limit: 12,
         query: query,
         categoryName,
+        age,
+        gender,
       })
         .then(res => {
           const { totalNotices, notices } = res.data;
@@ -50,7 +55,13 @@ const NoticesCategoriesList = () => {
           seterror(err);
         });
     } else if (categoryName === 'own') {
-      getUserNotices({ page, limit: 12, query: query, categoryName })
+      getUserNotices({
+        page,
+        limit: 12,
+        query: query,
+        age,
+        gender,
+      })
         .then(res => {
           const { totalNotices, notices } = res.data;
           Notify.success(`Found ${totalNotices} notices`, {
@@ -67,9 +78,7 @@ const NoticesCategoriesList = () => {
           seterror(err);
         });
     } else {
-      console.log('query', query);
-
-      getNotices({ page, limit: 12, query: query, categoryName })
+      getNotices({ page, limit: 12, query: query, categoryName, age, gender })
         .then(res => {
           const { totalNotices, notices } = res.data;
           Notify.success(`Found ${totalNotices} notices`, {
@@ -85,7 +94,7 @@ const NoticesCategoriesList = () => {
           setNoticesList([]);
         });
     }
-  }, [page, query, categoryName]);
+  }, [page, query, categoryName, age, gender]);
 
   return (
     <>

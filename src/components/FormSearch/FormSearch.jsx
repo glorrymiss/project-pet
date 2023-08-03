@@ -8,8 +8,22 @@ const FormSearch = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
   const { currentTheme } = useAuth();
+
+  const newSetSearchParams = (key, value) => {
+    setSearchParams(pref => {
+      const Query = {};
+      for (const [key, value] of pref.entries()) {
+        Query[key] = value;
+      }
+
+      return {
+        ...Query,
+        [key]: value,
+      };
+    });
+  };
   const handleChange = e => {
-    setSearchParams({ query: e.target.value });
+    newSetSearchParams('query', e.target.value);
   };
 
   return (

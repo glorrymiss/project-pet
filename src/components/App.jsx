@@ -10,6 +10,8 @@ import theme from './theme';
 
 import SharedLayout from './SharedLayout/SharedLayout';
 import NoticesCategoriesList from './NoticesCategoriesList/NoticesCategoriesList';
+import { Background } from './Hero/Hero.styled';
+import Loader from './Loader/Loader';
 
 const RegisterPage = lazy(() => import('../pages/authPages/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/authPages/LoginPage'));
@@ -34,6 +36,13 @@ export const App = () => {
   const [currentTheme, setCurrentTheme] = useState('light');
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+  }, []);
 
   useEffect(() => {
     setCurrentTheme('light');
@@ -43,8 +52,10 @@ export const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return isRefreshing ? (
-    <b>Refreshing user...</b>
+  return isRefreshing || isLoading ? (
+    <Background>
+      <Loader />
+    </Background>
   ) : (
     <ThemeProvider theme={theme[currentTheme]}>
       <Routes>
