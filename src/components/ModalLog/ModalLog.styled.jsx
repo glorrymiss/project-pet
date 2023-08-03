@@ -2,8 +2,11 @@ import Btn from 'components/Btn/Btn';
 import styled from 'styled-components';
 
 export const StyledSection = styled.div`
-padding: 63px 0 32px;
-width: 100%;
+  padding: 39px 0 46px;
+  width: 100%;
+  @media screen and (min-width: 768px) {
+    padding: 70px 0 90px;
+  }
 `;
 export const Title = styled.h2`
   margin: 0 auto 44px;

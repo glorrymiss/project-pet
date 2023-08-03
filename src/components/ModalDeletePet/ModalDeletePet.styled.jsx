@@ -5,7 +5,6 @@ export const StyledSection = styled.div`
   padding: 22px 0 46px;
   width: 100%;
   @media screen and (min-width: 768px) {
-    padding: 22px 0;
   }
 `;
 export const Title = styled.h2`

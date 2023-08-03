@@ -25,7 +25,7 @@ import { fetchPetDel } from 'redux/pets/operation';
         <WrapText>
           <Text>
             Are you sure you want to delete
-            <Span> `${name}` </Span>
+            <Span> "{name}" </Span>
           </Text>
           <Text>You can`t undo this action.</Text>
         </WrapText>
