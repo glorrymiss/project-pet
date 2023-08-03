@@ -32,7 +32,7 @@ import { Notify } from 'notiflix';
 const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
   const [error, setError] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  // console.log('animal', animal);
+  console.log('animal', animal);
 
   if (2 === 1) {
     console.log('error', error);
@@ -108,7 +108,11 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
       <Modal isOpen={isOpen} handleClose={handleClose}>
         <ModalHeader>
           <ModalPhoto>
-            <ModalStatus>{animal.status}</ModalStatus>
+            <ModalStatus>
+              {animal.category === 'for-free'
+                ? 'In good hands'
+                : animal.category}
+            </ModalStatus>
             <img src={animal.photoUrl} alt={animal.name || 'animal'} />
           </ModalPhoto>
           <ModalInfo>
@@ -131,12 +135,12 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
 
               <ModalPersonalityField>
                 <ModalPersonalityKey>Location:</ModalPersonalityKey>
-                <ModalPersonalityValue>{animal.location}</ModalPersonalityValue>
+                <ModalPersonalityValue>{animal.place}</ModalPersonalityValue>
               </ModalPersonalityField>
 
               <ModalPersonalityField>
                 <ModalPersonalityKey>The sex:</ModalPersonalityKey>
-                <ModalPersonalityValue>{animal.gender}</ModalPersonalityValue>
+                <ModalPersonalityValue>{animal.sex}</ModalPersonalityValue>
               </ModalPersonalityField>
 
               <ModalPersonalityField>
@@ -151,7 +155,7 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
               <ModalPersonalityField>
                 <ModalPersonalityKey>Phone:</ModalPersonalityKey>
                 <ModalPersonalityValue>
-                  <ModalPersonalityLink href={`mailto:${animal.phone}`}>
+                  <ModalPersonalityLink href={`tel:${animal.phone}`}>
                     {animal.phone}
                   </ModalPersonalityLink>
                 </ModalPersonalityValue>
@@ -171,9 +175,7 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
           >
             Add to {ListIcons('#fff', 'IconHeart')}
           </BtnStyledWithIcon>
-          <BtnStyled onClick={() => goToContact(true)} color={acceptColor}>
-            Contact
-          </BtnStyled>
+          <BtnStyled href={`tel:${animal.phone}`}>Contact</BtnStyled>
         </ModalButtons>
       </Modal>
     </NotiveItem>
