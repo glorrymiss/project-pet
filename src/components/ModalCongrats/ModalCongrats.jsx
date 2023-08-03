@@ -4,7 +4,7 @@ import { StyledSection, Text, Title, StyledBtn } from './ModalCongtats.styled';
 
 const ModalCongrats = ({ closeModal }) => {
   return (
-    <Modal closeModal={closeModal}>
+    <Modal onClick={closeModal}>
       <StyledSection>
         <Title>Congrats!</Title>
         <Text>Your registration is success</Text>

@@ -25,7 +25,7 @@ export const ModalContainer = styled.div`
   z-index: 2000;
   @media screen and (min-width: 768px) {
     width: 580px;
-    height: 326px;
+    /* height: 326px; */
   }
 `;
 export const BtnStyled = styled(Btn)`
