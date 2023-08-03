@@ -11,12 +11,6 @@ import theme from './theme';
 import SharedLayout from './SharedLayout/SharedLayout';
 import NoticesCategoriesList from './NoticesCategoriesList/NoticesCategoriesList';
 
-// import MainPage from 'pages/mainPages/MainPage';
-// import NoticesPage from 'pages/mainPages/NoticesPage';
-// import OurFriendsPage from 'pages/mainPages/OurFriendsPage';
-// import UserPage from 'pages/mainPages/UserPage';
-// import AddPetPage from 'pages/AddPetPage';
-
 const RegisterPage = lazy(() => import('../pages/authPages/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/authPages/LoginPage'));
 const NewsPage = lazy(() => import('../pages/mainPages/NewsPage/NewsPage'));
@@ -60,13 +54,7 @@ export const App = () => {
           <Route path="/news" element={<NewsPage />} />
           <Route path="/notices" element={<NoticesPage />}>
             <Route index element={<NoticesCategoriesList />} />
-            {/* <Route path="sell" element={<NoticesCategoriesList />} /> */}
             <Route path=":categoryName" element={<NoticesCategoriesList />} />
-            {/* <Route path="sell" element={<div>sell</div>} />
-            <Route path="lost-found" element={<div>lost/found</div>} />
-            <Route path="for-free" element={<div>in good hands</div>} />
-            <Route path="favorite" element={<div>favorite ads</div>} />
-            <Route path="own" element={<div>my ads</div>} /> */}
           </Route>
           <Route path="/friends" element={<OurFriendsPage />} />
           <Route path="*" element={<NotFoundPage />} />
@@ -94,7 +82,6 @@ export const App = () => {
                 redirectBack="/user"
                 component={<UserPage />}
               />
-              // <PrivateRoute redirectTo="/login" component={<UserPage />} />
             }
           />
           <Route

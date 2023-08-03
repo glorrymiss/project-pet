@@ -2,66 +2,86 @@ import React, { useEffect, useState } from 'react';
 import NoticesCategoriesItem from '../NoticeCategoryItem/NoticesCategoriesItem';
 import { NoticeContainer } from './NoticesCategoriesList.styled';
 import { useParams } from 'react-router';
-import { getFavoriteNotices, getNotices } from 'services';
+import { getFavoriteNotices, getNotices, getUserNotices } from 'services';
 import { Pagination } from 'components/Pagination/Pagination';
 import { useSearchParams } from 'react-router-dom';
+import { Notify } from 'notiflix';
 
 const NoticesCategoriesList = () => {
   const { categoryName } = useParams();
   const [noticesList, setNoticesList] = useState([]);
   const [page, setPage] = useState(1);
+
   const [quantityNotices, setQuantityNotices] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
-  const search = searchParams.get('search');
+  const query = searchParams.get('query') || '';
   const [error, seterror] = useState(null);
 
   if (2 === 1) {
     console.log('error', error);
-
     setSearchParams(null);
   } //це щоб лінтер не ругався
 
-  // console.log('categoryName', categoryName);
-
   useEffect(() => {
     if (categoryName === 'favorite') {
-      // console.log('page', page);
-
       getFavoriteNotices({
         page,
         limit: 12,
-        search: search,
+        query: query,
         categoryName,
       })
         .then(res => {
-          // console.log('res', res);
-
-          if (res.status === 204) return;
-
-          const { totalHits, favorite } = res.data;
-          setNoticesList(favorite);
-          setQuantityNotices(totalHits);
+          const { totalNotices, notices } = res.data;
+          Notify.success(`Found ${totalNotices} notices`, {
+            timeout: 4000,
+          });
+          setNoticesList(notices);
+          setQuantityNotices(totalNotices);
         })
         .catch(err => {
-          // console.log('err', err);
-
+          Notify.failure(err.response.data.message, {
+            timeout: 4000,
+          });
           setNoticesList([]);
           seterror(err);
         });
     } else if (categoryName === 'own') {
-      // getUserNotices({ page, limit: 12, search: search, categoryName })
-      //   .then(res => console.log('res', res))
-      //   .catch(err => console.log('err', err));
-    } else {
-      getNotices({ page, limit: 12, search: search, categoryName }).then(
-        res => {
-          const { totalHits, notices } = res.data;
+      getUserNotices({ page, limit: 12, query: query, categoryName })
+        .then(res => {
+          const { totalNotices, notices } = res.data;
+          Notify.success(`Found ${totalNotices} notices`, {
+            timeout: 4000,
+          });
           setNoticesList(notices);
-          setQuantityNotices(totalHits);
-        }
-      );
+          setQuantityNotices(totalNotices);
+        })
+        .catch(err => {
+          Notify.failure(err.response.data.message, {
+            timeout: 4000,
+          });
+          setNoticesList([]);
+          seterror(err);
+        });
+    } else {
+      console.log('query', query);
+
+      getNotices({ page, limit: 12, query: query, categoryName })
+        .then(res => {
+          const { totalNotices, notices } = res.data;
+          Notify.success(`Found ${totalNotices} notices`, {
+            timeout: 4000,
+          });
+          setNoticesList(notices);
+          setQuantityNotices(totalNotices);
+        })
+        .catch(err => {
+          Notify.failure(err.response.data.message, {
+            timeout: 4000,
+          });
+          setNoticesList([]);
+        });
     }
-  }, [page, search, categoryName]);
+  }, [page, query, categoryName]);
 
   return (
     <>
