@@ -4,12 +4,8 @@ export const NoticeItem = styled.div`
   margin-bottom: 24px;
   display: flex;
   flex-direction: column;
-  height: 456px;
+  height: 400px;
   width: 288px;
-
-  @media screen and (min-width: 768px) {
-    height: 400px;
-  }
 `;
 
 export const Header = styled.div`
@@ -27,6 +23,9 @@ export const Header = styled.div`
   height: 288px;
 
   @media screen and (min-width: 768px) {
+    height: 288px;
+  }
+  @media screen and (min-width: 1280px) {
     height: 100%;
   }
 `;
@@ -60,6 +59,13 @@ export const Favorite = styled.button`
   border-radius: 50%;
   display: flex;
   padding: 8px;
+
+  &:hover {
+    cursor: pointer;
+    > svg {
+      fill: #54adff;
+    }
+  }
 `;
 
 export const Information = styled.div`
@@ -74,6 +80,7 @@ export const BtnStyled = styled.button`
   color: ${props => props.color ?? '#fff'};
   letter-spacing: 0.04em;
   padding: 8px 24px;
+
   &:hover {
     background: ${({ theme }) => theme.color.gradient};
     color: ${({ theme }) => theme.color.background};
