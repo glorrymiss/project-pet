@@ -3,11 +3,11 @@ import axios from 'axios';
 export const getNotices = async ({
   page,
   limit,
-  search = '',
+  query = '',
   categoryName = 'sell',
 }) => {
   const res = await axios.get(
-    `/api/notices/category/${categoryName}?&search=${search}&page=${page}&limit=${limit}`
+    `/api/notices/category/${categoryName}?&query=${query}&page=${page}&limit=${limit}`
   );
 
   return res;

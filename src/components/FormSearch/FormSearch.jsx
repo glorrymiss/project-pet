@@ -6,17 +6,17 @@ import { useSearchParams } from 'react-router-dom';
 
 const FormSearch = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const search = searchParams.get('search');
+  const query = searchParams.get('query');
   const { currentTheme } = useAuth();
   const handleChange = e => {
-    setSearchParams({ search: e.target.value });
+    setSearchParams({ query: e.target.value });
   };
 
   return (
     <Wrap>
       <StuledInput
         placeholder="Search"
-        value={search || ''}
+        value={query || ''}
         onChange={e => handleChange(e)}
       />
       <IconWrap>
