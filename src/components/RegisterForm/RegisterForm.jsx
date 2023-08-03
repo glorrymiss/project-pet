@@ -30,8 +30,8 @@ const registerSchema = Yup.object().shape({
     .min(8, 'Password must be at least 8 characters')
     .max(16, 'Password must be at most 16 characters')
     .matches(
-      /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([0-9a-zA-Z]{6,})*$/,
-      'Password must contain at least one uppercase letter, one lowercase letter, and one digit'
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character'
     ),
   confirmPassword: Yup.string()
     .required('Confirm password is required')
