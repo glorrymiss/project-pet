@@ -174,6 +174,10 @@ export const RegisterBtn = styled.button`
 
   color: #ffffff;
 
+  :hover {
+    background: ${({ theme }) => theme.color.gradient};
+  }
+
   @media screen and (max-width: 767px) {
     margin-top: 41px;
     margin-bottom: 24px;
