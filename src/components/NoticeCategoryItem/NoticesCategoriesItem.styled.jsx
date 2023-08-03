@@ -73,7 +73,7 @@ export const Information = styled.div`
   justify-content: space-around;
 `;
 
-export const BtnStyled = styled.button`
+export const BtnStyled = styled.a`
   background: ${props => props.bg ?? 'transparent'};
   border: 2px solid #54adff;
   border-radius: 40px;

@@ -4,6 +4,7 @@ const { addPet } = require('./addPet');
 const { getFavoriteNotices } = require('./getFavoriteNotices');
 const { getNotices } = require('./getNotices');
 const { getUserNotices } = require('./getUserNotises');
+const { removeNotices } = require('./removeNotices');
 
 module.exports = {
   addPet,
@@ -12,4 +13,5 @@ module.exports = {
   getFavoriteNotices,
   addFavoriteNotices,
   getUserNotices,
+  removeNotices,
 };
