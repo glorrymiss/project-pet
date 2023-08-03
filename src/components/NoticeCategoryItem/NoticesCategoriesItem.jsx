@@ -26,15 +26,15 @@ import {
 import Modal from 'shared/modal/NoticeItemModal/NoticeItemModal';
 import ListIcons from 'images/icons/ListIcons';
 import { Description } from 'components/NewsList/NewsList.styled';
-import { addFavoriteNotices } from 'services/notices';
+import { addFavoriteNotices, removeNotices } from 'services/notices';
 import { Notify } from 'notiflix';
 
 const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
   const [error, setError] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  console.log('animal', animal);
 
   if (2 === 1) {
+    removeNotices('id');
     console.log('error', error);
   } //це щоб лінтер не ругався
 
@@ -62,10 +62,6 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
           timeout: 4000,
         });
       });
-  };
-
-  const goToContact = () => {
-    console.log(`go to ${animal.contactLink}`);
   };
 
   const acceptColor = '#54ADFF';
