@@ -45,7 +45,7 @@ const NewsPage = () => {
     setError(null);
     getNews({ page, limit: 6, query: query || '' })
       .then(res => {
-        const { quantityNews, news } = res;
+        const { totalNews: quantityNews, news } = res;
         setNewsList(news);
         setQuantityNews(quantityNews);
       })
