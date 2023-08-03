@@ -29,12 +29,20 @@ import {
 import Modal from 'shared/modal/NoticeItemModal/NoticeItemModal';
 import ListIcons from 'images/icons/ListIcons';
 import { Description } from 'components/NewsList/NewsList.styled';
-import { addFavoriteNotices, removeNotices } from 'services/notices';
+import {
+  addFavoriteNotices,
+  removeNotices,
+  removeNoticesToFavorite,
+} from 'services/notices';
 import { Notify } from 'notiflix';
+import { useDispatch } from 'react-redux';
+import { updateUserInfo } from 'redux/auth/operations';
 
 const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
   const [error, setError] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const { isLoggedIn, user } = useAuth();
+  const dispatch = useDispatch();
 
   if (2 === 1) {
     removeNotices('id');
@@ -44,14 +52,38 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
   const handleClose = () => setIsOpen(false);
 
   const addToFavorite = id => {
-    addFavoriteNotices(id)
-      .then(res => {
-        if (res.status === 204) {
-          Notify.success('Notices ad removed from favorites', {
+    if (!isLoggedIn) {
+      console.log('Запускажм модалку не авторизований');
+      return;
+    }
+
+    if (user?.favorite?.includes(animal._id)) {
+      console.log('user', user.favorite);
+      dispatch(
+        updateUserInfo({ favorite: user.favorite.filter(item => item !== id) })
+      );
+      removeNoticesToFavorite(id)
+        .then(res => {
+          if (res.status === 204) {
+            Notify.success('Notices ad removed from favorites', {
+              timeout: 4000,
+            });
+            setNoticesList(pref => pref.filter(item => item._id !== id));
+          }
+          setIsOpen(false);
+        })
+        .catch(err => {
+          setError(err);
+          Notify.failure(err.response.data.message, {
             timeout: 4000,
           });
-          setNoticesList(pref => pref.filter(item => item._id !== id));
-        }
+        });
+      return;
+    }
+
+    console.log('Добавляємо в феворіт');
+    addFavoriteNotices(id)
+      .then(res => {
         if (res.status === 200) {
           Notify.success('The notices has been added to favorites', {
             timeout: 4000,
@@ -68,7 +100,6 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
   };
 
   const acceptColor = '#54ADFF';
-  const { isLoggedIn } = useAuth();
 
   return (
     <NoticeItem>
