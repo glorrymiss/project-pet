@@ -173,6 +173,7 @@ export const RegisterBtn = styled.button`
   letter-spacing: 0.04em;
 
   color: #ffffff;
+  cursor: pointer;
 
   :hover {
     background: ${({ theme }) => theme.color.gradient};
