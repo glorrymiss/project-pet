@@ -191,3 +191,34 @@ export const ModalButtons = styled.div`
   gap: 20px;
   margin-left: auto;
 `;
+
+export const DeletePet = styled.button`
+  display: block;
+  fill: transparent;
+  stroke: #54adff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  align-self: flex-end;
+
+  background: #cce4fb;
+  border: transparent;
+  border-radius: 50%;
+
+  cursor: pointer;
+  &:hover {
+    background: #54adff;
+    > svg {
+      fill: white;
+    }
+  }
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  cursor: pointer;
+`;
