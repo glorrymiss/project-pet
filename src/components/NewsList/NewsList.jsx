@@ -41,7 +41,9 @@ const NewsList = ({ newsList }) => {
               </Description>
               <Wrapper>
                 <Data>{dateFormat(news.date, 'dd/mm/yyyy')}</Data>
-                <ReadMore href={news.url}>Read more</ReadMore>
+                <ReadMore target="_blank" href={news.url}>
+                  Read more
+                </ReadMore>
               </Wrapper>
             </CardInfoContainer>
           </Card>
