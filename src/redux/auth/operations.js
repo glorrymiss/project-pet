@@ -97,11 +97,15 @@ export const refreshUser = createAsyncThunk(
 );
 export const updateUserInfo = createAsyncThunk(
   'auth/update',
-  async ({ avatar, name, email, phone, city, birthday }, thunkAPI) => {
-    console.log('avatar', avatar);
+  async (
+    { avatar, name, email, phone, city, birthday, favorite },
+    thunkAPI
+  ) => {
+    console.log('favorite', favorite);
 
     try {
       const formData = new FormData();
+      favorite && formData.append('favorite', favorite);
       avatar && formData.append('avatar', avatar);
       name && formData.append('name', name);
       email && formData.append('email', email);
@@ -115,8 +119,6 @@ export const updateUserInfo = createAsyncThunk(
         { headers: { 'content-type': 'multipart/form-data' } }
       );
       return response.data;
-      // const user = { avatar, name, email, phone, city, birthday };
-      // return user;
     } catch (error) {
       return thunkAPI.rejectWithValue({
         status: error.response.status,
