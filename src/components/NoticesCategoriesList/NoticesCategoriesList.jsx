@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import NoticesCategoriesItem from '../NoticeCategoryItem/NoticesCategoriesItem';
 import { NoticeContainer } from './NoticesCategoriesList.styled';
 import { useParams } from 'react-router';
-import { getFavoriteNotices, getNotices, getUserNotices } from 'services';
+import {
+  getFavoriteNotices,
+  getNotices,
+  getUserNotices,
+} from 'services/notices';
 import { Pagination } from 'components/Pagination/Pagination';
 import { useSearchParams } from 'react-router-dom';
 import { Notify } from 'notiflix';

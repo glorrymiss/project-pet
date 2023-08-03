@@ -32,7 +32,7 @@ import {
   SexButtonsWrap,
   LabelAddedPhoto,
 } from './ThirdStep.styled';
-import { addNotices } from 'services';
+import { addNotices } from 'services/notices';
 import { Notify } from 'notiflix';
 
 const ThirdFormSell = ({

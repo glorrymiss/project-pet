@@ -26,7 +26,7 @@ import {
 import Modal from 'shared/modal/NoticeItemModal/NoticeItemModal';
 import ListIcons from 'images/icons/ListIcons';
 import { Description } from 'components/NewsList/NewsList.styled';
-import { addFavoriteNotices } from 'services';
+import { addFavoriteNotices } from 'services/notices';
 import { Notify } from 'notiflix';
 
 const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
