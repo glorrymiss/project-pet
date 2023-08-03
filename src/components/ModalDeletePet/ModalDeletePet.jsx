@@ -12,20 +12,20 @@ import {
 import { useDispatch } from 'react-redux';
 import { fetchPetDel } from 'redux/pets/operation';
 
- const ModalDeletePet = ({  id , close}) => {;
+ const ModalDeletePet = ({  id , name, close}) => {;
   const dispatch = useDispatch();
   const hendleDeletePet = () => {
     dispatch(fetchPetDel(id));
     close();
   };
   return (
-    <Modal onClick={()=>close()}>
+    <Modal onClick={close}>
       <StyledSection>
         <Title>Delete adverstiment?</Title>
         <WrapText>
           <Text>
             Are you sure you want to delete
-            <Span> “Cute dog looking for a home”? </Span>
+            <Span> `${name}` </Span>
           </Text>
           <Text>You can`t undo this action.</Text>
         </WrapText>
