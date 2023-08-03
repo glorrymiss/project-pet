@@ -20,7 +20,7 @@ import {
 // import { useDispatch } from 'react-redux';
 // import axios from 'axios';
 import { Notify } from 'notiflix';
-import { addPet } from 'services';
+import { addPet } from 'services/notices';
 // import { addPet } from 'redux/pets/operation';
 
 const ThirdFormMyPet = ({
