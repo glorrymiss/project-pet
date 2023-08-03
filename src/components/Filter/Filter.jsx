@@ -5,13 +5,15 @@ import theme from 'components/theme';
 import { useAuth, useWindowSize } from 'hooks';
 import FilterLists from 'components/FilterList/FilterLists';
 import ReferenceFilter from 'components/FilterReference/FilterReference';
+import { useSearchParams } from 'react-router-dom';
 
 const Filter = () => {
   const [isListOpen, setIsListOpen] = useState(false);
   const [isAgeListOpen, setAgeIsListOpen] = useState(false);
   const [isGenderListOpen, setGenderIsListOpen] = useState(false);
-  const [gender, setGender] = useState('');
-  const [age, setAge] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [gender, setGender] = useState(searchParams.get('gender') || '');
+  const [age, setAge] = useState(searchParams.get('age') || '');
   const [screenWidth] = useWindowSize();
   const { currentTheme } = useAuth();
 
@@ -34,6 +36,20 @@ const Filter = () => {
     return () =>
       document.body.removeEventListener('click', clickBeyondFilterList);
   }, []);
+
+  const newSetSearchParams = (key, value) => {
+    setSearchParams(pref => {
+      const Query = {};
+      for (const [key, value] of pref.entries()) {
+        Query[key] = value;
+      }
+
+      return {
+        ...Query,
+        [key]: value,
+      };
+    });
+  };
 
   const filtersToggle = e => {
     if (e.currentTarget.id === 'Age') {
@@ -74,11 +90,20 @@ const Filter = () => {
       {age !== '' && (
         <ReferenceFilter
           text={ageBtnText(age)}
-          clickHandler={() => setAge('')}
+          clickHandler={() => {
+            newSetSearchParams('age', '');
+            setAge('');
+          }}
         />
       )}
       {gender !== '' && (
-        <ReferenceFilter text={gender} clickHandler={() => setGender('')} />
+        <ReferenceFilter
+          text={gender}
+          clickHandler={() => {
+            newSetSearchParams('gender', '');
+            setGender('');
+          }}
+        />
       )}
       <Btn
         id="filtersBtn"

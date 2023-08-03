@@ -43,7 +43,6 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
   const addToFavorite = id => {
     addFavoriteNotices(id)
       .then(res => {
-        // console.log('res', res);
         if (res.status === 204) {
           Notify.success('Notices ad removed from favorites', {
             timeout: 4000,
@@ -54,50 +53,30 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
           Notify.success('The notices has been added to favorites', {
             timeout: 4000,
           });
-          // setNoticesList(pref => pref.filter(item => item._id !== id));
         }
         setIsOpen(false);
       })
       .catch(err => {
-        // console.log('err', err);
         setError(err);
         Notify.failure(err.response.data.message, {
           timeout: 4000,
         });
       });
-
-    // console.log(`id is ${id}`);
   };
 
   const goToContact = () => {
-    // console.log(`go to ${animal.contactLink}`);
+    console.log(`go to ${animal.contactLink}`);
   };
 
   const acceptColor = '#54ADFF';
-
-  // TODO it must be replaced with a backend data
-  // const mockData = {
-  //   status: 'In good hands',
-  //   breed: 'Pomeranian',
-  //   title:
-  //     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eveniet!',
-  //   name: 'Rich',
-  //   birthday: '21.09.2020',
-  //   location: 'Lviv',
-  //   gender: 'male',
-  //   email: 'user@gmail.com',
-  //   phone: '+380971234567',
-  //   comments: `Comments: Rich would be the perfect addition
-  //   to an active family that loves to play and go on walks.
-  //    I bet he would love having a doggy playmate too!`,
-  //   contactLink: 'https://google.com',
-  // };
 
   return (
     <NotiveItem>
       <Header img={animal}>
         <Top>
-          <Status>{animal.status}</Status>
+          <Status>
+            {animal.category === 'for-free' ? 'In good hands' : animal.category}
+          </Status>
           <Favorite onClick={() => addToFavorite(animal._id)}>
             {ListIcons(null, 'IconHeart')}
           </Favorite>
