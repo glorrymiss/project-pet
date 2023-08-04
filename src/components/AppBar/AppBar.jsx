@@ -15,7 +15,7 @@ import IconMenuHamburger from 'images/icons/IconMenuHamburger';
 import theme from 'components/theme';
 import IconCrossBig from 'images/icons/IconCross';
 import ModalLog from 'components/ModalLog/ModalLog';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const AppBar = ({ isOpenMenu, setIsOpenMenu }) => {
   const [isModal, setIsModal] = useState(false);
@@ -24,6 +24,14 @@ export const AppBar = ({ isOpenMenu, setIsOpenMenu }) => {
   const toggleMenu = () => {
     setIsOpenMenu(!isOpenMenu);
   };
+
+  useEffect(() => {
+    // console.log('isModal', isModal);
+
+    isOpenMenu
+      ? (document.body.style.overflow = 'hidden')
+      : (document.body.style.overflow = 'scroll');
+  }, [isOpenMenu]);
 
   const isOpenModal = () => {
     setIsModal(true);

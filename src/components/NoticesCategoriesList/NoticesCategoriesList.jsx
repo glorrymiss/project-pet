@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import NoticesCategoriesItem from '../NoticeCategoryItem/NoticesCategoriesItem';
 import { NoticeContainer } from './NoticesCategoriesList.styled';
 import { useParams } from 'react-router';
+import Title from 'components/Title/Title';
 import {
   getFavoriteNotices,
   getNotices,
@@ -11,6 +12,19 @@ import { Pagination } from 'components/Pagination/Pagination';
 import { useSearchParams } from 'react-router-dom';
 import { Notify } from 'notiflix';
 import { useAuth } from 'hooks';
+import { Cat } from 'components/NotFound/NotFound.styled';
+
+/*
+/**|======================================
+/**| import images
+/**|======================================
+*/
+import notfound_sm_1x from 'images/NotFoundImages/notfound-sm@1x-1.webp';
+import notfound_sm_2x from 'images/NotFoundImages/notfound-sm@2x-2.webp';
+import notfound_md_1x from 'images/NotFoundImages/notfound-md@1x-1.webp';
+import notfound_md_2x from 'images/NotFoundImages/notfound-md@2x-2.webp';
+import notfound_lg_1x from 'images/NotFoundImages/notfound-lg@1x-1.webp';
+import notfound_lg_2x from 'images/NotFoundImages/notfound-lg@2x-2.webp';
 
 const NoticesCategoriesList = () => {
   const { categoryName } = useParams();
@@ -21,12 +35,13 @@ const NoticesCategoriesList = () => {
   const [quantityNotices, setQuantityNotices] = useState(0);
   const [noticesList, setNoticesList] = useState([]);
 
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') || '';
   const gender = searchParams.get('gender') || '';
   const age = searchParams.get('age') || '';
+  const page = searchParams.get('page');
 
   if (2 === 1) {
     console.log('error', error);
@@ -99,7 +114,33 @@ const NoticesCategoriesList = () => {
     }
   }, [page, query, categoryName, age, gender]);
 
-  return (
+  const newSetSearchParams = (key, value) => {
+    setSearchParams(pref => {
+      const Query = {};
+      for (const [key, value] of pref.entries()) {
+        Query[key] = value;
+      }
+
+      return {
+        ...Query,
+        [key]: value,
+      };
+    });
+  };
+
+  return noticesList.length === 0 ||
+    (categoryName === 'favorite' && user.favorite.length === 0) ? (
+    <>
+      <Title>Ooops! Nothing found :(</Title>
+
+      <Cat
+        srcSet={`${notfound_sm_1x} 280w, ${notfound_sm_2x} 560w, ${notfound_md_1x} 704w, ${notfound_md_2x} 1408w, ${notfound_lg_1x} 822w, ${notfound_lg_2x} 1644w`}
+        sizes="(min-width: 1280px) 1644px, (min-width: 1280px) 822px, (min-width: 768px) 1408px, (min-width: 768px) 704px,  100vw"
+        alt="not found page"
+        loading="lazy"
+      />
+    </>
+  ) : (
     <>
       <NoticeContainer>
         {noticesList.map(item => {
@@ -114,17 +155,19 @@ const NoticesCategoriesList = () => {
             <NoticesCategoriesItem
               key={item._id}
               animal={item}
-              setNoticesList={setNoticesList}
+              setNoticesList={e => setNoticesList(e)}
             />
           );
         })}
       </NoticeContainer>
-      <Pagination
-        currentPage={page}
-        totalPages={Math.ceil(quantityNotices / 12)}
-        onPageChange={setPage}
-        paginationLength={12} // Adjust this number as per your preference
-      />
+      {quantityNotices > 12 && (
+        <Pagination
+          currentPage={page}
+          totalPages={Math.ceil(quantityNotices / 12)}
+          onPageChange={e => newSetSearchParams('page', e)}
+          paginationLength={12} // Adjust this number as per your preference
+        />
+      )}
     </>
   );
 };

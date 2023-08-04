@@ -5,7 +5,7 @@ const IconCross = props => (
     width={24}
     height={24}
     fill="none"
-    {...props}
+    // {...props}
   >
     <path
       stroke={props.fill || '#54ADFF'}
