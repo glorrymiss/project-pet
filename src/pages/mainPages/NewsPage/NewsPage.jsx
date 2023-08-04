@@ -27,13 +27,9 @@ const NewsPage = () => {
   const { currentTheme } = useAuth();
   const [newsList, setNewsList] = useState([]);
   const [quantityNews, setQuantityNews] = useState(null);
-  const [page, setPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
-
-  if (null) {
-    setSearchParams(null);
-  }
+  const page = searchParams.get('page');
 
   useEffect(() => {
     if (newsList.length === 0) {
@@ -51,6 +47,20 @@ const NewsPage = () => {
       })
       .catch(error => setError(error));
   }, [page, query]);
+
+  const newSetSearchParams = (key, value) => {
+    setSearchParams(pref => {
+      const Query = {};
+      for (const [key, value] of pref.entries()) {
+        Query[key] = value;
+      }
+
+      return {
+        ...Query,
+        [key]: value,
+      };
+    });
+  };
 
   return (
     <FlexBox>
@@ -81,7 +91,7 @@ const NewsPage = () => {
         <Pagination
           currentPage={page}
           totalPages={Math.ceil(quantityNews / 6)}
-          onPageChange={setPage}
+          onPageChange={e => newSetSearchParams('page', e)}
           paginationLength={6} // Adjust this number as per your preference
         />
       )}

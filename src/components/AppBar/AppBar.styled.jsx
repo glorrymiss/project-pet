@@ -106,9 +106,10 @@ export const ButtonMenu = styled.button`
   width: 24px;
   height: 24px;
 
-  // &:hover {
-  //   box-shadow: ${({ theme }) => theme.boxShadow};
-  // }
+  &:hover {
+    box-shadow: ${({ theme }) => theme.boxShadow};
+    cursor: pointer;
+  }
 
   // background: ${({ theme }) => theme.color.gradient};
   // box-shadow: ${({ theme }) => theme.boxShadowHover};
@@ -147,7 +148,7 @@ export const StyleBtn = styled(Btn)`
         : `
     display: none;
     `};
-}
+  }
 
   @media screen and (min-width: 1280px) {
     display: flex;

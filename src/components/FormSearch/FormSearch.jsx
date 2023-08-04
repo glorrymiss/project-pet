@@ -3,6 +3,7 @@ import IconSearch from '../../images/icons/IconSearch';
 import theme from 'components/theme';
 import { useAuth } from 'hooks';
 import { useSearchParams } from 'react-router-dom';
+import IconCross from 'images/icons/IconCross';
 
 const FormSearch = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -33,9 +34,15 @@ const FormSearch = () => {
         value={query || ''}
         onChange={e => handleChange(e)}
       />
-      <IconWrap>
-        <IconSearch fill={theme[currentTheme].color.btnDark} />
-      </IconWrap>
+      {query ? (
+        <IconWrap onClick={() => newSetSearchParams('query', '')}>
+          <IconCross fill={theme[currentTheme].color.btnDark} />
+        </IconWrap>
+      ) : (
+        <IconWrap onClick={() => newSetSearchParams('query', '')}>
+          <IconSearch fill={theme[currentTheme].color.btnDark} />
+        </IconWrap>
+      )}
     </Wrap>
   );
 };

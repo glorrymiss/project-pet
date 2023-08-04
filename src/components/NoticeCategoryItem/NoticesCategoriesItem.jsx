@@ -33,8 +33,10 @@ import { removeNotices } from 'services/notices';
 import { useDispatch } from 'react-redux';
 import { addUserFavorite, removeUserFavorite } from 'redux/auth/operations';
 import ModalAttention from 'components/ModalAttention/ModalAttention';
+import { useParams } from 'react-router-dom';
 
 const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
+  const { categoryName } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const [isModalAtention, setModalAtention] = useState(false);
   const { isLoggedIn, user } = useAuth();
@@ -49,7 +51,14 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
       dispatch(addUserFavorite({ noticeId: animal._id }));
       return;
     }
+
     dispatch(removeUserFavorite({ noticeId: animal._id }));
+    console.log('user', user);
+
+    if (user?.favorite?.length === 0) {
+      console.log('QQQ');
+      setNoticesList([]);
+    }
   };
 
   const acceptColor = '#54ADFF';
@@ -76,8 +85,15 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
             </Favorite>
             {isModalAtention && <ModalAttention close={isCloseModal} />}
           </Top>
-          {isLoggedIn && (
-            <DeletePet onClick={() => removeNotices(animal._id)}>
+          {isLoggedIn && categoryName === 'own' && (
+            <DeletePet
+              onClick={() => {
+                setNoticesList(pref =>
+                  pref.filter(item => item._id !== animal._id)
+                );
+                removeNotices(animal._id);
+              }}
+            >
               {ListIcons(null, 'IconTrash2')}
             </DeletePet>
           )}
