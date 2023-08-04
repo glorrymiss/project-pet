@@ -42,15 +42,23 @@ import ModalAttention from 'components/ModalAttention/ModalAttention';
 const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
   const [error, setError] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [isModalAtention, setModalAtention] = useState(false);
   const { isLoggedIn, user } = useAuth();
   const dispatch = useDispatch();
-	const [isModalAtention, setModalAtention] = useState(false);
+
+  // console.log('user', user);
+  console.log('user?.favorite?', user?.favorite);
+  Ядобавив;
+  // console.log(
+  //   'user?.favorite?.includes(animal._id)',
+  //   user?.favorite?.includes(animal._id)
+  // );
 
   if (2 === 1) {
     removeNotices('id');
     console.log('error', error);
-	}
-	const isCloseModal = () => setModalAtention(false);
+  }
+  const isCloseModal = () => setModalAtention(false);
 
   const handleClose = () => setIsOpen(false);
 
@@ -61,7 +69,7 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
     }
 
     if (user?.favorite?.includes(animal._id)) {
-      console.log('user', user.favorite);
+      console.log('Видаляємо в феворіт');
       dispatch(
         updateUserInfo({ favorite: user.favorite.filter(item => item !== id) })
       );
@@ -92,7 +100,7 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
             timeout: 4000,
           });
         }
-      //   setIsOpen(false);
+        //   setIsOpen(false);
       })
       .catch(err => {
         setError(err);
