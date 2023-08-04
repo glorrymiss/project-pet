@@ -109,7 +109,7 @@ export const StyledBtnSave = styled.button`
   box-sizing: border-box;
   border-radius: 20px;
   border: 1px solid ${p => p.theme.color.btnDark};
-  background-color: ${p => p.theme.color.btnDark};
+  background-color: ${p => p.theme.color.btnDark} !important;
   color: ${p => p.theme.color.background};
   @media screen and (min-width: 768px) {
     width: 230px;
@@ -120,7 +120,7 @@ export const StyledBtnSave = styled.button`
     width: 255px;
   }
   &:hover {
-    background: ${({ theme }) => theme.color.gradient};
+    background: ${({ theme }) => theme.color.gradient} !important;
     color: ${({ theme }) => theme.color.background};
   }
 `;

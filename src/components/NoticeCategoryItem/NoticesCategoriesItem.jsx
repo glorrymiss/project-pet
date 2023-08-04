@@ -110,14 +110,16 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
         </BtnStyled>
       </Footer>
 
-      {isOpen &&  <ModalNotices  handleClose={handleClose} animal={animal} addToFavorite={addToFavorite}></ModalNotices>}
-   </NoticeItem>
+      {isOpen && (
+        <ModalNotices
+          handleClose={handleClose}
+          animal={animal}
+          addToFavorite={addToFavorite}
+          setModalAtention={setModalAtention}
+        ></ModalNotices>
+      )}
+    </NoticeItem>
   );
 };
 
 export default NoticesCategoriesItem;
-
-
-
-
-

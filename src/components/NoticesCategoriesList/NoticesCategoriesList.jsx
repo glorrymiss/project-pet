@@ -128,7 +128,7 @@ const NoticesCategoriesList = () => {
     });
   };
 
-  return noticesList.length === 0 ||
+  return noticesList?.length === 0 ||
     (categoryName === 'favorite' && user.favorite.length === 0) ? (
     <>
       <Title>Ooops! Nothing found :(</Title>
