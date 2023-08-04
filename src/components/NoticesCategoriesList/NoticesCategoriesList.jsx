@@ -10,18 +10,23 @@ import {
 import { Pagination } from 'components/Pagination/Pagination';
 import { useSearchParams } from 'react-router-dom';
 import { Notify } from 'notiflix';
+import { useAuth } from 'hooks';
 
 const NoticesCategoriesList = () => {
   const { categoryName } = useParams();
-  const [noticesList, setNoticesList] = useState([]);
-  const [page, setPage] = useState(1);
+  const { user } = useAuth();
+
+  const [error, seterror] = useState(null);
 
   const [quantityNotices, setQuantityNotices] = useState(0);
+  const [noticesList, setNoticesList] = useState([]);
+
+  const [page, setPage] = useState(1);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') || '';
   const gender = searchParams.get('gender') || '';
   const age = searchParams.get('age') || '';
-  const [error, seterror] = useState(null);
 
   if (2 === 1) {
     console.log('error', error);
@@ -87,9 +92,8 @@ const NoticesCategoriesList = () => {
           setQuantityNotices(totalNotices);
         })
         .catch(err => {
-          Notify.failure(err.response.data.message, {
-            timeout: 4000,
-          });
+          console.log('err', err);
+
           setNoticesList([]);
         });
     }
@@ -99,6 +103,13 @@ const NoticesCategoriesList = () => {
     <>
       <NoticeContainer>
         {noticesList.map(item => {
+          if (
+            categoryName === 'favorite' &&
+            user?.favorite &&
+            !user?.favorite?.includes(item._id)
+          ) {
+            return <></>;
+          }
           return (
             <NoticesCategoriesItem
               key={item._id}

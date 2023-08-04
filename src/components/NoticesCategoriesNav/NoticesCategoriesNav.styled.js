@@ -35,6 +35,10 @@ export const BtnNavLink = styled(NavLink)`
     color: ${({ theme }) => theme.color.background};
   }
 
+  &:hover {
+    box-shadow: ${({ theme }) => theme.boxShadow};
+  }
+
   //   &:hover {
   //     background: ${({ theme }) => theme.color.gradient};
   //     color: ${({ theme }) => theme.color.background};
