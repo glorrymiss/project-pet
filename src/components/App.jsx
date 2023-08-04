@@ -103,7 +103,6 @@ export const App = () => {
                 redirectBack="/add-pet"
                 component={<AddPetPage />}
               />
-              // <PrivateRoute redirectTo="/login" component={<UserPage />} />
             }
           />
         </Route>

@@ -108,7 +108,7 @@ const NoticesCategoriesList = () => {
             user?.favorite &&
             !user?.favorite?.includes(item._id)
           ) {
-            return;
+            return <></>;
           }
           return (
             <NoticesCategoriesItem
