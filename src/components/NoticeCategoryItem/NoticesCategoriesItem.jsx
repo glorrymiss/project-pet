@@ -21,6 +21,7 @@ import { useDispatch } from 'react-redux';
 import { addUserFavorite, removeUserFavorite } from 'redux/auth/operations';
 import ModalAttention from 'components/ModalAttention/ModalAttention';
 import { useParams } from 'react-router-dom';
+import ModalNotices from 'components/ModalNotices/ModalNotices';
 
 const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
   const { categoryName } = useParams();
