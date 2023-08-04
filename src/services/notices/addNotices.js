@@ -25,7 +25,6 @@ export const addNotices = async pet => {
   price && formData.append('price', price);
   sex && formData.append('sex', sex);
   title && formData.append('title', title);
-  category && formData.append('category', category);
   breed && formData.append('breed', breed);
 
   let response = {};
