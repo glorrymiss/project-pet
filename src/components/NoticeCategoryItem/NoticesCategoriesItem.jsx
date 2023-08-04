@@ -29,14 +29,9 @@ import {
 import Modal from 'shared/modal/NoticeItemModal/NoticeItemModal';
 import ListIcons from 'images/icons/ListIcons';
 import { Description } from 'components/NewsList/NewsList.styled';
-import {
-  addFavoriteNotices,
-  removeNotices,
-  removeNoticesToFavorite,
-} from 'services/notices';
-import { Notify } from 'notiflix';
+import { removeNotices } from 'services/notices';
 import { useDispatch } from 'react-redux';
-import { updateUserInfo } from 'redux/auth/operations';
+import { addUserFavorite, removeUserFavorite } from 'redux/auth/operations';
 import ModalAttention from 'components/ModalAttention/ModalAttention';
 
 const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
@@ -45,13 +40,6 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
   const [isModalAtention, setModalAtention] = useState(false);
   const { isLoggedIn, user } = useAuth();
   const dispatch = useDispatch();
-
-  // console.log('user', user);
-  console.log('user?.favorite?', user?.favorite);
-  // console.log(
-  //   'user?.favorite?.includes(animal._id)',
-  //   user?.favorite?.includes(animal._id)
-  // );
 
   if (2 === 1) {
     removeNotices('id');
@@ -62,51 +50,11 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
   const handleClose = () => setIsOpen(false);
 
   const addToFavorite = id => {
-    if (!isLoggedIn) {
-      console.log('Запускажм модалку не авторизований');
+    if (!user?.favorite?.includes(animal._id)) {
+      dispatch(addUserFavorite({ noticeId: animal._id }));
       return;
     }
-
-    if (user?.favorite?.includes(animal._id)) {
-      console.log('Видаляємо в феворіт');
-      dispatch(
-        updateUserInfo({ favorite: user.favorite.filter(item => item !== id) })
-      );
-      removeNoticesToFavorite(id)
-        .then(res => {
-          if (res.status === 204) {
-            Notify.success('Notices ad removed from favorites', {
-              timeout: 4000,
-            });
-            setNoticesList(pref => pref.filter(item => item._id !== id));
-          }
-          setIsOpen(false);
-        })
-        .catch(err => {
-          setError(err);
-          Notify.failure(err.response.data.message, {
-            timeout: 4000,
-          });
-        });
-      return;
-    }
-
-    console.log('Добавляємо в феворіт');
-    addFavoriteNotices(id)
-      .then(res => {
-        if (res.status === 200) {
-          Notify.success('The notices has been added to favorites', {
-            timeout: 4000,
-          });
-        }
-        //   setIsOpen(false);
-      })
-      .catch(err => {
-        setError(err);
-        Notify.failure(err.response.data.message, {
-          timeout: 4000,
-        });
-      });
+    dispatch(removeUserFavorite({ noticeId: animal._id }));
   };
 
   const acceptColor = '#54ADFF';
@@ -122,6 +70,7 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
                 : animal.category}
             </Status>
             <Favorite
+              isFavorite={user?.favorite?.includes(animal._id)}
               onClick={
                 isLoggedIn
                   ? () => addToFavorite(animal._id)

@@ -63,6 +63,7 @@ export const BtnAddPet = styled(NavLink)`
   &:hover {
     background: ${({ theme }) => theme.color.gradient};
     color: ${({ theme }) => theme.color.background};
+    box-shadow: ${({ theme }) => theme.boxShadow};
   }
 `;
 export const BtnAddPetMob = styled(NavLink)`

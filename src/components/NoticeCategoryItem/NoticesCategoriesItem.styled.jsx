@@ -60,10 +60,15 @@ export const Favorite = styled.button`
   display: flex;
   padding: 8px;
 
+  > svg {
+    ${({ isFavorite }) => isFavorite && 'fill: #54adff'};
+  }
+
   &:hover {
     cursor: pointer;
+    background: ${({ isFavorite }) => (isFavorite ? '#54adff' : '#cce4fb')};
     > svg {
-      fill: #54adff;
+      fill: ${({ isFavorite }) => (isFavorite ? 'white' : '#54adff')};
     }
   }
 `;

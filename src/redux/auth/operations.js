@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://project-be7v6c5s.onrender.com';
+axios.defaults.baseURL = 'http://Localhost:4000';
 
 // Utility to add JWT
 const setAuthHeader = token => {
@@ -118,6 +118,36 @@ export const updateUserInfo = createAsyncThunk(
         formData,
         { headers: { 'content-type': 'multipart/form-data' } }
       );
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue({
+        status: error.response.status,
+        message: error.response.data.message,
+      });
+    }
+  }
+);
+
+export const addUserFavorite = createAsyncThunk(
+  'auth/update/addFavorite',
+  async ({ noticeId }, thunkAPI) => {
+    try {
+      const response = await axios.post(`/api/notices/favorites/${noticeId}`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue({
+        status: error.response.status,
+        message: error.response.data.message,
+      });
+    }
+  }
+);
+
+export const removeUserFavorite = createAsyncThunk(
+  'auth/update/removeFavorite',
+  async ({ noticeId }, thunkAPI) => {
+    try {
+      const response = await axios.delete(`/api/notices/favorites/${noticeId}`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({

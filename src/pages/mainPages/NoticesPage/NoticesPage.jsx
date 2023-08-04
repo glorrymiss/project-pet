@@ -16,64 +16,13 @@ import {
   FlexBox,
   WrapperFilter,
 } from './NoticesPage.styled';
-// import { useEffect, useState } from 'react';
+
 import IconPlus from 'images/icons/IconPlus';
-// import { getFavoriteNotices, getNotices } from 'services';
-// import { async } from 'q';
-// import { useState } from 'react';
 
 const NoticesPage = () => {
   const { currentTheme } = useAuth();
-  // const [noticesList, setNoticesList] = useState([]);
-  // const [quantityNotices, setQuantityNotices] = useState(0);
-  // const [page, setPage] = useState(1);
-  // const [searchParams, setSearchParams] = useSearchParams();
+
   const { categoryName } = useParams();
-  // console.log('searchValue', searchValue);
-
-  // useEffect(() => {
-  //   // if (categoryName) {
-  //   if (categoryName === 'favorite') {
-  //     getFavoriteNotices({
-  //       page,
-  //       limit: 12,
-  //       search: searchValue,
-  //       categoryName,
-  //     }).then(res => {
-  //       // console.log('res', res.data);
-
-  //       const { totalHits, notices } = res.data;
-  //       setNoticesList(notices);
-  //       setQuantityNotices(totalHits);
-  //     });
-  //     return;
-  //   }
-  //   getNotices({ page, limit: 12, search: searchValue, categoryName }).then(
-  //     res => {
-  //       // console.log('res', res.data);
-
-  //       const { totalHits, notices } = res.data;
-  //       setNoticesList(notices);
-  //       setQuantityNotices(totalHits);
-  //     }
-  //   );
-  // }, [page, searchValue, categoryName]);
-
-  // const getNotices = async () => {
-  //   await getNotices({
-  //     page,
-  //     limit: 12,
-  //     search: searchValue,
-  //     categoryName,
-  //   }).then(res => {
-  //     // console.log('res', res.data);
-
-  //     const { totalHits, notices } = res.data;
-  //     setNoticesList(notices);
-  //     setQuantityNotices(totalHits);
-  //     return notices;
-  //   });
-  // };
 
   if (!categoryName) {
     return <Navigate to="/notices/sell" />;
@@ -105,13 +54,6 @@ const NoticesPage = () => {
       </FiltersContainer>
 
       <Outlet />
-
-      {/* <Pagination
-        currentPage={page}
-        totalPages={Math.ceil(quantityNotices / 6)}
-        onPageChange={setPage}
-        paginationLength={6} // Adjust this number as per your preference
-      /> */}
     </FlexBox>
   );
 };

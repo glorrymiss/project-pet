@@ -5,6 +5,8 @@ import {
   logOut,
   refreshUser,
   updateUserInfo,
+  addUserFavorite,
+  removeUserFavorite,
 } from './operations';
 
 const initialState = {
@@ -57,10 +59,24 @@ const authSlice = createSlice({
         state.token = null;
       })
       .addCase(updateUserInfo.fulfilled, (state, action) => {
-			state.user = action.payload.User;
+        state.user = action.payload.User;
       })
       .addCase(updateUserInfo.rejected, (state, action) => {
-			state.error = action.payload
+        state.error = action.payload;
+      })
+      .addCase(addUserFavorite.fulfilled, (state, action) => {
+        state.user.favorite.push(action.payload.id);
+      })
+      .addCase(addUserFavorite.rejected, (state, action) => {
+        state.error = action.payload;
+      })
+      .addCase(removeUserFavorite.fulfilled, (state, action) => {
+        state.user.favorite = [...state.user.favorite].filter(
+          el => el !== action.payload.id
+        );
+      })
+      .addCase(removeUserFavorite.rejected, (state, action) => {
+        state.error = action.payload;
       });
   },
 });

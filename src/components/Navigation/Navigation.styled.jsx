@@ -20,6 +20,10 @@ export const StyledNavLink = styled(NavLink)`
       dark === 'true' ? theme.color.background : theme.color.primary};
   }
 
+  &:hover {
+    box-shadow: ${({ theme }) => theme.boxShadow};
+  }
+
   @media screen and (min-width: 768px) {
     font-size: 48px;
     letter-spacing: 1.92px;
