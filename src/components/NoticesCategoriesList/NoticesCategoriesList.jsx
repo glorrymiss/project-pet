@@ -41,7 +41,7 @@ const NoticesCategoriesList = () => {
   const query = searchParams.get('query') || '';
   const gender = searchParams.get('gender') || '';
   const age = searchParams.get('age') || '';
-  const page = searchParams.get('page');
+  const page = searchParams.get('page') || 1;
 
   if (2 === 1) {
     console.log('error', error);
