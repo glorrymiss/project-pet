@@ -48,7 +48,6 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
 
   // console.log('user', user);
   console.log('user?.favorite?', user?.favorite);
-  Ядобавив;
   // console.log(
   //   'user?.favorite?.includes(animal._id)',
   //   user?.favorite?.includes(animal._id)
