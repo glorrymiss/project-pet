@@ -31,7 +31,7 @@ import { Notify } from 'notiflix';
 import IconCheck from 'images/icons/IconCheck';
 import IconCross from 'images/icons/IconCross';
 
- const UserForm = () => {
+const UserForm = () => {
   const { user, error, currentTheme } = useAuth();
   // console.log(user);
   const dispatch = useDispatch();
@@ -241,7 +241,7 @@ import IconCross from 'images/icons/IconCross';
             id="city"
             name="city"
             type="text"
-            placeholder="Kyev"
+            placeholder="Kyiv"
             onChange={isChangeInput}
             value={values.city}
             onBlur={handleBlur}
