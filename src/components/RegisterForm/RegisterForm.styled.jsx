@@ -162,7 +162,7 @@ export const RegisterBtn = styled.button`
 
   padding: 10px 0 10px 0;
 
-  background: ${({ theme }) => theme.color.btnDark};
+  background: ${({ theme }) => theme.color.btnDark} !important;
   border: none;
   border-radius: 40px;
 
