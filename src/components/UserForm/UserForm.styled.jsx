@@ -25,17 +25,24 @@ export const WrapFoto = styled.div`
   position: relative;
   padding: 20px 49px 43px;
   @media screen and (min-width: 768px) {
-    padding: 20px 76px 66px 71px;
+    padding: 20px 76px 66px 91px;
   }
   @media screen and (min-width: 1280px) {
     padding: 20px 106px 63px;
     display: block;
   }
 `;
-export const Avatar = styled.img`
+export const ThumbAvatar = styled.div`
   width: 182px;
   height: 182px;
   border-radius: 40px;
+  overflow: hidden;
+`;
+export const Avatar = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 `;
 export const WrapInfo = styled.form`
   padding: 0 8px;
@@ -147,7 +154,6 @@ export const StyledLabel = styled.label`
   bottom: 20px;
   left: 50%;
   transform: translate(-50%, 0);
-  /* color: ${p => p.theme.color.btnDark}; */
   text-align: center;
   @media screen and (min-width: 768px) {
     bottom: 37px;
@@ -158,7 +164,6 @@ export const StyledLabel = styled.label`
   }
 `;
 export const WrapFileOk = styled.div`
-  /* height: 24px; */
   display: flex;
   align-items: center;
   position: absolute;
@@ -219,6 +224,7 @@ export const ErrorMessage = styled.div`
     left: 110px;
   }
 `;
+
 export const IconCameraOk = styled(IconCamera)`
   height: 20px;
 `;
@@ -232,6 +238,22 @@ export const ErrorMessageRes = styled.div`
     font-size: 14px;
     bottom: 0px;
     left: 150px;
+  }
+  @media screen and (min-width: 1280) {
+    font-size: 14px;
+    bottom: 45px;
+    left: 20px;
+  }
+`;
+export const ErrorFile = styled(ErrorMessage)`
+  font-size: 14px;
+  bottom: 5px;
+  right: 5%;
+  transform: translate(-50%, 0);
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    bottom: 20px;
+    left: 55%;
   }
   @media screen and (min-width: 1280) {
     font-size: 14px;
