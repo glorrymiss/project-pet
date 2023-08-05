@@ -18,10 +18,12 @@ import {
   StyledBtnFile,
   IconCameraOk,
   ErrorMessageRes,
+  ThumbAvatar,
+  ErrorFile,
 } from './UserForm.styled';
 import photoDefault from '../../images/userPageImages/photoDefault.svg';
 // import IconCamera from 'images/icons/IconCamera';
-import { validationSchema } from './ValidationSchema';
+import { validationSchema, validationSchemaFile } from './ValidationSchema';
 import { useDispatch } from 'react-redux';
 import { updateUserInfo } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
@@ -33,7 +35,7 @@ import IconCross from 'images/icons/IconCross';
 
 const UserForm = () => {
   const { user, error, currentTheme } = useAuth();
-  // console.log(user);
+  const [errorFile, setErrorFile] = useState(null);
   const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState(false);
   const [isModal, setIsModal] = useState(false);
@@ -52,13 +54,17 @@ const UserForm = () => {
   const isEditUser = () => {
     setIsEdit(true);
   };
-  const isFaleEdit = () => {
+	const isFaleEdit = () => {
+	 setErrorFile(null);
     setIsFile(false);
     setIsAvatar(isAvatarOld);
     setFieldValue('avatar', isAvatarOld);
     setAvatarUrl(avatarUrlOld);
   };
   const isFaleOkEdit = () => {
+    if (errorFile) {
+      return;
+    }
     setIsFile(false);
     setIsAvatarOld(isAvatar);
     setFieldValue('avatar', isAvatar);
@@ -73,7 +79,17 @@ const UserForm = () => {
       setIsFile(true);
       setAvatarUrl(avatarUrl);
     }
+    validationSchemaFile
+      .validate(files[0].size)
+      .then(r => {
+        setErrorFile(null);
+      })
+      .catch(err => {
+        setErrorFile(err.message);
+        return;
+      });
   };
+
   const isChangeInput = e => {
     const { name, value } = e.target;
     setFieldValue(name, value);
@@ -116,6 +132,9 @@ const UserForm = () => {
           v.city = values.city;
         }
         //   alert(JSON.stringify(v, null, 2));
+        if (errorFile) {
+          return;
+        }
         setIsFile(false);
         const res = await dispatch(updateUserInfo(v));
         if (res.error) {
@@ -135,11 +154,18 @@ const UserForm = () => {
         isEdit={isEdit}
       />
       <WrapFoto>
-        <Avatar
-          key="avatar"
-          src={avatarUrl ? avatarUrl : photoDefault}
-          alt="avatar"
-        />
+        <ThumbAvatar>
+          <Avatar
+            key="avatar"
+            src={avatarUrl ? avatarUrl : photoDefault}
+            alt="avatar"
+          />
+        </ThumbAvatar>
+        {errorFile && (
+          <ErrorFile >
+            {errorFile}
+          </ErrorFile>
+        )}
         <StyledLabel
           htmlFor="avatar"
           isEdit={isEdit}

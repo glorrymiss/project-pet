@@ -39,12 +39,6 @@ export const WrapText = styled.div`
     letter-spacing: 0.8px;
   }
 `;
-export const Text = styled.p`
-  /* padding: 0 6px; */
-  @media screen and (min-width: 768px) {
-    /* padding: 0 10px; */
-  }
-`;
 
 export const WrapBtn = styled.div`
 /* padding: 0 6px; */
@@ -88,10 +82,6 @@ export const StyledNavLink = styled(NavLink)`
 
   @media screen and (min-width: 768px) {
     width: 165px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    // width: 1280px;
   }
 `;
 

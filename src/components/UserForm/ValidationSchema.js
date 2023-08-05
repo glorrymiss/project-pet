@@ -14,7 +14,10 @@ export const validationSchema = Yup.object({
     .min(1900, 'Birthday is old')
     .max(new Date(), 'Birthday is future')
     .notRequired(),
-  email: Yup.string().email('Invalid email').required('Email is required'),
+  email: Yup.string()
+    .email('Invalid email')
+    .max(50, 'Email must be max 50')
+    .required('Email is required'),
   phone: Yup.string()
     .matches(regexPhone, {
       message: 'Format is +380000000000',
@@ -26,3 +29,12 @@ export const validationSchema = Yup.object({
     .matches(regexCity, 'The first letter must be uppercase')
     .notRequired(),
 });
+
+export const validationSchemaFile = Yup.number()
+    .notRequired()
+    .test((value, ctx) => {
+      if (value > 3000000) {
+        return ctx.createError({ message: 'Size of the file is big' });
+		 }
+		 return true
+    });
