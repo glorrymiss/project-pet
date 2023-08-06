@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { TeamPageStyled, AddInfo } from './TeamPage.styled';
 import { Carousel } from 'react-3dm-carousel';
-import { Background } from 'components/Hero/Hero.styled';
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai';
 import Loader from '../../../components/Loader/Loader';
 /*
@@ -131,7 +130,7 @@ const TeamPage = () => {
 
   return (
     <>
-      {true ? (
+      {isLoading ? (
         // <Background>
         <WrapLoader>
           <Loader />
