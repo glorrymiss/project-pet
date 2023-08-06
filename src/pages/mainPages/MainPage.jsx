@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Hero } from '../../components/Hero/Hero';
 import { Footer } from '../../components/Footer/Footer';
 import Loader from '../../components/Loader/Loader';
-import { Background, Wrapper } from '../../components/Hero/Hero.styled';
+import { Wrapper } from '../../components/Hero/Hero.styled';
 import { WrapLoader } from 'components/Loader/WrapLoader';
 
 const MainPage = () => {
