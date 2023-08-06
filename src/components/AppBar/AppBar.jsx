@@ -26,11 +26,9 @@ export const AppBar = ({ isOpenMenu, setIsOpenMenu }) => {
   };
 
   useEffect(() => {
-    // console.log('isModal', isModal);
-
     isOpenMenu
       ? (document.body.style.overflow = 'hidden')
-      : (document.body.style.overflow = 'scroll');
+      : (document.body.style.overflow = 'auto');
   }, [isOpenMenu]);
 
   const isOpenModal = () => {

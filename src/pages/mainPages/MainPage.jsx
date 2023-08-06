@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { Hero } from '../../components/Hero/Hero';
 import { Footer } from '../../components/Footer/Footer';
 import Loader from '../../components/Loader/Loader';
-import { Background } from '../../components/Hero/Hero.styled';
+import { Background, Wrapper } from '../../components/Hero/Hero.styled';
+import { WrapLoader } from 'components/Loader/WrapLoader';
 
 const MainPage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,14 +17,14 @@ const MainPage = () => {
   return (
     <>
       {isLoading ? (
-        <Background>
+        <WrapLoader>
           <Loader />
-        </Background>
+        </WrapLoader>
       ) : (
-        <>
+        <Wrapper>
           <Hero />
           <Footer />
-        </>
+        </Wrapper>
       )}
     </>
   );

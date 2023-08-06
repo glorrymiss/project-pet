@@ -1,15 +1,18 @@
 import { useCallback, useEffect } from 'react';
 import { Backdrop, ModalContainer, BtnStyled } from './Modal.styled';
 
- const Modal = ({ children, onClick }) => {
-	const handleKeyDown = useCallback(
+const Modal = ({ children, onClick }) => {
+  const handleKeyDown = useCallback(
     evt => {
+      document.body.style.overflow = 'auto';
       if (evt.code === 'Escape') {
         onClick();
       }
     },
     [onClick]
   );
+
+  document.body.style.overflow = 'hidden';
 
   const handleBackdropClick = evt => {
     if (evt.currentTarget === evt.target) {
@@ -28,7 +31,14 @@ import { Backdrop, ModalContainer, BtnStyled } from './Modal.styled';
   return (
     <Backdrop onClick={handleBackdropClick}>
       <ModalContainer>
-        <BtnStyled icon={'IconCross'} transparent={true} onClick={onClick} />
+        <BtnStyled
+          icon={'IconCross'}
+          transparent={true}
+          onClick={() => {
+            document.body.style.overflow = 'auto';
+            onClick();
+          }}
+        />
         {children}
       </ModalContainer>
     </Backdrop>

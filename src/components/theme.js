@@ -8,7 +8,7 @@ const darktheme = {
   background: '#FDF7F2', //white
   indicator: '#00C3AD', //green
   btnLogOut: '#888', //grey
-  cardBG:'#FFF', //white
+  cardBG: '#FFF', //white
   gradient: 'linear-gradient(to left, #419ef1 0%, #9bd0ff 100%)', //gradient
 };
 
@@ -22,9 +22,8 @@ const lightTheme = {
   background: '#FDF7F2', //white
   indicator: '#00C3AD', //green
   btnLogOut: '#888', //grey
-  cardBG:'#FFF', //white
+  cardBG: '#FFF', //white
   gradient: 'linear-gradient(to left, #419ef1 0%, #9bd0ff 100%)', //gradient
-  
 };
 
 const defaultTheme = {

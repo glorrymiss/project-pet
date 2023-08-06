@@ -58,8 +58,6 @@ const ThirdFormSell = ({
   const [selectedValue, setSelectedValue] = React.useState('');
 
   const handleChange = event => {
-    console.log('event.target', event.target);
-
     setSelectedValue(event.target.value);
     setFormData(prevState => ({
       ...prevState,
@@ -95,21 +93,16 @@ const ThirdFormSell = ({
     validationSchemaThirdAddSell
       .validate(formData, { abortEarly: false })
       .then(() => {
-        console.log('state', state);
         addNotices(formData)
           .then(res => {
-            // console.log('res', res);
             handleNextData(state);
           })
           .catch(error => {
-            console.log('error', error.response);
             Notify.failure(error.response.data.message, {
               timeout: 4000,
             });
             setFormData(prevState => ({ ...prevState, file: null }));
           });
-
-        // handleNextData(state);
       })
       .catch(err => {
         console.log('err', err);

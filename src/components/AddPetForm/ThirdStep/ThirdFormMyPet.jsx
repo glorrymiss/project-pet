@@ -17,11 +17,8 @@ import {
   InputComments,
   LabelAddedPhoto,
 } from './ThirdStep.styled';
-// import { useDispatch } from 'react-redux';
-// import axios from 'axios';
 import { Notify } from 'notiflix';
 import { addPet } from 'services/notices';
-// import { addPet } from 'redux/pets/operation';
 
 const ThirdFormMyPet = ({
   handleNextData,
@@ -42,24 +39,18 @@ const ThirdFormMyPet = ({
     validationSchemaThirdAddMy
       .validate(formData, { abortEarly: false })
       .then(() => {
-        // console.log('qwe', state);
         addPet(formData)
           .then(res => {
-            // console.log('res', res.response);
             handleNextData(state);
           })
           .catch(error => {
-            // console.log('error', error.response);
             Notify.failure(error.response.data.message, {
               timeout: 4000,
             });
             setFormData(prevState => ({ ...prevState, file: null }));
           });
-        // handleNextData(state);
       })
       .catch(err => {
-        // console.log('err', err);
-
         const validationErrors = {};
         err.inner.forEach(error => {
           validationErrors[error.path] = error.message;
@@ -67,7 +58,6 @@ const ThirdFormMyPet = ({
         setState(prevState => ({ ...prevState }));
       });
   };
-  // console.log('setFormData', setFormData);
   const handleFileChange = e => {
     const file = e.target.files[0];
 

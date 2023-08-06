@@ -112,7 +112,6 @@ const UserForm = () => {
       validationSchema: validationSchema,
       onSubmit: async values => {
         const v = {};
-        //   console.log(values.avatar);
         if (avatarUrl && avatarUrl !== user.avatar) {
           v.avatar = values.avatar;
         }
