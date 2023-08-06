@@ -65,14 +65,6 @@ export const TextTitle = styled.span`
     font-weight: 600;
   }
 `;
-export const Text = styled.p`
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1280px) {
-    /* width: 255px; */
-  }
-`;
 
 export const StyledBtn = styled(Btn)`
   cursor: pointer;

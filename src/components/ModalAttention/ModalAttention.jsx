@@ -3,7 +3,6 @@ import {
   StyledSection,
   Title,
   WrapBtn,
-  Text,
   WrapText,
   StyledNavLink,
 } from './ModalAttention.styled';
@@ -19,12 +18,12 @@ const ModalAttention = ({ close }) => {
       <StyledSection>
         <Title>Attention</Title>
         <WrapText>
-          <Text>
+          <p>
             We would like to remind you that certain functionality is available
             only to authorized users.If you have an account, please log in with
             your credentials. If you do not already have an account, you must
             register to access these features.
-          </Text>
+          </p>
         </WrapText>
         <WrapBtn>
           <StyledNavLink dark={'true'} to="/login">

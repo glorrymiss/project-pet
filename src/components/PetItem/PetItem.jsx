@@ -6,7 +6,6 @@ import {
   Avatar,
   WrapInfo,
   TextTitle,
-  Text,
   Foto,
 } from './PetItem.styled';
 import ModalDeletePet from 'components/ModalDeletePet/ModalDeletePet';
@@ -41,28 +40,28 @@ const PetItem = ({ pet }) => {
           <ModalDeletePet close={isCloseModal} id={pet._id} name={pet.name} />
         )}
         <InfoItem>
-          <Text>
+          <p>
             <TextTitle>Name: </TextTitle>
             {pet.name}
-          </Text>
+          </p>
         </InfoItem>
         <InfoItem>
-          <Text>
+          <p>
             <TextTitle>Date of birth: </TextTitle>
             {pet.birthday ? dateFormat(pet.birthday, 'dd.mm.yyyy') : ''}
-          </Text>
+          </p>
         </InfoItem>
         <InfoItem>
-          <Text>
+          <p>
             <TextTitle>Type: </TextTitle>
             {pet.type}
-          </Text>
+          </p>
         </InfoItem>
         <InfoItem>
-          <Text>
+          <p>
             <TextTitle>Comments: </TextTitle>
             {pet.comments}
-          </Text>
+          </p>
         </InfoItem>
       </WrapInfo>
     </>
