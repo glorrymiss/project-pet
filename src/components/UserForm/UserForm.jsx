@@ -31,9 +31,8 @@ import { Notify } from 'notiflix';
 import IconCheck from 'images/icons/IconCheck';
 import IconCross from 'images/icons/IconCross';
 
- const UserForm = () => {
+const UserForm = () => {
   const { user, error, currentTheme } = useAuth();
-  // console.log(user);
   const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState(false);
   const [isModal, setIsModal] = useState(false);
@@ -96,7 +95,6 @@ import IconCross from 'images/icons/IconCross';
       validationSchema: validationSchema,
       onSubmit: async values => {
         const v = {};
-        //   console.log(values.avatar);
         if (avatarUrl && avatarUrl !== user.avatar) {
           v.avatar = values.avatar;
         }

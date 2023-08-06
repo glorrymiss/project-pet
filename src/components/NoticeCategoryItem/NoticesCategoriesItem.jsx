@@ -41,10 +41,8 @@ const NoticesCategoriesItem = ({ animal, setNoticesList }) => {
     }
 
     dispatch(removeUserFavorite({ noticeId: animal._id }));
-    console.log('user', user);
 
     if (user?.favorite?.length === 0) {
-      console.log('QQQ');
       setNoticesList([]);
     }
   };

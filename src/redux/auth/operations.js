@@ -101,8 +101,6 @@ export const updateUserInfo = createAsyncThunk(
     { avatar, name, email, phone, city, birthday, favorite },
     thunkAPI
   ) => {
-    console.log('favorite', favorite);
-
     try {
       const formData = new FormData();
       favorite && formData.append('favorite', favorite);

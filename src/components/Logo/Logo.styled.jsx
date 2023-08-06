@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import logo from '../../images/Logo.jpg';
+import logo from '../../images/Logo.png';
 import logoMax from '../../images/LogoMax.png';
 
 export const StyleImg = styled.div`

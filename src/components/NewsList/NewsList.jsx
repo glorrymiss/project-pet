@@ -16,8 +16,6 @@ import {
 import dateFormat from 'dateformat';
 
 const NewsList = ({ newsList }) => {
-  // console.log('newsList', newsList);
-
   return (
     <NewsContainer>
       {newsList.map(news => (

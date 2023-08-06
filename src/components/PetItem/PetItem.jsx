@@ -13,16 +13,15 @@ import ModalDeletePet from 'components/ModalDeletePet/ModalDeletePet';
 import dateFormat from 'dateformat';
 import photoPetsDefault from '../../images/userPageImages/photoPetsDefault.svg';
 
-const PetItem = ({pet}) => {
-	const [isModal, setIsModal] = useState(false);
-	 	const isOpenModal = () => {
-      // console.log();
-      setIsModal(true);
-    };
-    const isCloseModal = () => {
-      setIsModal(false);
-    };
-	return (
+const PetItem = ({ pet }) => {
+  const [isModal, setIsModal] = useState(false);
+  const isOpenModal = () => {
+    setIsModal(true);
+  };
+  const isCloseModal = () => {
+    setIsModal(false);
+  };
+  return (
     <>
       <WrapFoto>
         <Avatar>

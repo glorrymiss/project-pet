@@ -49,11 +49,13 @@ export const HeroTitle = styled.h1`
 `;
 
 export const Background = styled.div`
-  position: relative;
+  display: flex;
+  flex-direction: column;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100dvh;
+  height: 100%;
+  background-attachment: fixed
 
   background-image: url(${bg_sm_1x});
 
@@ -95,20 +97,22 @@ export const BackgroundMainPage = styled.div`
     }
   }
   display: flex;
+  flex-grow: 3;
   align-items: flex-start;
   justify-content: center;
 
   background-size: cover, cover;
   background-position: bottom, center;
   background-repeat: no-repeat;
-  height: 100dvh;
+  // height: 100%;
+  flex-grow: 3;
 
-  background-image: url(${mb_bg_1x}), url(${bg_sm_1x});
+  background-image: url(${mb_bg_1x});
 
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-    background-image: url(${mb_bg_2x}), url(${bg_sm_2x});
+    background-image: url(${mb_bg_2x});
   }
 
   @media screen and (min-width: 768px) {
@@ -116,12 +120,12 @@ export const BackgroundMainPage = styled.div`
     background-size: contain, cover;
     background-position: bottom, center;
 
-    background-image: url(${tb_bg_1x}), url(${bg_md_1x});
+    background-image: url(${tb_bg_1x});
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(${tb_bg_2x}), url(${bg_md_2x});
+      background-image: url(${tb_bg_2x});
     }
   }
 
@@ -130,13 +134,19 @@ export const BackgroundMainPage = styled.div`
     background-size: 70%, cover;
     background-position: right, center;
 
-    background-image: url(${dt_bg_1x}), url(${bg_lg_1x});
+    background-image: url(${dt_bg_1x});
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(${dt_bg_2x}), url(${bg_lg_2x});
+      background-image: url(${dt_bg_2x});
     }
   }
   animation: myAnim 0.25s ease-in-out 0s 1 normal forwards;
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 68px);
 `;

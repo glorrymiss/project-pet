@@ -24,22 +24,8 @@ const AddPetChooseForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({ file: '' });
-  console.log('formData', formData);
-  console.log('isLoading', isLoading);
 
   const navigate = useNavigate();
-  // console.log('formData', formData);
-  // const [state, setState] = useState({
-  //   file: '',
-  //   comments: formData.comments || '',
-  //   location: formData.location || '',
-  //   sex: formData.sex || '',
-  //   price: formData.price || '',
-  //   active: null,
-  //   errors: {},
-  // });
-
-  // console.log('state', state);
 
   const handleChooseChange = (option, number) => {
     setFormData(prevData => ({ ...prevData, category: option }));
@@ -65,8 +51,6 @@ const AddPetChooseForm = () => {
     setFormData(prevData => {
       return { ...prevData, ...stepData };
     });
-
-    // console.log('step', step);
   };
 
   const handlePrevStep = stepData => {
@@ -104,8 +88,6 @@ const AddPetChooseForm = () => {
       }
       setIsLoading(true);
     }
-    // console.log('formData', formData);
-    // dispatch(addPet(formData));
 
     switch (formData.category) {
       case 'your-pet':
@@ -145,7 +127,7 @@ const AddPetChooseForm = () => {
   return (
     <>
       {step === 1 && (
-        <FormContainer>
+        <FormContainer isLoading={isLoading}>
           <Title>Add pet</Title>
 
           <StatusIndicator currentStatus={currentStatus} />

@@ -1,8 +1,4 @@
-import {
-  AuthNavContainer,
-  // StyledIconPawprint,
-  StyledNavLink,
-} from './AuthNav.styled';
+import { AuthNavContainer, StyledNavLink } from './AuthNav.styled';
 import { useAuth } from 'hooks';
 import theme from 'components/theme';
 import IconPawprint1 from 'images/icons/IconPawprint1';
@@ -17,7 +13,6 @@ export const AuthNav = ({ isOpenMenu }) => {
         <IconPawprint1 fill={theme[currentTheme].color.background} />
       </StyledNavLink>
       <StyledNavLink to="/register">Registration</StyledNavLink>
-      {/* <StyledNavLink to="/user">user</StyledNavLink> */}
     </AuthNavContainer>
   );
 };

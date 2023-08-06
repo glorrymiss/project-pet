@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet';
 import { useAuth } from 'hooks';
 import theme from 'components/theme';
 import { Container } from 'components/Container/Container';
+import { Background } from 'components/Hero/Hero.styled';
 
 const SharedLayout = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -24,17 +25,19 @@ const SharedLayout = () => {
   return (
     <>
       <ContainerLayout isOpenMenu={isOpenMenu} onClick={closeMenu}>
-        <Helmet>
-          <style>{`body { background-color: ${theme[currentTheme].color.bodyColor}; }`}</style>
-        </Helmet>
-        <AppBar isOpenMenu={isOpenMenu} setIsOpenMenu={setIsOpenMenu} />
-        <StuledContainer>
-          <Container>
-            <Suspense fallback={null}>
-              <Outlet />
-            </Suspense>
-          </Container>
-        </StuledContainer>
+        <Background>
+          <Helmet>
+            <style>{`body { background-color: ${theme[currentTheme].color.bodyColor}; }`}</style>
+          </Helmet>
+          <AppBar isOpenMenu={isOpenMenu} setIsOpenMenu={setIsOpenMenu} />
+          <StuledContainer>
+            <Container>
+              <Suspense fallback={null}>
+                <Outlet />
+              </Suspense>
+            </Container>
+          </StuledContainer>
+        </Background>
       </ContainerLayout>
     </>
   );

@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const TeamPageStyled = styled.div`
   position: relative;
+  height: calc(100vh - 48px);
+
   > div:not(:last-child) {
     overflow: visible;
     transform: scale(0.6);
@@ -12,9 +14,11 @@ export const TeamPageStyled = styled.div`
   }
 
   @media screen and (min-width: 768px) {
+    height: calc(100vh - 48px);
     top: 0;
   }
   @media screen and (min-width: 1280px) {
+    height: calc(100vh - 68px);
   }
 `;
 

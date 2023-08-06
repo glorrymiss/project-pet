@@ -34,19 +34,11 @@ const NoticesCategoriesList = () => {
 
   const [quantityNotices, setQuantityNotices] = useState(0);
   const [noticesList, setNoticesList] = useState([]);
-
-  // const [page, setPage] = useState(1);
-
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') || '';
   const gender = searchParams.get('gender') || '';
   const age = searchParams.get('age') || '';
   const page = searchParams.get('page') || 1;
-
-  if (2 === 1) {
-    console.log('error', error);
-    setSearchParams(null);
-  } //це щоб лінтер не ругався
 
   useEffect(() => {
     if (categoryName === 'favorite') {
@@ -142,7 +134,7 @@ const NoticesCategoriesList = () => {
     </>
   ) : (
     <>
-      <NoticeContainer>
+      <NoticeContainer error={error}>
         {noticesList.map(item => {
           if (
             categoryName === 'favorite' &&

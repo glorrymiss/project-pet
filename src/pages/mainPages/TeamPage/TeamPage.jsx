@@ -20,6 +20,7 @@ import NadiiaHarbuza from '../../../images/Teamimages/NadiiaHarbuza.png';
 import OlenaBlahodir from '../../../images/Teamimages/OlenaBlahodir.png';
 import OlhaObushchak from '../../../images/Teamimages/OlhaObushchak.png';
 import YuliiaZherebetska from '../../../images/Teamimages/YuliiaZherebetska.png';
+import { WrapLoader } from 'components/Loader/WrapLoader';
 
 const TeamPage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -31,7 +32,6 @@ const TeamPage = () => {
   }, []);
 
   const onTitleClickHandler = card => {
-    console.log('clicked card', card);
     if (card.routeTo) {
       window.location.href = card.routeTo;
     }
@@ -131,12 +131,14 @@ const TeamPage = () => {
 
   return (
     <>
-      {isLoading ? (
-        <Background>
+      {true ? (
+        // <Background>
+        <WrapLoader>
           <Loader />
-        </Background>
+        </WrapLoader>
       ) : (
-        <Background>
+        // </Background>
+        <>
           <TeamPageStyled>
             <Carousel
               cardsData={data}
@@ -180,7 +182,7 @@ const TeamPage = () => {
               ))}
             </AddInfo>
           </TeamPageStyled>
-        </Background>
+        </>
       )}
     </>
   );

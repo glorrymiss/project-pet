@@ -19,9 +19,12 @@ export const StyledNavLink = styled(NavLink)`
     color: ${({ dark, theme }) =>
       dark === 'true' ? theme.color.background : theme.color.primary};
   }
+  &.active:hover {
+    text-shadow: 1px 1px 2px ${({ theme }) => theme.color.secondary};
+  }
 
   &:hover {
-    box-shadow: ${({ theme }) => theme.boxShadow};
+    text-shadow: 1px 1px 2px ${({ theme }) => theme.color.primary};
   }
 
   @media screen and (min-width: 768px) {
